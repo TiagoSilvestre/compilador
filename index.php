@@ -8,13 +8,31 @@
 		<link href="linedTextArea/jquery-linedtextarea.css" type="text/css" rel="stylesheet" />
 	</head>
 	<body>
-		<textarea class="lined" rows="10" cols="60"></textarea>
+        <form action="index.php" method="post">
+            <textarea name="codigo" class="lined" rows="10" cols="60"></textarea>
+            <input type="submit" value="Enviar">
+        </form>
+        
+        
+<?php
 
-		<!-- <form action="" >
-		    <input type="text" name="codigo">
+    if(isset($_POST["codigo"])){
+        print($_POST["codigo"]);
 
-		    <input type="submit" value="Enviar">
-		</form> -->
+/* 
+--> Analisador lexico, 
+    
+    Dividir os tokens
+        - ter 3 estruturas, uma que é o caractere atual, 
+          o proximo caractere,  e a palavra que esta sendo formada
+
+*/
+
+    }
+    
+
+?>
+
 		<p>--> Area de edição</p>
 		<p>--> Logs</p>
 		<p>--> Pilha de tokens</p>
