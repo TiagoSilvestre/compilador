@@ -22,32 +22,32 @@
 			        $arr1 = str_split($_POST["codigo"]);
 			        echo "<pre>";
 			        print_r($arr1);
-			        echo "</pre>";
+			        echo "</pre>";  
 
-			        $arr2 = array();
+			        $sentenca = null;
+			        $pilha = array();
 
-			        echo "<h2>Removendo espaços</h2>";
-			        echo "<pre>";
-
-			        foreach ($arr1 as $value) {
-			        	if($value == " ") continue;
-
-			        	array_push($arr2, $value);
-			        }
-			   
-			        print_r($arr2);
-			        echo "</pre>";
-			        echo "<br><br>";
-
-			        foreach ($arr2 as $key => $value) {
+			        foreach ($arr1 as $key => $value) {
 			            echo "Valor atual: ". $value . "<br>";
-			            if(isset($arr2[$key+1])) {
-			            	echo "Proximo valor: ". $arr2[$key+1] . "<br>";
+			            if(isset($arr1[$key+1])) {
+			            	$sentenca .= $value;
+
+			            	echo "Proximo valor: ". $arr1[$key+1] . "<br>";
+
+			            	if($arr1[$key+1] == " ") {
+			            		array_push($pilha, $sentenca);
+			            		$sentenca = null;
+			            	}
 			            }
 			            
 			            echo "------------------------<br>";
 			            
-			        }     
+			        }
+
+			        echo $sentenca;
+
+			        echo "<pre>";
+			        print_r($pilha);
 			    }              
 				/* 
 				--> Analisador lexico, 
