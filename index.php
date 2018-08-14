@@ -15,56 +15,51 @@
                 <input type="submit" value="Enviar">
             </form>
 
-
             <div class="resultado">
 
-<?php
-    if(isset($_POST["codigo"])){
-        // print($_POST["codigo"]);
-        $arr1 = str_split($_POST["codigo"]);
-        echo "<pre>";
-        print_r($arr1);
-        echo "</pre>";
-   
-        echo "<h2>Removendo espaços</h2>";
-        echo "<pre>";
-        $arr2 = array_filter($arr1, function($value) { return $value !== ' '; });
-        print_r($arr2);
-        echo "</pre>";
+			<?php
+			    if(isset($_POST["codigo"])){
+			        $arr1 = str_split($_POST["codigo"]);
+			        echo "<pre>";
+			        print_r($arr1);
+			        echo "</pre>";
 
-        $size = count($arr2);
-        echo "Tamanho do array: " . $size;
+			        $arr2 = array();
 
-        echo "<br><br>";
+			        echo "<h2>Removendo espaços</h2>";
+			        echo "<pre>";
 
-        foreach ($arr2 as $key => $value) {
-            
-            echo "Valor atual: ". $value . "<br>";
-            echo "Proximo valor: ". $arr2[$key+1] . "<br>";
-            echo "------------------------<br>";
-            
-        }     
-    }              
-/* 
---> Analisador lexico, 
-    
-    Dividir os tokens
-        - ter 3 estruturas, uma que é o caractere atual, 
-          o proximo caractere,  e a palavra que esta sendo formada
+			        foreach ($arr1 as $value) {
+			        	if($value == " ") continue;
 
-*/
-?>                
+			        	array_push($arr2, $value);
+			        }
+			   
+			        print_r($arr2);
+			        echo "</pre>";
+			        echo "<br><br>";
+
+			        foreach ($arr2 as $key => $value) {
+			            echo "Valor atual: ". $value . "<br>";
+			            if(isset($arr2[$key+1])) {
+			            	echo "Proximo valor: ". $arr2[$key+1] . "<br>";
+			            }
+			            
+			            echo "------------------------<br>";
+			            
+			        }     
+			    }              
+				/* 
+				--> Analisador lexico, 
+				    
+				    Dividir os tokens
+				        - ter 3 estruturas, uma que é o caractere atual, 
+				          o proximo caractere,  e a palavra que esta sendo formada
+
+				*/
+			?>                
             </div>
-
-
-
-
-
         </div>
-        
-
-
-        
 
         <div>
             <p>--> Area de edição</p>
@@ -74,8 +69,7 @@
             <span>http://alan.blog-city.com/jquerylinedtextarea.html</span>
         </div>
     
-    
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 		<script src="linedTextArea/jquery-linedtextarea.js"></script>
 		<script>
 			$(function() {
