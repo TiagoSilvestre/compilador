@@ -18,38 +18,45 @@
             <div class="resultado">
 
 			<?php
-				include "tabela.php";
-
+			include 'funcoes.php';
 			    if(isset($_POST["codigo"])){
-			        $arr1 = str_split($_POST["codigo"]);
+			        $codigo = str_split($_POST["codigo"]);
 			        echo "<pre>";
-			        print_r($arr1);
-			        echo "</pre>";  
+			        print_r($codigo);
+			        echo "</pre>";
 
 			        $sentenca = null;
 			        $pilha = array();
 
-			        foreach ($arr1 as $key => $value) {
+			        foreach ($codigo as $key => $value) {
 			            echo "Valor atual: ". $value . "<br>";
-			            if(isset($arr1[$key+1])) {
+			            if(isset($codigo[$key+1])) {
 			            	$sentenca .= $value;
 
-			            	echo "Proximo valor: ". $arr1[$key+1] . "<br>";
+			            	echo "Proximo valor: ". $codigo[$key+1] . "<br>";
+							echo 'Sentença:  ' . $sentenca;
+							echo '<br>Verifica Sentença!';
 
-			            	if($arr1[$key+1] == " " || $arr1[$key+1] == "(" || $arr1[$key+1] == ")" || $arr1[$key+1] == ";") {
+							verificaSentencaNaTabela($sentenca);
+
+
+			            	if($codigo[$key+1] == " ") {
 			            		array_push($pilha, $sentenca);
 			            		$sentenca = null;
 			            	}
-			            }
+							echo "<br>------------------------<br>";
+			            }else {
+							echo "Fim do código!<br>";
+						}
 			            
-			            echo "------------------------<br>";
+			            
 			            
 			        }
 
-			        echo $sentenca;
+			        echo 'Sentença:  ' . $sentenca;
 
 			        echo "<pre>";
-			        print_r($pilha);
+			        // print_r($sentenca1);
 			    }              
 				/* 
 				--> Analisador lexico, 
