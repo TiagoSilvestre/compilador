@@ -18,6 +18,7 @@
             <div class="resultado">
 
 			<?php
+			include 'funcoes.php';
 			    if(isset($_POST["codigo"])){
 			        $codigo = str_split($_POST["codigo"]);
 			        echo "<pre>";
@@ -36,7 +37,7 @@
 							echo 'Sentença:  ' . $sentenca;
 							echo '<br>Verifica Sentença!';
 
-							if($sentenca)
+							verificaSentencaNaTabela($sentenca);
 
 
 			            	if($codigo[$key+1] == " ") {
