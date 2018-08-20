@@ -1,6 +1,6 @@
 <?php
-
-	$tabela = array( 
+class Tabela {
+	const $tabela = array( 
 		1 => "Program",
 		2 => "Label",
 		3 => "Const",
@@ -53,5 +53,6 @@
 		50 => "..",
 		51 => "$"
 	);
-	
+}
+
 ?>
