@@ -18,6 +18,8 @@
             <div class="resultado">
 
 			<?php
+				include "tabela.php";
+
 			    if(isset($_POST["codigo"])){
 			        $arr1 = str_split($_POST["codigo"]);
 			        echo "<pre>";
@@ -34,7 +36,7 @@
 
 			            	echo "Proximo valor: ". $arr1[$key+1] . "<br>";
 
-			            	if($arr1[$key+1] == " ") {
+			            	if($arr1[$key+1] == " " || $arr1[$key+1] == "(" || $arr1[$key+1] == ")" || $arr1[$key+1] == ";") {
 			            		array_push($pilha, $sentenca);
 			            		$sentenca = null;
 			            	}
