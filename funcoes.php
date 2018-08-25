@@ -1,5 +1,4 @@
 <?php
-require 'tabela.php';
 
 function verificaSentencaNaTabela($sentenca) {
     
@@ -214,11 +213,10 @@ function verificaSentencaNaTabela($sentenca) {
     }
 
 
-    if (in_array($sentenca, $a->tabela)) { 
-        echo "Retornou da tabela TRUE";
-        return true;
-        // aqui ele joga num array das palavras reconhecidas
-    } 
-    echo "Retornou da tabela FALSE";
-    return false;
+    // if (in_array($sentenca, $a->tabela)) { 
+    //     echo "Retornou da tabela TRUE";
+    //     return true;
+    // } 
+    // echo "Retornou da tabela FALSE";
+    // return false;
 }

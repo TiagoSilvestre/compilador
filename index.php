@@ -8,6 +8,24 @@
         <link href="linedTextArea/jquery-linedtextarea.css" type="text/css" rel="stylesheet" />
         <link href="styles/style.css" type="text/css" rel="stylesheet" />
 	</head>
+	<style>
+		table {
+			font-family: arial, sans-serif;
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		td, th {
+			border: 1px solid #dddddd;
+			text-align: left;
+			padding: 8px;
+		}
+
+		tr:nth-child(even) {
+			background-color: #dddddd;
+		}
+	</style>
+
 	<body>
         <div class="form-container">
             <form class="formulario" action="index.php" method="post">
@@ -17,8 +35,21 @@
 
 
 			<div class="tabela-resultado">
-				<h1>Tabela de resultados</h1>
-				Codigo ----  Palavra
+				<h2>Resultado</h2>
+				<table>
+					<tr>
+						<th>Código</th>
+						<th>Palavra</th>
+					</tr>
+					<tr>
+						<td>Alfreds Futterkiste</td>
+						<td>Maria Anders</td>
+					</tr>
+					<tr>
+						<td>Centro comercial Moctezuma</td>
+						<td>Francisco Chang</td>
+					</tr>
+				</table>
 			</div>
 		</div>
 
