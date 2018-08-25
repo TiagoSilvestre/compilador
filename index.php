@@ -15,8 +15,14 @@
                 <input type="submit" value="Enviar">
             </form>
 
-            <div class="resultado">
 
+			<div class="tabela-resultado">
+				<h1>Tabela de resultados</h1>
+				Codigo ----  Palavra
+			</div>
+		</div>
+
+		<div>
 			<?php
 			include 'funcoes.php';
 			    if(isset($_POST["codigo"])){
@@ -44,6 +50,7 @@
 						// conferir na tabela 
 						if(verificaSentencaNaTabela($sentenca)) {
 							array_push($pilhaDeTokens, $sentenca);
+							$sentenca = '';
 							
 						}
 			        	echo "<br>------------------------<br>";
@@ -54,7 +61,7 @@
 
 			?>                
             </div>
-        </div>
+        
 
         <div>
             <p>--> Area de edição</p>
