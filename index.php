@@ -10,34 +10,10 @@
 	</head>
 
 	<body>
-        <div class="form-container">
-            <form class="formulario" action="index.php" method="post">
-                <textarea name="codigo" class="lined" rows="10" cols="60"></textarea>
-                <input type="submit" value="Enviar">
-            </form>
-
-			<div class="tabela-resultado">
-				<h2>Resultado</h2>
-				<table>
-					<tr>
-						<th>Código</th>
-						<th>Palavra</th>
-					</tr>
-					<tr>
-						<td>Alfreds Futterkiste</td>
-						<td>Maria Anders</td>
-					</tr>
-					<tr>
-						<td>Centro comercial Moctezuma</td>
-						<td>Francisco Chang</td>
-					</tr>
-				</table>
-			</div>
-		</div>
-
 		<div>
 			<?php
 			include 'funcoes.php';
+
 			    if(isset($_POST["codigo"])){
 			        $codigo = str_split($_POST["codigo"]);
 			        echo "<pre>";
@@ -45,7 +21,7 @@
 			        echo "</pre>";
 
 			        $sentenca = null;
-			        $pilhaDeTokens = array();
+			        $pilhaDeTokens = array('1' => 'Program', '25' => 'teste');
 
 			        foreach ($codigo as $key => $value) {
 			            $sentenca .= $value;
@@ -67,22 +43,37 @@
 							
 						}
 			        	echo "<br>------------------------<br>";
-
-			            
 			        }
+
+			        $pilhaDeTokens = array('1' => 'Program', '25' => 'teste');
 			    }              
-
 			?>                
-            </div>
-        
+		</div>
 
-        <div>
-            <p>--> Area de edição</p>
-            <p>--> Logs</p>
-            <p>--> Pilha de tokens</p>
-        
-            <span>http://alan.blog-city.com/jquerylinedtextarea.html</span>
-        </div>
+		<div class="form-container">
+            <form class="formulario" action="index.php" method="post">
+                <textarea name="codigo" class="lined" rows="10" cols="60"></textarea>
+                <input type="submit" value="Enviar">
+            </form>
+
+			<div class="tabela-resultado">
+				<h2>Resultado</h2>
+				<table>
+					<tr>
+						<th>Código</th>
+						<th>Palavra</th>
+					</tr>
+					<?php if(isset($pilhaDeTokens)): ?>
+						<?php foreach($pilhaDeTokens as $key => $pilha): ?>
+						<tr>
+							<td><?php echo $key; ?></td>
+							<td><?php echo $pilha; ?></td>
+						</tr>
+						<?php endforeach; ?>
+					<?php endif; ?>
+				</table>
+			</div>
+		</div>
     
     	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 		<script src="linedTextArea/jquery-linedtextarea.js"></script>
