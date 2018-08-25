@@ -6,25 +6,8 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Compilador</title>
         <link href="linedTextArea/jquery-linedtextarea.css" type="text/css" rel="stylesheet" />
-        <link href="styles/style.css" type="text/css" rel="stylesheet" />
+        <link href="styles/style.css?<?php echo strtotime(date('Y-m-d H:i:s')); ?>" type="text/css" rel="stylesheet" />
 	</head>
-	<style>
-		table {
-			font-family: arial, sans-serif;
-			border-collapse: collapse;
-			width: 100%;
-		}
-
-		td, th {
-			border: 1px solid #dddddd;
-			text-align: left;
-			padding: 8px;
-		}
-
-		tr:nth-child(even) {
-			background-color: #dddddd;
-		}
-	</style>
 
 	<body>
         <div class="form-container">
@@ -32,7 +15,6 @@
                 <textarea name="codigo" class="lined" rows="10" cols="60"></textarea>
                 <input type="submit" value="Enviar">
             </form>
-
 
 			<div class="tabela-resultado">
 				<h2>Resultado</h2>
