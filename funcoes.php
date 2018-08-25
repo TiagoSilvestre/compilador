@@ -1,6 +1,12 @@
 <?php
 
 function verificaSentencaNaTabela($sentenca) {
+    // VAI RETORNAR TRUE OU FALSE
+}
+
+
+
+function getCodigo($sentenca) {
     
     switch ($sentenca) {
         case "Program":
@@ -119,52 +125,8 @@ function verificaSentencaNaTabela($sentenca) {
             return 29;
             break;
 
-        case "+":
-            return 30;
-            break;
-
-        case "-":
-            return 31;
-            break;
-
-        case "*":
-            return 32;
-            break;
-
-        case "/":
-            return 33;
-            break;
-
-        case "[":
-            return 34;
-            break;
-
-        case "]":
-            return 35;
-            break;
-
-        case "(":
-            return 36;
-            break;
-
-        case ")":
-            return 37;
-            break;
-
         case ":=":
             return 38;
-            break;
-
-        case ":":
-            return 39;
-            break;
-
-        case "=":
-            return 40;
-            break;
-
-        case ">":
-            return 41;
             break;
 
         case ">=":
@@ -206,10 +168,68 @@ function verificaSentencaNaTabela($sentenca) {
         case "$":
             return 50;
             break;
-        
-        default:
-            return 25;
+
+        // DAQUI SAO SÓ LETRAS 
+        case "+":
+            return 30;
             break;
+
+        case "-":
+            return 31;
+            break;
+
+        case "*":
+            return 32;
+            break;
+
+        case "/":
+            return 33;
+            break;
+
+        case "[":
+            return 34;
+            break;
+
+        case "]":
+            return 35;
+            break;
+
+        case "(":
+            return 36;
+            break;
+
+        case ")":
+            return 37;
+            break;
+
+        case ":":
+            return 39;
+            break;
+
+        case "=":
+            return 40;
+            break;
+
+        case ">":
+            return 41;
+            break;
+        
+        case ",":
+            return 46;
+            break;
+
+        case ";":
+            return 47;
+            break;
+
+        case ".":
+            return 49;
+            break;
+
+        case "$":
+            return 50;
+            break;
+
     }
 
 

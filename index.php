@@ -13,7 +13,6 @@
 		<div>
 			<?php
 			include 'funcoes.php';
-
 			    if(isset($_POST["codigo"])){
 			        $codigo = str_split($_POST["codigo"]);
 			        echo "<pre>";
@@ -23,31 +22,47 @@
 			        $sentenca = null;
 			        $pilhaDeTokens = array('1' => 'Program', '25' => 'teste');
 
+
+
 			        foreach ($codigo as $key => $value) {
 			            $sentenca .= $value;
 						echo "Valor atual: ". $value . "<br>";
 						echo 'Sentença:  ' . $sentenca . "<br>";
 						echo 'Verifica Sentença!<br>';
 
-						// se existe proximo valor
+
+						
+						// verifica se existe proximo valor
 			            if(isset($codigo[$key+1])) {
-			            	echo "Proximo valor: ". $codigo[$key+1] . "<br>";							
+			            	echo "Proximo valor: ". $codigo[$key+1] . "<br>";			
+							
+							if($codigo[$key+1] === ';' && !verificaSentencaNaTabela($sentenca)){
+
+								$pilhaDeTokens['25'] = getCodigo($sentenca);
+								// array_push($pilhaDeTokens, );
+								echo "RETURN 25!!!";
+							}
 			            }else {
 							echo "Fim do código!<br>";
 						}
 
-						// conferir na tabela 
-						if(verificaSentencaNaTabela($sentenca)) {
-							array_push($pilhaDeTokens, $sentenca);
-							$sentenca = '';
-							
-						}
-			        	echo "<br>------------------------<br>";
-			        }
 
-			        $pilhaDeTokens = array('1' => 'Program', '25' => 'teste');
+
+
+
+						//  
+						// if(verificaSentencaNaTabela($sentenca)) {
+						// 	array_push($pilhaDeTokens, $sentenca);
+						// 	$sentenca = '';
+							
+						// }
+			        	echo "<br>------------------------<br>";
+
+			            
+			        }
 			    }              
-			?>                
+
+			?>           
 		</div>
 
 		<div class="form-container">
