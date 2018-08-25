@@ -26,46 +26,32 @@
 			        echo "</pre>";
 
 			        $sentenca = null;
-			        $pilha = array();
+			        $pilhaDeTokens = array();
 
 			        foreach ($codigo as $key => $value) {
-			            echo "Valor atual: ". $value . "<br>";
+			            $sentenca .= $value;
+						echo "Valor atual: ". $value . "<br>";
+						echo 'Sentença:  ' . $sentenca . "<br>";
+						echo 'Verifica Sentença!<br>';
+
+						// se existe proximo valor
 			            if(isset($codigo[$key+1])) {
-			            	$sentenca .= $value;
-
-			            	echo "Proximo valor: ". $codigo[$key+1] . "<br>";
-							echo 'Sentença:  ' . $sentenca;
-							echo '<br>Verifica Sentença!';
-
-							verificaSentencaNaTabela($sentenca);
-
-
-			            	if($codigo[$key+1] == " ") {
-			            		array_push($pilha, $sentenca);
-			            		$sentenca = null;
-			            	}
-							echo "<br>------------------------<br>";
+			            	echo "Proximo valor: ". $codigo[$key+1] . "<br>";							
 			            }else {
 							echo "Fim do código!<br>";
 						}
-			            
-			            
+
+						// conferir na tabela 
+						if(verificaSentencaNaTabela($sentenca)) {
+							array_push($pilhaDeTokens, $sentenca);
+							
+						}
+			        	echo "<br>------------------------<br>";
+
 			            
 			        }
-
-			        echo 'Sentença:  ' . $sentenca;
-
-			        echo "<pre>";
-			        // print_r($sentenca1);
 			    }              
-				/* 
-				--> Analisador lexico, 
-				    
-				    Dividir os tokens
-				        - ter 3 estruturas, uma que é o caractere atual, 
-				          o proximo caractere,  e a palavra que esta sendo formada
 
-				*/
 			?>                
             </div>
         </div>
