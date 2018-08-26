@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -45,6 +46,9 @@
 		<div> 
 			<?php
 			    if(isset($_POST["codigo"])){
+
+			    	$_SESSION['codigo'] = $_POST["codigo"];
+
 			        $codigo = str_split($_POST["codigo"]);
 			        echo "<pre>";
 			        print_r($codigo);
@@ -85,8 +89,10 @@
 
 			            
 			        }
-			    }             
-			?>
+
+			    }              
+
+			?>           
 		</div>
     
     	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
