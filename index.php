@@ -40,8 +40,9 @@
 			            	echo "Proximo valor: ". $codigo[$key+1] . "<br>";			
 
 							
-							if($codigo[$key+1] === ' ' && verificaSentencaNaTabela($sentenca)){
+							if($codigo[$key+1] == ' ' && verificaSentencaNaTabela($sentenca)){
 								$pilhaDeTokens[getCodigo($sentenca)] = $sentenca;
+								echo 'AQUIEE';
 								$sentenca = '';
 							}
 							
