@@ -11,9 +11,40 @@
 	</head>
 
 	<body>
-		<div>
-			<?php
+		<?php
 			include 'funcoes.php';
+			$pilhaDeTokens = array('1' => 'Program', '25' => 'teste');
+		?>           
+
+		<div class="form-container">
+            <form class="formulario" action="index.php" method="post">
+                <textarea name="codigo" class="lined" rows="10" cols="60"></textarea>
+                <input type="submit" value="Enviar">
+            </form>
+
+			<div class="tabela-resultado">
+				<h2>Resultado</h2>
+				<table>
+					<tr>
+						<th>Código</th>
+						<th>Palavra</th>
+					</tr>
+					<?php if(isset($pilhaDeTokens)): ?>
+						<?php foreach($pilhaDeTokens as $key => $pilha): ?>
+						<tr>
+							<td><?php echo $key; ?></td>
+							<td><?php echo $pilha; ?></td>
+						</tr>
+						<?php endforeach; ?>
+					<?php endif; ?>
+				</table>
+			</div>
+		</div>
+
+
+
+		<div> 
+			<?php
 			    if(isset($_POST["codigo"])){
 
 			    	$_SESSION['codigo'] = $_POST["codigo"];
@@ -24,16 +55,13 @@
 			        echo "</pre>";
 
 			        $sentenca = null;
-			        $pilhaDeTokens = array('1' => 'Program', '25' => 'teste');
-
-
+//			        $pilhaDeTokens = array('1' => 'Program', '25' => 'teste');
 
 			        foreach ($codigo as $key => $value) {
 			            $sentenca .= $value;
 						echo "Valor atual: ". $value . "<br>";
 						echo 'Sentença:  ' . $sentenca . "<br>";
 						echo 'Verifica Sentença!<br>';
-
 
 						
 						// verifica se existe proximo valor
@@ -51,9 +79,6 @@
 						}
 
 
-
-
-
 						//  
 						// if(verificaSentencaNaTabela($sentenca)) {
 						// 	array_push($pilhaDeTokens, $sentenca);
@@ -64,6 +89,7 @@
 
 			            
 			        }
+<<<<<<< HEAD
 			    }              
 
 			?>           
@@ -92,6 +118,10 @@
 					<?php endif; ?>
 				</table>
 			</div>
+=======
+			    }             
+			?>
+>>>>>>> bd399b6b30ea86153b420898976e0b8db087a861
 		</div>
     
     	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>

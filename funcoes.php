@@ -2,6 +2,7 @@
 
 function verificaSentencaNaTabela($sentenca) {
     // VAI RETORNAR TRUE OU FALSE
+    
 }
 
 
