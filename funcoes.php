@@ -1,8 +1,16 @@
 <?php
 
+require 'tabela.php';
+
 function verificaSentencaNaTabela($sentenca) {
-    // VAI RETORNAR TRUE OU FALSE
+    $a = new Tabela();
     
+    if (in_array($sentenca, $a->tabela)) { 
+        echo "Retornou da tabela TRUE";
+        return true;
+    } 
+    echo "Retornou da tabela FALSE";
+    return false;
 }
 
 
