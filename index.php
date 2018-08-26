@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -14,6 +15,9 @@
 			<?php
 			include 'funcoes.php';
 			    if(isset($_POST["codigo"])){
+
+			    	$_SESSION['codigo'] = $_POST["codigo"];
+
 			        $codigo = str_split($_POST["codigo"]);
 			        echo "<pre>";
 			        print_r($codigo);
@@ -67,7 +71,7 @@
 
 		<div class="form-container">
             <form class="formulario" action="index.php" method="post">
-                <textarea name="codigo" class="lined" rows="10" cols="60"></textarea>
+                <textarea name="codigo" class="lined" rows="10" cols="60"><?php if(isset($_SESSION['codigo'])) { echo $_SESSION['codigo']; } ?></textarea>
                 <input type="submit" value="Enviar">
             </form>
 
