@@ -18,7 +18,7 @@
 
 		<div class="form-container">
             <form class="formulario" action="index.php" method="post">
-                <textarea name="codigo" class="lined" rows="10" cols="60"></textarea>
+                <textarea name="codigo" class="lined" rows="10" cols="60"><?php if(isset($_SESSION['codigo'])) { echo $_SESSION['codigo']; } ?></textarea>
                 <input type="submit" value="Enviar">
             </form>
 
