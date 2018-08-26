@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -14,33 +13,7 @@
 		<?php
 			include 'funcoes.php';
 			$pilhaDeTokens = array();
-		?>           
-
-		<div class="form-container">
-            <form class="formulario" action="index.php" method="post">
-                <textarea name="codigo" class="lined" rows="10" cols="60"><?php if(isset($_SESSION['codigo'])) { echo $_SESSION['codigo']; } ?></textarea>
-                <input type="submit" value="Enviar">
-            </form>
-
-			<div class="tabela-resultado">
-				<table>
-					<tr>
-						<th class="codigo">Código</th>
-						<th class="palavra">Palavra</th>
-					</tr>
-					<?php if(isset($pilhaDeTokens)): ?>
-						<?php foreach($pilhaDeTokens as $key => $pilha): ?>
-						<tr>
-							<td><?php echo $key; ?></td>
-							<td><?php echo $pilha; ?></td>
-						</tr>
-						<?php endforeach; ?>
-					<?php endif; ?>
-				</table>
-			</div>
-		</div>
-
-
+		?>
 
 		<div> 
 			<?php
@@ -54,7 +27,6 @@
 			        echo "</pre>";
 
 			        $sentenca = null;
-//			        $pilhaDeTokens = array('1' => 'Program', '25' => 'teste');
 
 			        foreach ($codigo as $key => $value) {
 			            $sentenca .= $value;
@@ -93,6 +65,30 @@
 			    }              
 
 			?>           
+		</div>
+
+		<div class="form-container">
+            <form class="formulario" action="index.php" method="post">
+                <textarea name="codigo" class="lined" rows="10" cols="60"></textarea>
+                <input type="submit" value="Enviar">
+            </form>
+
+			<div class="tabela-resultado">
+				<table>
+					<tr>
+						<th class="codigo">Código</th>
+						<th class="palavra">Palavra</th>
+					</tr>
+					<?php if(isset($pilhaDeTokens)): ?>
+						<?php foreach($pilhaDeTokens as $key => $pilha): ?>
+						<tr>
+							<td><?php echo $key; ?></td>
+							<td><?php echo $pilha; ?></td>
+						</tr>
+						<?php endforeach; ?>
+					<?php endif; ?>
+				</table>
+			</div>
 		</div>
     
     	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
