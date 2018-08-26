@@ -38,14 +38,22 @@
 						// verifica se existe proximo valor
 			            if(isset($codigo[$key+1])) {
 			            	echo "Proximo valor: ". $codigo[$key+1] . "<br>";			
+
+							
+							if($codigo[$key+1] === ' ' && verificaSentencaNaTabela($sentenca)){
+								$pilhaDeTokens[getCodigo($sentenca)] = $sentenca;
+								$sentenca = '';
+							}
 							
 							if($codigo[$key+1] === ';' && !verificaSentencaNaTabela($sentenca)){
-
 								$pilhaDeTokens['25'] = $sentenca;
-								// array_push($pilhaDeTokens, );
-								echo "RETURN 25!!!";
+								$sentenca = '';
 							}
 			            }else {
+							if(verificaSentencaNaTabela($sentenca)){
+								$pilhaDeTokens[getCodigo($sentenca)] = $sentenca;
+								$sentenca = '';
+							}
 							// verificaSentencaNaTabela($sentenca);
 							echo "Fim do código!<br>";
 						}
@@ -61,6 +69,13 @@
 
 			            
 			        }
+
+
+					// AQUI TEM QUE RESETAR A TABELA
+			        echo "<pre>";
+			        print_r($pilhaDeTokens);
+			        echo "</pre>";
+
 
 			    }              
 
