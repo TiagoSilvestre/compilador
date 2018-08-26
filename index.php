@@ -13,7 +13,7 @@
 	<body>
 		<?php
 			include 'funcoes.php';
-			$pilhaDeTokens = array('1' => 'Program', '25' => 'teste');
+			$pilhaDeTokens = array();
 		?>           
 
 		<div class="form-container">
@@ -69,11 +69,12 @@
 							
 							if($codigo[$key+1] === ';' && !verificaSentencaNaTabela($sentenca)){
 
-								$pilhaDeTokens['25'] = getCodigo($sentenca);
+								$pilhaDeTokens['25'] = $sentenca;
 								// array_push($pilhaDeTokens, );
 								echo "RETURN 25!!!";
 							}
 			            }else {
+							// verificaSentencaNaTabela($sentenca);
 							echo "Fim do código!<br>";
 						}
 
