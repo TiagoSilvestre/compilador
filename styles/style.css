@@ -21,3 +21,11 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+
+.codigo{
+    width: 100px;
+}
+
+.palavra{
+    width: 200px;
+}

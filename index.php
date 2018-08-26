@@ -23,11 +23,10 @@
             </form>
 
 			<div class="tabela-resultado">
-				<h2>Resultado</h2>
 				<table>
 					<tr>
-						<th>Código</th>
-						<th>Palavra</th>
+						<th class="codigo">Código</th>
+						<th class="palavra">Palavra</th>
 					</tr>
 					<?php if(isset($pilhaDeTokens)): ?>
 						<?php foreach($pilhaDeTokens as $key => $pilha): ?>
