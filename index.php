@@ -39,15 +39,75 @@
 							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
 							$sentenca = '';
 						}					
+
 						if($codigo[$key] === ':') {
 							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
 							$sentenca = '';
-						}						
+						}		
 
+						if($codigo[$key] === '+') {
+							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
+							$sentenca = '';
+						}
 
+						if($codigo[$key] === '-') {
+							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
+							$sentenca = '';
+						}
 
+						if($codigo[$key] === '*') {
+							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
+							$sentenca = '';
+						}
 
+						if($codigo[$key] === '/') {
+							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
+							$sentenca = '';
+						}
 
+						if($codigo[$key] === '[') {
+							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
+							$sentenca = '';
+						}
+
+						if($codigo[$key] === ']') {
+							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
+							$sentenca = '';
+						}
+
+						if($codigo[$key] === '(') {
+							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
+							$sentenca = '';
+						}
+
+						if($codigo[$key] === ')') {
+							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
+							$sentenca = '';
+						}
+
+						if($codigo[$key] === '=') {
+							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
+							$sentenca = '';
+						}
+
+						if($codigo[$key] === '>') {
+							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
+							$sentenca = '';
+						}
+
+						if($codigo[$key] === ',') {
+							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
+							$sentenca = '';
+						}
+
+						if($codigo[$key] === '.') {
+							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
+							$sentenca = '';
+						}
+
+						if($codigo[$key] === '$') {
+							//Fim do programa
+						}
 
 			            if(isset($codigo[$key+1]) && $sentenca != '') {
 			            	echo "Proximo valor: ". $codigo[$key+1] . "<br>";			
@@ -138,7 +198,7 @@
 			var post = <?php echo json_encode($_POST) ?>;
 			console.log(post)
 			if(post) {
-				document.getElementById("editor").value = post;
+				document.getElementById("editor").value = post.codigo;
 			}
 			
 
