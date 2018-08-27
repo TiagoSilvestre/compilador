@@ -97,7 +97,8 @@
 						}
 
 						if($codigo[$key] === '$') {
-							//Fim do programa
+							array_push($pilhaDeTokens, new Linha(0, 'Fim do programa'));
+							break;
 						}
 
 			            if(isset($codigo[$key+1]) && $sentenca != '') {
