@@ -38,7 +38,7 @@
 						if($codigo[$key] === ';') {
 							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
 							$sentenca = '';
-						}
+						}					
 						if($codigo[$key] === ':') {
 							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
 							$sentenca = '';
@@ -105,7 +105,7 @@
 
 		<div class="form-container">
             <form class="formulario" action="index.php" method="post">
-                <textarea name="codigo" class="lined" rows="10" cols="60"></textarea>
+                <textarea name="codigo" class="lined" id="editor" rows="10" cols="60"></textarea>
                 <input type="submit" value="Enviar">
             </form>
 
@@ -135,6 +135,13 @@
 					{selectedLine: 1}
 				);
 			});
+			var post = <?php echo json_encode($_POST) ?>;
+			console.log(post)
+			if(post) {
+				document.getElementById("editor").value = post;
+			}
+			
+
 		</script>
 	</body>
 </html>
