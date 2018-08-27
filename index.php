@@ -12,15 +12,13 @@
 	<body>
 		<?php
 			include 'funcoes.php';
+			include 'linha.php';
 			$pilhaDeTokens = array();
 		?>
 
 		<div> 
 			<?php
 			    if(isset($_POST["codigo"])){
-
-			    	$_SESSION['codigo'] = $_POST["codigo"];
-
 			        $codigo = str_split($_POST["codigo"]);
 			        echo "<pre>";
 			        print_r($codigo);
@@ -39,32 +37,38 @@
 			            if(isset($codigo[$key+1])) {
 			            	echo "Proximo valor: ". $codigo[$key+1] . "<br>";			
 
-							
 							if($codigo[$key+1] == ' ' && verificaSentencaNaTabela($sentenca)){
-								$pilhaDeTokens[getCodigo($sentenca)] = $sentenca;
-								echo 'AQUIEE';
+								// $pilhaDeTokens[getCodigo($sentenca)] = $sentenca;
+								array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
 								$sentenca = '';
 							}
 							
 							if($codigo[$key+1] === ';' && !verificaSentencaNaTabela($sentenca)){
-								$pilhaDeTokens['25'] = $sentenca;
+								// $pilhaDeTokens['25'] = $sentenca;
+								array_push($pilhaDeTokens, new Linha('25', $sentenca));
 								$sentenca = '';
 							}
+
+							if($codigo[$key+1] === ',' && !verificaSentencaNaTabela($sentenca)){
+								// $pilhaDeTokens['25'] = $sentenca;
+								array_push($pilhaDeTokens, new Linha('25', $sentenca));
+								$sentenca = '';
+							}							
 			            }else {
 							if(verificaSentencaNaTabela($sentenca)){
-								$pilhaDeTokens[getCodigo($sentenca)] = $sentenca;
+								// $pilhaDeTokens[getCodigo($sentenca)] = $sentenca;
+								array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
 								$sentenca = '';
 							}
 							// verificaSentencaNaTabela($sentenca);
 							echo "Fim do código!<br>";
 						}
 
-
 						//  
 						// if(verificaSentencaNaTabela($sentenca)) {
 						// 	array_push($pilhaDeTokens, $sentenca);
 						// 	$sentenca = '';
-							
+
 						// }
 			        	echo "<br>------------------------<br>";
 
