@@ -154,20 +154,8 @@ function getCodigo($sentenca) {
             return 45;
             break;
 
-        case ",":
-            return 46;
-            break;
-
-        case ";":
-            return 47;
-            break;
-
         case "literal":
             return 48;
-            break;
-
-        case ".":
-            return 49;
             break;
 
         case "..":

@@ -33,30 +33,46 @@
 						echo 'Verifica Sentença!<br>';
 
 						
-						// verifica se existe proximo valor
-			            if(isset($codigo[$key+1])) {
+
+						
+						if($codigo[$key] === ';') {
+							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
+							$sentenca = '';
+						}
+						if($codigo[$key] === ':') {
+							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
+							$sentenca = '';
+						}						
+
+
+
+
+
+
+			            if(isset($codigo[$key+1]) && $sentenca != '') {
 			            	echo "Proximo valor: ". $codigo[$key+1] . "<br>";			
 
-							if($codigo[$key+1] == ' ' && verificaSentencaNaTabela($sentenca)){
-								// $pilhaDeTokens[getCodigo($sentenca)] = $sentenca;
+							if($codigo[$key+1] === ' ' && verificaSentencaNaTabela($sentenca)){
 								array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
 								$sentenca = '';
 							}
 							
 							if($codigo[$key+1] === ';' && !verificaSentencaNaTabela($sentenca)){
-								// $pilhaDeTokens['25'] = $sentenca;
 								array_push($pilhaDeTokens, new Linha('25', $sentenca));
 								$sentenca = '';
 							}
 
 							if($codigo[$key+1] === ',' && !verificaSentencaNaTabela($sentenca)){
-								// $pilhaDeTokens['25'] = $sentenca;
 								array_push($pilhaDeTokens, new Linha('25', $sentenca));
 								$sentenca = '';
-							}							
+							}			
+
+							if($codigo[$key+1] === ' ' && !verificaSentencaNaTabela($sentenca) && $sentenca != ''){
+								array_push($pilhaDeTokens, new Linha('25', $sentenca));
+								$sentenca = '';
+							}											
 			            }else {
 							if(verificaSentencaNaTabela($sentenca)){
-								// $pilhaDeTokens[getCodigo($sentenca)] = $sentenca;
 								array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
 								$sentenca = '';
 							}
@@ -100,10 +116,10 @@
 						<th class="palavra">Palavra</th>
 					</tr>
 					<?php if(isset($pilhaDeTokens)): ?>
-						<?php foreach($pilhaDeTokens as $key => $pilha): ?>
+						<?php foreach($pilhaDeTokens as $linha): ?>
 						<tr>
-							<td><?php echo $key; ?></td>
-							<td><?php echo $pilha; ?></td>
+							<td><?php echo $linha->codigo; ?></td>
+							<td><?php echo $linha->sentenca; ?></td>
 						</tr>
 						<?php endforeach; ?>
 					<?php endif; ?>
