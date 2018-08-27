@@ -20,20 +20,11 @@
 			<?php
 			    if(isset($_POST["codigo"])){
 			        $codigo = str_split($_POST["codigo"]);
-			        echo "<pre>";
-			        print_r($codigo);
-			        echo "</pre>";
 
 			        $sentenca = null;
 
 			        foreach ($codigo as $key => $value) {
 			            $sentenca .= $value;
-						echo "Valor atual: ". $value . "<br>";
-						echo 'Sentença:  ' . $sentenca . "<br>";
-						echo 'Verifica Sentença!<br>';
-
-						
-
 						
 						if($codigo[$key] === ';') {
 							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
@@ -110,7 +101,6 @@
 						}
 
 			            if(isset($codigo[$key+1]) && $sentenca != '') {
-			            	echo "Proximo valor: ". $codigo[$key+1] . "<br>";			
 
 							if($codigo[$key+1] === ' ' && verificaSentencaNaTabela($sentenca)){
 								array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
@@ -131,35 +121,15 @@
 								array_push($pilhaDeTokens, new Linha('25', $sentenca));
 								$sentenca = '';
 							}											
-			            }else {
+			            }
+			            else {
 							if(verificaSentencaNaTabela($sentenca)){
 								array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
 								$sentenca = '';
 							}
-							// verificaSentencaNaTabela($sentenca);
-							echo "Fim do código!<br>";
 						}
-
-						//  
-						// if(verificaSentencaNaTabela($sentenca)) {
-						// 	array_push($pilhaDeTokens, $sentenca);
-						// 	$sentenca = '';
-
-						// }
-			        	echo "<br>------------------------<br>";
-
-			            
 			        }
-
-
-					// AQUI TEM QUE RESETAR A TABELA
-			        echo "<pre>";
-			        print_r($pilhaDeTokens);
-			        echo "</pre>";
-
-
-			    }              
-
+			    }
 			?>           
 		</div>
 
@@ -200,8 +170,6 @@
 			if(post) {
 				document.getElementById("editor").value = post.codigo;
 			}
-			
-
 		</script>
 	</body>
 </html>

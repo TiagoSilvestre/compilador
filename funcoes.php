@@ -6,10 +6,8 @@ function verificaSentencaNaTabela($sentenca) {
     $a = new Tabela();
     
     if (in_array($sentenca, $a->tabela)) { 
-        echo "Retornou da tabela TRUE";
         return true;
     } 
-    echo "Retornou da tabela FALSE";
     return false;
 }
 
