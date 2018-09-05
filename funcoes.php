@@ -4,12 +4,12 @@ require 'tabela.php';
 
 function verificaSentencaNaTabela($sentenca) {
     $a = new Tabela();
-    
+
     if (in_array($sentenca, $a->tabela)) { 
-        echo "Retornou da tabela TRUE";
+        // echo "Retornou da tabela TRUE<br>";
         return true;
     } 
-    echo "Retornou da tabela FALSE";
+    // echo "Retornou da tabela FALSE<br>";
     return false;
 }
 
@@ -114,9 +114,9 @@ function getCodigo($sentenca) {
             return 24;
             break;
 
-        case "Identificador":
-            return 25;
-            break;
+        // case "Identificador":
+        //     return 25;
+        //     break;
 
         case "Inteiro":
             return 26;
@@ -226,14 +226,220 @@ function getCodigo($sentenca) {
         case "$":
             return 50;
             break;
-
     }
+}
 
 
-    // if (in_array($sentenca, $a->tabela)) { 
-    //     echo "Retornou da tabela TRUE";
-    //     return true;
-    // } 
-    // echo "Retornou da tabela FALSE";
-    // return false;
+
+function verificaSentenca22($sentenca) {
+    
+    switch ($sentenca) {
+        case "Program":
+            return true;
+            break;
+
+        case "Label":
+            return true;
+            break;
+
+        case "Const":
+            return true;
+            break;
+
+        case "Var":
+            return true;
+            break;
+
+        case "Procedure":
+            return true;
+            break;
+
+        case "Begin":
+            return true;
+            break;
+
+        case "End":
+            return true;
+            break;
+
+        case "Integer":
+            return true;
+            break;
+
+        case "Array":
+            return true;
+            break;
+
+        case "Of":
+            return true;
+            break;
+
+        case "Call":
+            return true;
+            break;
+
+        case "Goto":
+            return true;
+            break;
+
+        case "If":
+            return true;
+            break;
+
+        case "Then":
+            return true;
+            break;
+
+        case "Else":
+            return true;
+            break;
+
+        case "While":
+            return true;
+            break;
+
+        case "Do":
+            return true;
+            break;
+
+        case "Repeat":
+            return true;
+            break;
+
+        case "Until":
+            return true;
+            break;
+
+        case "Readln":
+            return true;
+            break;
+
+        case "Writeln":
+            return true;
+            break;
+
+        case "Or":
+            return true;
+            break;
+
+        case "And":
+            return true;
+            break;
+
+        case "Not":
+            return true;
+            break;
+
+        // case "Identificador":
+        //     return 25;
+        //     break;
+
+        case "Inteiro":
+            return true;
+            break;
+
+        case "For":
+            return true;
+            break;
+
+        case "To":
+            return true;
+            break;
+
+        case "Case":
+            return true;
+            break;
+
+        case ":=":
+            return true;
+            break;
+
+        case ">=":
+            return true;
+            break;
+
+        case "<":
+            return true;
+            break;
+
+        case "<=":
+            return true;
+            break;
+
+        case "<>":
+            return true;
+            break;
+
+        case "literal":
+            return true;
+            break;
+
+        case "..":
+            return true;
+            break;
+
+        // DAQUI SAO SÓ LETRAS 
+        case "+":
+            return true;
+            break;
+
+        case "-":
+            return true;
+            break;
+
+        case "*":
+            return true;
+            break;
+
+        case "/":
+            return true;
+            break;
+
+        case "[":
+            return true;
+            break;
+
+        case "]":
+            return true;
+            break;
+
+        case "(":
+            return true;
+            break;
+
+        case ")":
+            return true;
+            break;
+
+        case ":":
+            return true;
+            break;
+
+        case "=":
+            return true;
+            break;
+
+        case ">":
+            return true;
+            break;
+        
+        case ",":
+            return true;
+            break;
+
+        case ";":
+            return true;
+            break;
+
+        case ".":
+            return true;
+            break;
+
+        case "$":
+            return true;
+            break;
+    
+        default:
+            return false;
+    }
 }

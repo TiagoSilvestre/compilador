@@ -18,6 +18,7 @@
 
 		<div> 
 			<?php
+		
 			    if(isset($_POST["codigo"])){
 			        $codigo = str_split($_POST["codigo"]);
 			        echo "<pre>";
@@ -25,138 +26,292 @@
 			        echo "</pre>";
 
 			        $sentenca = null;
+					$prox = null;
+					$estado = 1;
 
-			        foreach ($codigo as $key => $value) {
-			            $sentenca .= $value;
-						echo "Valor atual: ". $value . "<br>";
-						echo 'Sentença:  ' . $sentenca . "<br>";
-						echo 'Verifica Sentença!<br>';
+			        foreach ($codigo as $key => $atual) {
+						echo "--------- INÍCIO DE ITERAÇAO!------<br>";
+			            echo "Estado: ". $estado. "<br>";
+						echo "Valor atual: ". $atual . "<br>";
+						if(isset($codigo[$key+1])) {
+							$prox = $codigo[$key+1];
+							echo "Proximo: ". $prox . "<br>";
+						}
+			            echo "Sentença: ". $sentenca. "<br><br>";
 
-						
 
-						
-						if($codigo[$key] === ';') {
-							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
-							$sentenca = '';
+						// VERIFICAÇÕES
+
+						// se é caracter
+						if (ctype_alpha($atual) && $estado == 1) {
+							$estado = 2;
+						 	$sentenca .= $atual;		
+
+							if (!ctype_alpha($prox) && !is_numeric($prox)) {
+								if(verificaSentenca22($sentenca)){
+									array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
+									$sentenca = "";
+									$estado = 1;
+								} else {
+									array_push($pilhaDeTokens, new Linha(25, $sentenca));
+									$sentenca = "";
+									$estado = 1;									
+								}
+							}								
+							continue;
+						}
+
+
+
+						// se o atual é letra ou numero
+						if (ctype_alpha($atual) || is_numeric($atual) && $estado == 2) {
+							$sentenca .= $atual;
+
+							// se o proximo é delimitador							
+						 	if (!ctype_alpha($prox) && !is_numeric($prox)) {
+						 		echo "é delimitador, sentença: ".$sentenca."<br>";
+						 		if(verificaSentenca22($sentenca)){
+						 			array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
+						 			$sentenca = '';
+						 			$estado = 1;
+						 			continue;
+						 		} else {
+						 			array_push($pilhaDeTokens, new Linha(25, $sentenca));
+						 			$sentenca = '';
+						 			$estado = 1;
+						 			continue;								
+						 		}
+						 	}
+						 	continue;
+						}
+
+		
+
+
+						// se é digito
+						if (is_numeric($atual) && $estado == 1) {
+							$estado = 4;
+						 	$sentenca .= $atual;
+							if (!ctype_alpha($prox) && !is_numeric($prox)) {
+								array_push($pilhaDeTokens, new Linha(26, "Inteiro"));
+								$sentenca = "";
+								$estado = 1;
+							}		
+							continue;							 
+						}
+
+						// concatena os int
+						if (is_numeric($atual) && $estado == 4) {
+						 	$sentenca .= $atual;
+
+							if (!ctype_alpha($prox) && !is_numeric($prox)) {
+								array_push($pilhaDeTokens, new Linha(26, "Inteiro"));
+								$sentenca = "";
+								$estado = 1;
+							}				
+							continue;
 						}					
 
-						if($codigo[$key] === ':') {
-							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
+
+						// SOZINHOSS
+
+						if ($atual == ";" && $estado == 1) {							
+							array_push($pilhaDeTokens, new Linha(getCodigo(";"), ";"));
 							$sentenca = '';
+							$estado = 1;
+							continue;								
+						}
+						if ($atual == "," && $estado == 1) {							
+							array_push($pilhaDeTokens, new Linha(getCodigo(","), ","));
+							$sentenca = '';
+							$estado = 1;
+							continue;								
 						}		
-
-						if($codigo[$key] === '+') {
-							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
+						if ($atual == "=" && $estado == 1) {							
+							array_push($pilhaDeTokens, new Linha(getCodigo("="), "="));
 							$sentenca = '';
-						}
-
-						if($codigo[$key] === '-') {
-							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
+							$estado = 1;
+							continue;								
+						}						
+						if ($atual == "+" && $estado == 1) {							
+							array_push($pilhaDeTokens, new Linha(getCodigo("+"), "+"));
 							$sentenca = '';
-						}
-
-						if($codigo[$key] === '*') {
-							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
+							$estado = 1;
+							continue;								
+						}			
+						if ($atual == "-" && $estado == 1) {							
+							array_push($pilhaDeTokens, new Linha(getCodigo("-"), "-"));
 							$sentenca = '';
-						}
-
-						if($codigo[$key] === '/') {
-							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
+							$estado = 1;
+							continue;								
+						}	
+						if ($atual == "*" && $estado == 1) {							
+							array_push($pilhaDeTokens, new Linha(getCodigo("-"), "-"));
 							$sentenca = '';
-						}
+							$estado = 1;
+							continue;								
+						}	
 
-						if($codigo[$key] === '[') {
-							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
+						if ($atual == "[" && $estado == 1) {							
+							array_push($pilhaDeTokens, new Linha(getCodigo("["), "["));
 							$sentenca = '';
-						}
-
-						if($codigo[$key] === ']') {
-							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
+							$estado = 1;
+							continue;								
+						}	
+						if ($atual == "]" && $estado == 1) {							
+							array_push($pilhaDeTokens, new Linha(getCodigo("]"), "]"));
 							$sentenca = '';
-						}
-
-						if($codigo[$key] === '(') {
-							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
+							$estado = 1;
+							continue;								
+						}	
+						if ($atual == "(" && $estado == 1) {							
+							array_push($pilhaDeTokens, new Linha(getCodigo("("), "("));
 							$sentenca = '';
-						}
-
-						if($codigo[$key] === ')') {
-							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
+							$estado = 1;
+							continue;								
+						}	
+						if ($atual == ")" && $estado == 1) {							
+							array_push($pilhaDeTokens, new Linha(getCodigo(")"), ")"));
 							$sentenca = '';
-						}
+							$estado = 1;
+							continue;								
+						}	
+						
+																										
 
-						if($codigo[$key] === '=') {
-							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
-							$sentenca = '';
-						}
 
-						if($codigo[$key] === '>') {
-							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
-							$sentenca = '';
-						}
-
-						if($codigo[$key] === ',') {
-							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
-							$sentenca = '';
-						}
-
-						if($codigo[$key] === '.') {
-							array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
-							$sentenca = '';
-						}
-
-						if($codigo[$key] === '$') {
-							//Fim do programa
-						}
-
-			            if(isset($codigo[$key+1]) && $sentenca != '') {
-			            	echo "Proximo valor: ". $codigo[$key+1] . "<br>";			
-
-							if($codigo[$key+1] === ' ' && verificaSentencaNaTabela($sentenca)){
-								array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
+						// DUPLOOOOOOOSSSSS
+					
+						// :  eee  :=
+						if ($atual == "." && $estado == 1) {							
+							if($prox == ".") {
+								$estado = 14;		
+								$sentenca .= $atual;
+							} else {
+								array_push($pilhaDeTokens, new Linha(getCodigo("."), "."));
 								$sentenca = '';
+								$estado = 1;
 							}
-							
-							if($codigo[$key+1] === ';' && !verificaSentencaNaTabela($sentenca)){
-								array_push($pilhaDeTokens, new Linha('25', $sentenca));
-								$sentenca = '';
-							}
-
-							if($codigo[$key+1] === ',' && !verificaSentencaNaTabela($sentenca)){
-								array_push($pilhaDeTokens, new Linha('25', $sentenca));
-								$sentenca = '';
-							}			
-
-							if($codigo[$key+1] === ' ' && !verificaSentencaNaTabela($sentenca) && $sentenca != ''){
-								array_push($pilhaDeTokens, new Linha('25', $sentenca));
-								$sentenca = '';
-							}											
-			            }else {
-							if(verificaSentencaNaTabela($sentenca)){
-								array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
-								$sentenca = '';
-							}
-							// verificaSentencaNaTabela($sentenca);
-							echo "Fim do código!<br>";
+							continue;								
+						}	
+						if ($sentenca == "." && $atual == "." && $estado == 14) {		
+							array_push($pilhaDeTokens, new Linha(getCodigo(".."), ".."));
+							$sentenca = '';
+							$estado = 1;		
+							continue;				
 						}
 
-						//  
-						// if(verificaSentencaNaTabela($sentenca)) {
-						// 	array_push($pilhaDeTokens, $sentenca);
-						// 	$sentenca = '';
+						// :  eee  :=
+						if ($atual == ":" && $estado == 1) {							
+							if($prox == "=") {
+								$estado = 10;		
+								$sentenca .= $atual;
+							} else {
+								array_push($pilhaDeTokens, new Linha(getCodigo(":"), ":"));
+								$sentenca = '';
+								$estado = 1;
+							}
+							continue;								
+						}	
+						if ($sentenca == ":" && $atual == "=" && $estado == 10) {		
+							array_push($pilhaDeTokens, new Linha(getCodigo(":="), ":="));
+							$sentenca = '';
+							$estado = 1;		
+							continue;				
+						}
 
+
+						// > >=
+						if ($atual == ">" && $estado == 1) {							
+							if($prox == "=") {
+								$estado = 12;		
+								$sentenca .= $atual;
+							} else {
+								array_push($pilhaDeTokens, new Linha(getCodigo(">"), ">"));
+								$sentenca = '';
+								$estado = 1;
+							}
+							continue;								
+						}	
+						if ($sentenca == ">" && $atual == "=" && $estado == 12) {		
+							array_push($pilhaDeTokens, new Linha(getCodigo(">="), ">="));
+							$sentenca = '';
+							$estado = 1;		
+							continue;				
+						}
+
+
+
+						// < <= <>
+						if ($atual == "<" && $estado == 1) {							
+							if($prox == "=") {
+								$estado = 13;		
+								$sentenca .= $atual;
+								continue;								
+							} 
+							if($prox == ">") {
+								$estado = 14;		
+								$sentenca .= $atual;
+								continue;								
+							} 							
+							array_push($pilhaDeTokens, new Linha(getCodigo("<"), "<"));
+							$sentenca = '';
+							$estado = 1;
+							continue;								
+						}	
+						if ($sentenca == "<" && $atual == "=" && $estado == 13) {		
+							array_push($pilhaDeTokens, new Linha(getCodigo("<="), "<="));
+							$sentenca = '';
+							$estado = 1;		
+							continue;				
+						}
+						if ($sentenca == "<" && $atual == ">" && $estado == 14) {		
+							array_push($pilhaDeTokens, new Linha(getCodigo("<>"), "<>"));
+							$sentenca = '';
+							$estado = 1;		
+							continue;				
+						}
+
+
+
+
+
+
+
+						// if (!ctype_alpha($atual) && !is_numeric($atual) && !ctype_alpha($prox) && !is_numeric($prox)) {
+						// 	echo "caraaiiii q logicaaa<br>";
+						// echo "Valor atual: ". $atual . "<br>";
+						// echo "Proximo: ". $prox . "<br>";							
 						// }
-			        	echo "<br>------------------------<br>";
-
-			            
-			        }
 
 
-					// AQUI TEM QUE RESETAR A TABELA
-			        echo "<pre>";
-			        print_r($pilhaDeTokens);
-			        echo "</pre>";
 
+
+						// if ($atual == ":" && $estado == 1) {
+						// 	$estado = 8;
+						// 	if($prox == "="){
+						// 		array_push($pilhaDeTokens, new Linha(getCodigo(":="), ":="));
+						// 		$sentenca = '';
+						// 		$estado = 1;
+						// 		continue;									
+						// 	}
+						// 	if($prox){
+						// 		echo "oiee<br>";
+						// 		array_push($pilhaDeTokens, new Linha(getCodigo(":"), ":"));
+						// 		$sentenca = '';
+						// 		$estado = 1;
+						// 		continue;	
+						// 	}
+						// }
+
+
+						// Se é numero
+						// if (is_numeric($atual) && $estado == 1) { 
+						// 	$estado = 4;
+						// }
+						$sentenca .= $atual;
+						echo "--------- FIM DE ITERAÇAO!------<br>";
+					}
 
 			    }              
 
