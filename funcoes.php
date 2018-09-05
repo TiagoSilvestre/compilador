@@ -4,17 +4,9 @@ require 'tabela.php';
 
 function verificaSentencaNaTabela($sentenca) {
     $a = new Tabela();
-
     if (in_array($sentenca, $a->tabela)) { 
-<<<<<<< HEAD
-        // echo "Retornou da tabela TRUE<br>";
         return true;
     } 
-    // echo "Retornou da tabela FALSE<br>";
-=======
-        return true;
-    } 
->>>>>>> master
     return false;
 }
 
@@ -118,10 +110,6 @@ function getCodigo($sentenca) {
         case "Not":
             return 24;
             break;
-
-        // case "Identificador":
-        //     return 25;
-        //     break;
 
         case "Inteiro":
             return 26;

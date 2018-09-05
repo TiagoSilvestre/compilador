@@ -21,28 +21,30 @@
 		
 			    if(isset($_POST["codigo"])){
 			        $codigo = str_split($_POST["codigo"]);
-			        echo "<pre>";
-			        print_r($codigo);
-			        echo "</pre>";
+
+					// DEBUG CÓDIGO INTEIRO EM LETRAS
+			        // echo "<pre>";
+			        // print_r($codigo);
+			        // echo "</pre>";
 
 			        $sentenca = null;
 					$prox = null;
 					$estado = 1;
 
 			        foreach ($codigo as $key => $atual) {
-						echo "--------- INÍCIO DE ITERAÇAO!------<br>";
-			            echo "Estado: ". $estado. "<br>";
-						echo "Valor atual: ". $atual . "<br>";
+						// DEBUG VALORES NO LOOP
+						// echo "--------- INÍCIO DE ITERAÇAO!------<br>";
+			            // echo "Estado: ". $estado. "<br>";
+						// echo "Valor atual: ". $atual . "<br>";
 						if(isset($codigo[$key+1])) {
 							$prox = $codigo[$key+1];
-							echo "Proximo: ". $prox . "<br>";
+							// echo "Proximo: ". $prox . "<br>";
 						}
-			            echo "Sentença: ". $sentenca. "<br><br>";
-
+			            // echo "Sentença: ". $sentenca. "<br><br>";
 
 						// VERIFICAÇÕES
 
-						// se é caracter
+						// STRING
 						if (ctype_alpha($atual) && $estado == 1) {
 							$estado = 2;
 						 	$sentenca .= $atual;		
@@ -61,15 +63,12 @@
 							continue;
 						}
 
-
-
-						// se o atual é letra ou numero
+						// Concatena a letra ou numero na STRING
 						if (ctype_alpha($atual) || is_numeric($atual) && $estado == 2) {
 							$sentenca .= $atual;
-
 							// se o proximo é delimitador							
 						 	if (!ctype_alpha($prox) && !is_numeric($prox)) {
-						 		echo "é delimitador, sentença: ".$sentenca."<br>";
+						 		// echo "é delimitador, sentença: ".$sentenca."<br>";
 						 		if(verificaSentenca22($sentenca)){
 						 			array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
 						 			$sentenca = '';
@@ -86,9 +85,7 @@
 						}
 
 		
-
-
-						// se é digito
+						// INTEIROS
 						if (is_numeric($atual) && $estado == 1) {
 							$estado = 4;
 						 	$sentenca .= $atual;
@@ -99,11 +96,9 @@
 							}		
 							continue;							 
 						}
-
 						// concatena os int
 						if (is_numeric($atual) && $estado == 4) {
 						 	$sentenca .= $atual;
-
 							if (!ctype_alpha($prox) && !is_numeric($prox)) {
 								array_push($pilhaDeTokens, new Linha(26, "Inteiro"));
 								$sentenca = "";
@@ -113,8 +108,7 @@
 						}					
 
 
-						// SOZINHOSS
-
+						// simbolos SOZINHOS
 						if ($atual == ";" && $estado == 1) {							
 							array_push($pilhaDeTokens, new Linha(getCodigo(";"), ";"));
 							$sentenca = '';
@@ -151,7 +145,6 @@
 							$estado = 1;
 							continue;								
 						}	
-
 						if ($atual == "[" && $estado == 1) {							
 							array_push($pilhaDeTokens, new Linha(getCodigo("["), "["));
 							$sentenca = '';
@@ -177,10 +170,8 @@
 							continue;								
 						}	
 						
-																										
 
-
-						// DUPLOOOOOOOSSSSS
+						// DUPLOS
 					
 						// :  eee  :=
 						if ($atual == "." && $estado == 1) {							
@@ -240,8 +231,6 @@
 							continue;				
 						}
 
-
-
 						// < <= <>
 						if ($atual == "<" && $estado == 1) {							
 							if($prox == "=") {
@@ -273,44 +262,8 @@
 						}
 
 
-
-
-
-
-
-						// if (!ctype_alpha($atual) && !is_numeric($atual) && !ctype_alpha($prox) && !is_numeric($prox)) {
-						// 	echo "caraaiiii q logicaaa<br>";
-						// echo "Valor atual: ". $atual . "<br>";
-						// echo "Proximo: ". $prox . "<br>";							
-						// }
-
-
-
-
-						// if ($atual == ":" && $estado == 1) {
-						// 	$estado = 8;
-						// 	if($prox == "="){
-						// 		array_push($pilhaDeTokens, new Linha(getCodigo(":="), ":="));
-						// 		$sentenca = '';
-						// 		$estado = 1;
-						// 		continue;									
-						// 	}
-						// 	if($prox){
-						// 		echo "oiee<br>";
-						// 		array_push($pilhaDeTokens, new Linha(getCodigo(":"), ":"));
-						// 		$sentenca = '';
-						// 		$estado = 1;
-						// 		continue;	
-						// 	}
-						// }
-
-
-						// Se é numero
-						// if (is_numeric($atual) && $estado == 1) { 
-						// 	$estado = 4;
-						// }
 						$sentenca .= $atual;
-						echo "--------- FIM DE ITERAÇAO!------<br>";
+						// echo "--------- FIM DE ITERAÇAO!------<br>";
 					}
 
 			    }              
