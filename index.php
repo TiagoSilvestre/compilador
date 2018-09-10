@@ -94,7 +94,7 @@
 							$estado = 4;
 						 	$sentenca .= $atual;
 							if (!ctype_alpha($prox) && !is_numeric($prox)) {
-								array_push($pilhaDeTokens, new Linha(26, "Inteiro"));
+								array_push($pilhaDeTokens, new Linha(26, "INTEIRO"));
 								$sentenca = "";
 								$estado = 1;
 							}		
@@ -104,7 +104,7 @@
 						if (is_numeric($atual) && $estado == 4) {
 						 	$sentenca .= $atual;
 							if (!ctype_alpha($prox) && !is_numeric($prox)) {
-								array_push($pilhaDeTokens, new Linha(26, "Inteiro"));
+								array_push($pilhaDeTokens, new Linha(26, "INTEIRO"));
 								$sentenca = "";
 								$estado = 1;
 							}				
@@ -297,7 +297,7 @@
 			</div>
 		</div>
     
-    	<script src="js/custom.js"></script>
+    	<script src="js/jquery.js"></script>
 		<script src="linedTextArea/jquery-linedtextarea.js"></script>
 		<script>
 			$(function() {
