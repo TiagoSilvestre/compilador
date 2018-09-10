@@ -142,16 +142,28 @@
 //     }
 // }
 
-$testcase2 = "12";
-if (ctype_alpha($testcase2)) {
-        echo "ifeeee";
-    } else {
-        echo "elseeeeee";
-    }
-$atual = "a";
-if (ctype_alpha($atual)) {
-    echo "ehh truee";
-}else {
-    echo "falsianee";
-}
+// $testcase2 = "12";
+// if (ctype_alpha($testcase2)) {
+//         echo "ifeeee";
+//     } else {
+//         echo "elseeeeee";
+//     }
+// $atual = "a";
+// if (ctype_alpha($atual)) {
+//     echo "ehh truee";
+// }else {
+//     echo "falsianee";
+// }
+
+include 'funcoes.php';
+
+$sentenca = "VAR";
+
+// if(verificaSentenca22($sentenca)){
+// 	echo "eh trueee";
+// 	print(getCodigo($sentenca));
+// } else {
+// 	echo "eh fallseeee";
+// }
+
 ?>

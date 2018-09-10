@@ -1,129 +1,117 @@
 <?php
 
-require 'tabela.php';
-
-function verificaSentencaNaTabela($sentenca) {
-    $a = new Tabela();
-    if (in_array($sentenca, $a->tabela)) { 
-        return true;
-    } 
-    return false;
-}
-
-
-
 function getCodigo($sentenca) {
     
     switch ($sentenca) {
-        case "Program":
+        case "PROGRAM":
             return 1;
             break;
 
-        case "Label":
+        case "LABEL":
             return 2;
             break;
 
-        case "Const":
+        case "CONST":
             return 3;
             break;
 
-        case "Var":
+        case "VAR":
             return 4;
             break;
 
-        case "Procedure":
+        case "PROCEDURE":
             return 5;
             break;
 
-        case "Begin":
+        case "BEGIN":
             return 6;
             break;
 
-        case "End":
+        case "END":
             return 7;
             break;
 
-        case "Integer":
+        case "INTEGER":
             return 8;
             break;
 
-        case "Array":
+        case "ARRAY":
             return 9;
             break;
 
-        case "Of":
+        case "OF":
             return 10;
             break;
 
-        case "Call":
+        case "CALL":
             return 11;
             break;
 
-        case "Goto":
+        case "GOTO":
             return 12;
             break;
 
-        case "If":
+        case "IF":
             return 13;
             break;
 
-        case "Then":
+        case "THEN":
             return 14;
             break;
 
-        case "Else":
+        case "ELSE":
             return 15;
             break;
 
-        case "While":
+        case "WHILE":
             return 16;
             break;
 
-        case "Do":
+        case "DO":
             return 17;
             break;
 
-        case "Repeat":
+        case "REPEAT":
             return 18;
             break;
 
-        case "Until":
+        case "UNTIL":
             return 19;
             break;
 
-        case "Readln":
+        case "READLN":
             return 20;
             break;
 
-        case "Writeln":
+        case "WRITELN":
             return 21;
             break;
 
-        case "Or":
+        case "OR":
             return 22;
             break;
 
-        case "And":
+        case "AND":
             return 23;
             break;
 
-        case "Not":
+        case "NOT":
             return 24;
             break;
 
-        case "Inteiro":
+        case "INTEIRO":
             return 26;
             break;
 
-        case "For":
+        case "FOR":
             return 27;
             break;
 
-        case "To":
+        case "TO":
             return 28;
             break;
 
-        case "Case":
+        case "CASE":
             return 29;
             break;
 
@@ -147,7 +135,7 @@ function getCodigo($sentenca) {
             return 45;
             break;
 
-        case "literal":
+        case "LITERAL":
             return 48;
             break;
 
@@ -224,102 +212,102 @@ function getCodigo($sentenca) {
 
 
 
-function verificaSentenca22($sentenca) {
+function verificaSentenca($sentenca) {
     
     switch ($sentenca) {
-        case "Program":
+        case "PROGRAM":
             return true;
             break;
 
-        case "Label":
+        case "LABEL":
             return true;
             break;
 
-        case "Const":
+        case "CONST":
             return true;
             break;
 
-        case "Var":
+        case "VAR":
             return true;
             break;
 
-        case "Procedure":
+        case "PROCEDURE":
             return true;
             break;
 
-        case "Begin":
+        case "BEGIN":
             return true;
             break;
 
-        case "End":
+        case "END":
             return true;
             break;
 
-        case "Integer":
+        case "INTEGER":
             return true;
             break;
 
-        case "Array":
+        case "ARRAY":
             return true;
             break;
 
-        case "Of":
+        case "OF":
             return true;
             break;
 
-        case "Call":
+        case "CALL":
             return true;
             break;
 
-        case "Goto":
+        case "GOTO":
             return true;
             break;
 
-        case "If":
+        case "IF":
             return true;
             break;
 
-        case "Then":
+        case "THEN":
             return true;
             break;
 
-        case "Else":
+        case "ELSE":
             return true;
             break;
 
-        case "While":
+        case "WHILE":
             return true;
             break;
 
-        case "Do":
+        case "DO":
             return true;
             break;
 
-        case "Repeat":
+        case "REPEAT":
             return true;
             break;
 
-        case "Until":
+        case "UNTIL":
             return true;
             break;
 
-        case "Readln":
+        case "READLN":
             return true;
             break;
 
-        case "Writeln":
+        case "WRITELN":
             return true;
             break;
 
-        case "Or":
+        case "OR":
             return true;
             break;
 
-        case "And":
+        case "AND":
             return true;
             break;
 
-        case "Not":
+        case "NOT":
             return true;
             break;
 
@@ -327,19 +315,19 @@ function verificaSentenca22($sentenca) {
         //     return 25;
         //     break;
 
-        case "Inteiro":
+        case "INTEIRO":
             return true;
             break;
 
-        case "For":
+        case "FOR":
             return true;
             break;
 
-        case "To":
+        case "TO":
             return true;
             break;
 
-        case "Case":
+        case "CASE":
             return true;
             break;
 
@@ -363,7 +351,7 @@ function verificaSentenca22($sentenca) {
             return true;
             break;
 
-        case "literal":
+        case "LITERAL":
             return true;
             break;
 

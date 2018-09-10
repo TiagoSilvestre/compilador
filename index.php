@@ -20,8 +20,11 @@
 			<?php
 		
 			    if(isset($_POST["codigo"])){
-			        $codigo = str_split($_POST["codigo"]);
+					$codigo = preg_replace("/\s+/", " ", $_POST["codigo"] );
 
+			        $codigo = str_split(strtoupper($codigo));
+					
+					 
 					// DEBUG CÓDIGO INTEIRO EM LETRAS
 			        // echo "<pre>";
 			        // print_r($codigo);
@@ -50,7 +53,7 @@
 						 	$sentenca .= $atual;		
 
 							if (!ctype_alpha($prox) && !is_numeric($prox)) {
-								if(verificaSentenca22($sentenca)){
+								if(verificaSentenca($sentenca)){
 									array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
 									$sentenca = "";
 									$estado = 1;
@@ -68,8 +71,8 @@
 							$sentenca .= $atual;
 							// se o proximo é delimitador							
 						 	if (!ctype_alpha($prox) && !is_numeric($prox)) {
-						 		// echo "é delimitador, sentença: ".$sentenca."<br>";
-						 		if(verificaSentenca22($sentenca)){
+						 		// echo "é delimitador, VAIIII ENTRARR NO IFEEE sentença: ".$sentenca."<br>";
+						 		if(verificaSentenca($sentenca)){
 						 			array_push($pilhaDeTokens, new Linha(getCodigo($sentenca), $sentenca));
 						 			$sentenca = '';
 						 			$estado = 1;
@@ -161,7 +164,7 @@
 							array_push($pilhaDeTokens, new Linha(getCodigo("("), "("));
 							$sentenca = '';
 							$estado = 1;
-							continue;								
+							continue;
 						}	
 						if ($atual == ")" && $estado == 1) {							
 							array_push($pilhaDeTokens, new Linha(getCodigo(")"), ")"));
@@ -172,7 +175,7 @@
 						
 
 						// DUPLOS
-					
+
 						// :  eee  :=
 						if ($atual == "." && $estado == 1) {							
 							if($prox == ".") {
@@ -261,8 +264,6 @@
 							continue;				
 						}
 
-
-						$sentenca .= $atual;
 						// echo "--------- FIM DE ITERAÇAO!------<br>";
 					}
 
@@ -305,7 +306,7 @@
 			});
 			var post = <?php echo json_encode($_POST) ?>;
 			console.log(post)
-			if(post) {
+			if(post.length != 0) {
 				document.getElementById("editor").value = post.codigo;
 			}
 			
