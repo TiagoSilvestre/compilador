@@ -1,3 +1,4 @@
+<!-- https://compiladoraula.000webhostapp.com/ -->
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -296,7 +297,7 @@
 			</div>
 		</div>
     
-    	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    	<script src="js/custom.js"></script>
 		<script src="linedTextArea/jquery-linedtextarea.js"></script>
 		<script>
 			$(function() {
