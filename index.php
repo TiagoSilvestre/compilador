@@ -36,14 +36,14 @@
 
 			        foreach ($codigo as $key => $atual) {
 						// DEBUG VALORES NO LOOP
-						 echo "--------- INÍCIO DE ITERAÇAO!------<br>";
-			             echo "Estado: ". $estado. "<br>";
-						 echo "Valor atual: ". $atual . "<br>";
+						//  echo "--------- INÍCIO DE ITERAÇAO!------<br>";
+			            //  echo "Estado: ". $estado. "<br>";
+						//  echo "Valor atual: ". $atual . "<br>";
 						if(isset($codigo[$key+1])) {
 							$prox = $codigo[$key+1];
-						 echo "Proximo: ". $prox . "<br>";
+							// echo "Proximo: ". $prox . "<br>";
 						}
-			             echo "Sentença: ". $sentenca. "<br><br>";
+			            // echo "Sentença: ". $sentenca. "<br><br>";
 
 						// VERIFICAÇÕES
 
@@ -67,7 +67,7 @@
 						}
 
 						// Concatena a letra ou numero na STRING
-						if (ctype_alpha($atual) || is_numeric($atual) && $estado == 2) {
+						if ((ctype_alpha($atual) || is_numeric($atual)) && $estado == 2) {
 							$sentenca .= $atual;
 							// se o proximo é delimitador							
 						 	if (!ctype_alpha($prox) && !is_numeric($prox)) {
@@ -161,12 +161,12 @@
 							continue;								
 						}	
 
+						// Comentário e (
 						if ($atual == "(" && $estado == 1) {
 							if ($prox == '*') {
 								$estado = 34;
 								continue;		
 							}
-
 							array_push($pilhaDeTokens, new Linha(getCodigo("("), "("));
 							$sentenca = '';
 							$estado = 1;
@@ -175,29 +175,25 @@
 
 						if ($atual == "*" && $estado == 34) {
 							$estado = 35;	
-							echo $estado."tatatata<br>";
 							continue;
 						}
 
 						if ($atual != "*" && $estado == 35) {
-							echo "batata<br>";
 							continue;
 						}
-
 
 						if ($atual == "*" && $prox == ")" && $estado == 35) {
 							$sentenca .= $atual;
 							$estado = 36;	
-							echo "TESTEEEEEE<br>";
 							continue;
 						}						
 
 						if ($atual == ")" && $estado == 36) {
 							$sentenca = '';
 							$estado = 1;	
-							echo "AQUIIII<br>";
 							continue;
 						}		
+						/* Fim comentário*/
 
 						if ($atual == ")" && $estado == 1) {							
 							array_push($pilhaDeTokens, new Linha(getCodigo(")"), ")"));
