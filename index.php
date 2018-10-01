@@ -16,11 +16,21 @@
 			$pilhaDeTokens = array();
 			$pilhaDois = array();
 			// array_push($pilhaDois, new Linha(52, getCodigoNaoTerminal(52)));
+
+			if(isset($_POST['pilhaTokens']) && isset($_POST['pilhaDois'])) {
+
+				$pilhaDeTokens = $_POST['pilhaTokens'];
+				$pilhaDois = $_POST['pilhaDois'];
+
+				echo "<pre>";
+				print_r($_POST['pilhaDois'][0]);
+			}
 		?>
 
 		<div> 
 			<?php
-			    if(isset($_POST["codigo"])){
+			    if(isset($_POST["codigo"]) && !isset($_POST['pilhaDois'])){
+			    	echo "Entrou";
 					$codigo = preg_replace("/\s+/", " ", $_POST["codigo"] );
 			        $codigo = str_split(strtoupper($codigo));
 					 
@@ -304,7 +314,8 @@
             </form>
 
 			<form action="index.php" method="post">
-				
+				<input type="hidden" value="<?php $pilhaDeTokens; ?>" name="pilhaTokens">
+				<input type="hidden" value="<?php $pilhaDois; ?>" name="pilhaDois">
 			    <input type="submit" value="Analisador Semântico">
 			</form>
 
@@ -361,8 +372,6 @@
 			if(post.length != 0) {
 				document.getElementById("editor").value = post.codigo;
 			}
-			
-
 		</script>
 	</body>
 </html>
