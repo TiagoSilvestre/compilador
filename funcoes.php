@@ -424,3 +424,153 @@ function verificaSentenca($sentenca) {
             return false;
     }
 }
+
+//Função para a segunda tabela
+function getCodigoNaoTerminal($codigo) {
+
+    switch ($codigo) {
+        case 52:
+            return "PROGRAMA";
+            break;
+
+        case 53:
+            return "BLOCO";
+            break;
+
+        case 54:
+            return "DCLROT";
+            break;
+
+        case 55:
+            return "LID";
+            break;
+
+        case 56:
+            return "REPIDENT";
+            break;
+
+        case 57:
+            return "DCLCONST";
+            break;
+
+        case 58:
+            return "LDCONST";
+            break;
+
+        case 59:
+            return "DCLVAR";
+            break;
+
+        case 60:
+            return "LDVAR";
+            break;
+
+        case 61:
+            return "TIPO";
+            break;
+
+        case 62:
+            return "DCLPROC";
+            break;
+
+        case 63:
+            return "DEFPAR";
+            break;
+
+        case 64:
+            return "CORPO";
+            break;
+
+        case 65:
+            return "REPCOMANDO";
+            break;
+
+        case 66:
+            return "COMANDO";
+            break;
+
+        case 67:
+            return "RCOMID";
+            break;
+
+        case 68:
+            return "RVAR";
+            break;
+
+        case 69:
+            return "PARAMETROS";
+            break;
+
+        case 70:
+            return "REPPAR";
+            break;
+
+        case 71:
+            return "ELSEPARTE";
+            break;
+
+        case 72:
+            return "VARIAVEL";
+            break;
+
+        case 73:
+            return "VARIAVEL1";
+            break;
+
+        case 74:
+            return "REPVARIAVEL";
+            break;
+
+        case 75:
+            return "ITEMSAIDA";
+            break;
+
+        case 76:
+            return "REPITEM";
+            break;
+
+        case 77:
+            return "EXPRESSAO";
+            break;
+
+        case 78:
+            return "REPEXPSIMP";
+            break;
+
+        case 79:
+            return "EXPSIMP";
+            break;
+
+        case 80:
+            return "REPEXP";
+            break;
+
+        case 81:
+            return "TERMO";
+            break;
+
+        case 82:
+            return "REPTERMO";
+            break;
+
+        case 83:
+            return "FATOR";
+            break;
+
+        case 84:
+            return "CONDCASE";
+            break;
+
+        case 85:
+            return "CONTCASE";
+            break;
+
+        case 86:
+            return "RPINTEIRO";
+            break;
+
+        case 87:
+            return "SEM EFEITO";
+            break;
+    }
+}
