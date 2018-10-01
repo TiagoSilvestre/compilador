@@ -14,16 +14,15 @@
 			include 'funcoes.php';
 			include 'linha.php';
 			$pilhaDeTokens = array();
+			$pilhaDois = array();
+			// array_push($pilhaDois, new Linha(52, getCodigoNaoTerminal(52)));
 		?>
 
 		<div> 
 			<?php
-		
 			    if(isset($_POST["codigo"])){
 					$codigo = preg_replace("/\s+/", " ", $_POST["codigo"] );
-
 			        $codigo = str_split(strtoupper($codigo));
-					
 					 
 					// DEBUG CÓDIGO INTEIRO EM LETRAS
 			        // echo "<pre>";
@@ -36,14 +35,14 @@
 
 			        foreach ($codigo as $key => $atual) {
 						// DEBUG VALORES NO LOOP
-						 echo "--------- INÍCIO DE ITERAÇAO!------<br>";
-			             echo "Estado: ". $estado. "<br>";
-						 echo "Valor atual: ". $atual . "<br>";
+						//  echo "--------- INÍCIO DE ITERAÇAO!------<br>";
+			            //  echo "Estado: ". $estado. "<br>";
+						//  echo "Valor atual: ". $atual . "<br>";
 						if(isset($codigo[$key+1])) {
 							$prox = $codigo[$key+1];
-						 echo "Proximo: ". $prox . "<br>";
+							// echo "Proximo: ". $prox . "<br>";
 						}
-			             echo "Sentença: ". $sentenca. "<br><br>";
+			            // echo "Sentença: ". $sentenca. "<br><br>";
 
 						// VERIFICAÇÕES
 
@@ -67,7 +66,7 @@
 						}
 
 						// Concatena a letra ou numero na STRING
-						if (ctype_alpha($atual) || is_numeric($atual) && $estado == 2) {
+						if ((ctype_alpha($atual) || is_numeric($atual)) && $estado == 2) {
 							$sentenca .= $atual;
 							// se o proximo é delimitador							
 						 	if (!ctype_alpha($prox) && !is_numeric($prox)) {
@@ -161,12 +160,12 @@
 							continue;								
 						}	
 
+						// Comentário e (
 						if ($atual == "(" && $estado == 1) {
 							if ($prox == '*') {
 								$estado = 34;
 								continue;		
 							}
-
 							array_push($pilhaDeTokens, new Linha(getCodigo("("), "("));
 							$sentenca = '';
 							$estado = 1;
@@ -175,29 +174,25 @@
 
 						if ($atual == "*" && $estado == 34) {
 							$estado = 35;	
-							echo $estado."tatatata<br>";
 							continue;
 						}
 
 						if ($atual != "*" && $estado == 35) {
-							echo "batata<br>";
 							continue;
 						}
-
 
 						if ($atual == "*" && $prox == ")" && $estado == 35) {
 							$sentenca .= $atual;
 							$estado = 36;	
-							echo "TESTEEEEEE<br>";
 							continue;
 						}						
 
 						if ($atual == ")" && $estado == 36) {
 							$sentenca = '';
 							$estado = 1;	
-							echo "AQUIIII<br>";
 							continue;
 						}		
+						/* Fim comentário*/
 
 						if ($atual == ")" && $estado == 1) {							
 							array_push($pilhaDeTokens, new Linha(getCodigo(")"), ")"));
@@ -296,22 +291,26 @@
 							$estado = 1;		
 							continue;				
 						}
-
 						// echo "--------- FIM DE ITERAÇAO!------<br>";
 					}
-
 			    }              
-
 			?>           
 		</div>
 
 		<div class="form-container">
             <form class="formulario" action="index.php" method="post">
                 <textarea name="codigo" class="lined" id="editor" rows="10" cols="60"></textarea>
-                <input type="submit" value="Enviar">
+                <input type="submit" value="Analisador Léxico">
             </form>
 
+			<form action="index.php" method="post">
+				
+			    <input type="submit" value="Analisador Semântico">
+			</form>
+
+
 			<div class="tabela-resultado">
+				<h2>Pilha de tokens(a)</h2>
 				<table>
 					<tr>
 						<th class="codigo">Código</th>
@@ -327,6 +326,26 @@
 					<?php endif; ?>
 				</table>
 			</div>
+
+
+			<div class="tabela-resultado">
+				<h2>Pilha X</h2>
+				<table>
+					<tr>
+						<th class="codigo">Código</th>
+						<th class="palavra">Palavra</th>
+					</tr>
+					<?php if(isset($pilhaDeTokens)): ?>
+						<?php foreach($pilhaDeTokens as $linha): ?>
+						<tr>
+							<td><?php echo $linha->codigo; ?></td>
+							<td><?php echo $linha->sentenca; ?></td>
+						</tr>
+						<?php endforeach; ?>
+					<?php endif; ?>
+				</table>
+			</div>
+
 		</div>
     
     	<script src="js/jquery.js"></script>

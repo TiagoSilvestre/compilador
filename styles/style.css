@@ -29,3 +29,7 @@ tr:nth-child(even) {
 .palavra{
     width: 200px;
 }
+
+.tabela-resultado {
+    margin-left: 20px;
+}
