@@ -13,24 +13,18 @@
 		<?php
 			include 'funcoes.php';
 			include 'linha.php';
-			$pilhaDeTokens = array();
-			$pilhaDois = array();
-			// array_push($pilhaDois, new Linha(52, getCodigoNaoTerminal(52)));
-
-			if(isset($_POST['pilhaTokens']) && isset($_POST['pilhaDois'])) {
-
-				$pilhaDeTokens = $_POST['pilhaTokens'];
-				$pilhaDois = $_POST['pilhaDois'];
-
-				echo "<pre>";
-				print_r($_POST['pilhaDois'][0]);
+			session_start();
+			if(!isset($_SESSION['codigo'])) {
+				$_SESSION['codigo'] = [];
 			}
+	
+			$pilhaDeTokens = array();
 		?>
 
 		<div> 
 			<?php
-			    if(isset($_POST["codigo"]) && !isset($_POST['pilhaDois'])){
-			    	echo "Entrou";
+			    if(isset($_POST["codigo"])){
+			    	$_SESSION['codigo'] = $_POST["codigo"];
 					$codigo = preg_replace("/\s+/", " ", $_POST["codigo"] );
 			        $codigo = str_split(strtoupper($codigo));
 					 
@@ -303,6 +297,8 @@
 						}
 						// echo "--------- FIM DE ITERAÇAO!------<br>";
 					}
+
+					$_SESSION['pilha1'] = $pilhaDeTokens;
 			    }              
 			?>           
 		</div>
@@ -313,10 +309,12 @@
                 <input type="submit" value="Analisador Léxico">
             </form>
 
-			<form action="index.php" method="post">
-				<input type="hidden" value="<?php $pilhaDeTokens; ?>" name="pilhaTokens">
-				<input type="hidden" value="<?php $pilhaDois; ?>" name="pilhaDois">
+			<form action="semantico.php" method="post">
 			    <input type="submit" value="Analisador Semântico">
+			</form>
+
+			<form action="destruir.php" method="post">
+			    <input type="submit" value="Limpar tudo">
 			</form>
 
 
@@ -327,8 +325,8 @@
 						<th class="codigo">Código</th>
 						<th class="palavra">Palavra</th>
 					</tr>
-					<?php if(isset($pilhaDeTokens)): ?>
-						<?php foreach($pilhaDeTokens as $linha): ?>
+					<?php if(isset($_SESSION['pilha1']) || !empty($_SESSION['pilha1'])): ?>
+						<?php foreach($_SESSION['pilha1'] as $linha): ?>
 						<tr>
 							<td><?php echo $linha->codigo; ?></td>
 							<td><?php echo $linha->sentenca; ?></td>
@@ -346,11 +344,12 @@
 						<th class="codigo">Código</th>
 						<th class="palavra">Palavra</th>
 					</tr>
-					<?php if(isset($pilhaDeTokens)): ?>
-						<?php foreach($pilhaDeTokens as $linha): ?>
+					<?php if(isset($_SESSION['pilha2'])): ?>
+
+						<?php foreach($_SESSION['pilha2'] as $p): ?>
 						<tr>
-							<td><?php echo $linha->codigo; ?></td>
-							<td><?php echo $linha->sentenca; ?></td>
+							<td><?php echo $p->codigo; ?></td>
+							<td><?php echo $p->sentenca; ?></td>
 						</tr>
 						<?php endforeach; ?>
 					<?php endif; ?>
@@ -367,10 +366,11 @@
 					{selectedLine: 1}
 				);
 			});
-			var post = <?php echo json_encode($_POST) ?>;
-			console.log(post)
-			if(post.length != 0) {
-				document.getElementById("editor").value = post.codigo;
+
+			var session = <?php echo json_encode($_SESSION['codigo']); ?>;
+
+			if(session.length != 0) {
+				document.getElementById("editor").value = session;
 			}
 		</script>
 	</body>
