@@ -298,7 +298,7 @@
 						// echo "--------- FIM DE ITERAÇAO!------<br>";
 					}
 
-					$_SESSION['pilha1'] = $pilhaDeTokens;
+					$_SESSION['a'] = $pilhaDeTokens;
 			    }              
 			?>           
 		</div>
@@ -325,8 +325,8 @@
 						<th class="codigo">Código</th>
 						<th class="palavra">Palavra</th>
 					</tr>
-					<?php if(isset($_SESSION['pilha1']) || !empty($_SESSION['pilha1'])): ?>
-						<?php foreach($_SESSION['pilha1'] as $linha): ?>
+					<?php if(isset($_SESSION['a']) || !empty($_SESSION['a'])): ?>
+						<?php foreach($_SESSION['a'] as $linha): ?>
 						<tr>
 							<td><?php echo $linha->codigo; ?></td>
 							<td><?php echo $linha->sentenca; ?></td>
@@ -344,9 +344,9 @@
 						<th class="codigo">Código</th>
 						<th class="palavra">Palavra</th>
 					</tr>
-					<?php if(isset($_SESSION['pilha2'])): ?>
+					<?php if(isset($_SESSION['x'])): ?>
 
-						<?php foreach($_SESSION['pilha2'] as $p): ?>
+						<?php foreach($_SESSION['x'] as $p): ?>
 						<tr>
 							<td><?php echo $p->codigo; ?></td>
 							<td><?php echo $p->sentenca; ?></td>
