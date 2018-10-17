@@ -574,3 +574,157 @@ function getCodigoNaoTerminal($codigo) {
             break;
     }
 }
+
+
+
+function isTerminal($sentenca) {
+    
+    switch ($sentenca) {
+        case "PROGRAMA":
+            return true;
+            break;
+
+        case "BLOCO":
+            return true;
+            break;
+
+        case "DCLROT":
+            return true;
+            break;
+
+        case "LID":
+            return true;
+            break;
+
+        case "REPIDENT":
+            return true;
+            break;
+
+        case "DCLCONST":
+            return true;
+            break;
+
+        case "LDCONST":
+            return true;
+            break;
+
+        case "DCLVAR":
+            return true;
+            break;
+
+        case "LDVAR":
+            return true;
+            break;
+
+        case "TIPO":
+            return true;
+            break;
+
+        case "DCLPROC":
+            return true;
+            break;
+
+        case "DEFPAR":
+            return true;
+            break;
+
+        case "CORPO":
+            return true;
+            break;
+
+        case "REPCOMANDO":
+            return true;
+            break;
+
+        case "COMANDO":
+            return true;
+            break;
+
+        case "RCOMID":
+            return true;
+            break;
+
+        case "RVAR":
+            return true;
+            break;
+
+        case "PARAMETROS":
+            return true;
+            break;
+
+        case "REPPAR":
+            return true;
+            break;
+
+        case "ELSEPARTE":
+            return true;
+            break;
+
+        case "VARIAVEL":
+            return true;
+            break;
+
+        case "VARIAVEL1":
+            return true;
+            break;
+
+        case "REPVARIAVEL":
+            return true;
+            break;
+
+        case "ITEMSAIDA":
+            return true;
+            break;
+
+        case "REPITEM":
+            return true;
+            break;
+
+        case "EXPRESSAO":
+            return true;
+            break;
+
+        case "REPEXPSIMP":
+            return true;
+            break;
+
+        case "EXPSIMP":
+            return true;
+            break;
+
+        case "REPEXP":
+            return true;
+            break;
+
+        case "TERMO":
+            return true;
+            break;
+
+        case "REPTERMO":
+            return true;
+            break;
+
+        case "FATOR":
+            return true;
+            break;
+
+        case "CONDCASE":
+            return true;
+            break;
+
+        case "CONTCASE":
+            return true;
+            break;
+
+        case "RPINTEIRO":
+            return true;
+            break;
+
+        case "SEM EFEITO":
+            return true;
+            break;
+    
+        default:
+            return false;
+    }
+}
