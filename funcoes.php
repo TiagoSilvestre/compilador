@@ -890,6 +890,7 @@ function existeNaTabelaParse($X, $a){
 
 function adicionaDerivacao($X, $a){
     if($X == 52 && $a == 1) {
+        array_shift($_SESSION['x']);
 
         array_push($_SESSION['x'], new Linha(getCodigo('PROGRAM'), 'PROGRAM'));
         array_push($_SESSION['x'], new Linha(getCodigo('IDENTIFICADOR'), 'IDENTIFICADOR'));
