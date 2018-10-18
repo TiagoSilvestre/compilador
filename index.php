@@ -345,7 +345,6 @@
 						<th class="palavra">Palavra</th>
 					</tr>
 					<?php if(isset($_SESSION['x'])): ?>
-
 						<?php foreach($_SESSION['x'] as $p): ?>
 						<tr>
 							<td><?php echo $p->codigo; ?></td>
@@ -354,6 +353,13 @@
 						<?php endforeach; ?>
 					<?php endif; ?>
 				</table>
+
+				<?php 
+					if(isset($_SESSION['error'])){
+						echo $_SESSION['error'];
+					}
+				?>
+				
 			</div>
 
 		</div>
