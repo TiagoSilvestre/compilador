@@ -577,7 +577,7 @@ function getCodigoNaoTerminal($codigo) {
 
 
 
-function isTerminal($sentenca) {
+function isNaoTerminal($sentenca) {
     
     switch ($sentenca) {
         case "PROGRAMA":

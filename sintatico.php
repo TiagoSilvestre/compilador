@@ -9,11 +9,27 @@
 	}
 
 
-	// if($_SESSION['x'])
+	if(!isNaoTerminal($_SESSION['x'][0]->sentenca )) {
+		echo "é terminall";
+		
+
+	}else {
+		echo "NAOO é terminall";
 
 
+	}
+
+
+
+
+	die();
 
 /*
+ || $_SESSION['x'][0] == '$'
+	echo "<pre>";
+	print_r($_SESSION['x'][0]->sentenca);
+
+
 	echo "<pre>";
 	print_r($_SESSION['x']);
 
@@ -22,7 +38,6 @@
 	echo "<pre>";
 	print_r($_SESSION['x']);
 
-	die();
 */
 	header("Location: index.php");
 ?>
