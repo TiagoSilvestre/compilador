@@ -5,7 +5,7 @@
 
 	if(!isset($_SESSION['x'])) {
 		$_SESSION['x'] = array();
-		array_push($_SESSION['x'], new Linha(52, getCodigoNaoTerminal(52)));
+		array_push($_SESSION['x'], new Linha(52, getSentencaNaoTerminal(52)));
 	}
 
 
@@ -14,12 +14,21 @@
 		
 
 	}else {
-		echo "NAOO é terminall";
+		echo "NAOO é terminall<br>";
+		if(existeNaTabelaParse($_SESSION['x'][0]->codigo, $_SESSION['a'][0]->codigo)){
+			
+			adicionaDerivacao($_SESSION['x'][0]->codigo, $_SESSION['a'][0]->codigo);
 
+
+
+		}else {
+			echo " NAOO exisssste";
+		}
 
 	}
 
-
+	echo "<pre>";
+	print_r($_SESSION['x']);
 
 
 	die();

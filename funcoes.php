@@ -1,5 +1,6 @@
 <?php
 
+
 function getCodigo($sentenca) {
     
     switch ($sentenca) {
@@ -97,6 +98,10 @@ function getCodigo($sentenca) {
 
         case "NOT":
             return 24;
+            break;
+
+        case "IDENTIFICADOR":
+            return 25;
             break;
 
         case "INTEIRO":
@@ -206,6 +211,150 @@ function getCodigo($sentenca) {
 
         case "$":
             return 50;
+            break;
+    // Fim LETRA SOZINHAS
+        case "PROGRAMA":
+            return 52;
+            break;
+
+        case "BLOCO":
+            return 53;
+            break;
+
+        case "DCLROT":
+            return 54;
+            break;
+
+        case "LID":
+            return 55;
+            break;
+
+        case "REPIDENT":
+            return 56;
+            break;
+
+        case "DCLCONST":
+            return 57;
+            break;
+
+        case "LDCONST":
+            return 58;
+            break;
+
+        case "DCLVAR":
+            return 59;
+            break;
+
+        case "LDVAR":
+            return 60;
+            break;
+
+        case "TIPO":
+            return 61;
+            break;
+
+        case "DCLPROC":
+            return 62;
+            break;
+
+        case "DEFPAR":
+            return 63;
+            break;
+
+        case "CORPO":
+            return 64;
+            break;
+
+        case "REPCOMANDO":
+            return 65;
+            break;
+
+        case "COMANDO":
+            return 66;
+            break;
+
+        case "RCOMID":
+            return 67;
+            break;
+
+        case "RVAR":
+            return 68;
+            break;
+
+        case "PARAMETROS":
+            return 69;
+            break;
+
+        case "REPPAR":
+            return 70;
+            break;
+
+        case "ELSEPARTE":
+            return 71;
+            break;
+
+        case "VARIAVEL":
+            return 72;
+            break;
+
+        case "VARIAVEL1":
+            return 73;
+            break;
+
+        case "REPVARIAVEL":
+            return 74;
+            break;
+
+        case "ITEMSAIDA":
+            return 75;
+            break;
+
+        case "REPITEM":
+            return 76;
+            break;
+
+        case "EXPRESSAO":
+            return 77;
+            break;
+
+        case "REPEXPSIMP":
+            return 78;
+            break;
+
+        case "EXPSIMP":
+            return 79;
+            break;
+
+        case "REPEXP":
+            return 80;
+            break;
+
+        case "TERMO":
+            return 81;
+            break;
+
+        case "REPTERMO":
+            return 82;
+            break;
+
+        case "FATOR":
+            return 83;
+            break;
+
+        case "CONDCASE":
+            return 84;
+            break;
+
+        case "CONTCASE":
+            return 85;
+            break;
+
+        case "RPINTEIRO":
+            return 86;
+            break;
+
+        case "SEM EFEITO":
+            return 87;
             break;
     }
 }
@@ -426,7 +575,7 @@ function verificaSentenca($sentenca) {
 }
 
 //Função para a segunda tabela
-function getCodigoNaoTerminal($codigo) {
+function getSentencaNaoTerminal($codigo) {
 
     switch ($codigo) {
         case 52:
@@ -726,5 +875,27 @@ function isNaoTerminal($sentenca) {
     
         default:
             return false;
+    }
+}
+
+function existeNaTabelaParse($X, $a){
+    if($X == 52 && $a == 1) {
+        return true;
+    }
+
+    return false;
+}
+
+
+
+function adicionaDerivacao($X, $a){
+    if($X == 52 && $a == 1) {
+
+        array_push($_SESSION['x'], new Linha(getCodigo('PROGRAM'), 'PROGRAM'));
+        array_push($_SESSION['x'], new Linha(getCodigo('IDENTIFICADOR'), 'IDENTIFICADOR'));
+        array_push($_SESSION['x'], new Linha(getCodigo(';'), ';'));
+        array_push($_SESSION['x'], new Linha(getCodigo('BLOCO'), 'BLOCO'));
+        array_push($_SESSION['x'], new Linha(getCodigo('.'), '.'));
+
     }
 }
