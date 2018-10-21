@@ -39,9 +39,9 @@
 
 			        foreach ($codigo as $key => $atual) {
 						// DEBUG VALORES NO LOOP
-						//  echo "--------- INÍCIO DE ITERAÇAO!------<br>";
-			            //  echo "Estado: ". $estado. "<br>";
-						//  echo "Valor atual: ". $atual . "<br>";
+						// echo "--------- INÍCIO DE ITERAÇAO!------<br>";
+			            // echo "Estado: ". $estado. "<br>";
+						// echo "Valor atual: ". $atual . "<br>";
 						if(isset($codigo[$key+1])) {
 							$prox = $codigo[$key+1];
 							// echo "Proximo: ". $prox . "<br>";
@@ -163,6 +163,13 @@
 							$estado = 1;
 							continue;								
 						}	
+						// Final de Arquivo
+						if ($atual == "$") {						
+							array_push($pilhaDeTokens, new Linha(getCodigo("$"), "$"));
+							$sentenca = '';
+							$estado = 1;
+							continue;								
+						}							
 
 						// Comentário e (
 						if ($atual == "(" && $estado == 1) {

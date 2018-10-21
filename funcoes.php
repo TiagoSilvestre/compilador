@@ -148,10 +148,6 @@ function getCodigo($sentenca) {
             return 50;
             break;
 
-        case "$":
-            return 50;
-            break;
-
         // DAQUI SAO SÓ LETRAS 
         case "+":
             return 30;
@@ -210,7 +206,7 @@ function getCodigo($sentenca) {
             break;
 
         case "$":
-            return 50;
+            return 51;
             break;
     // Fim LETRA SOZINHAS
         case "PROGRAMA":
