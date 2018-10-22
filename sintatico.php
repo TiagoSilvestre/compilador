@@ -12,8 +12,8 @@
 
 
 	if(!isNaoTerminal($_SESSION['x'][0]->sentenca) || $_SESSION['x'][0]->sentenca == '$') {
-		echo "é terminall";
-		$_SESSION['error'] = "é terminall";
+		// echo "é terminall";
+		// $_SESSION['error'] = "é terminall";
 
 		if($_SESSION['x'][0]->codigo == $_SESSION['a'][0]->codigo){
 			array_shift($_SESSION['x']);
@@ -22,18 +22,20 @@
 		}
 		else {
 			if($_SESSION['a'][0]->sentenca == '$'){
-				$_SESSION['error'] = 'COMPILADO COM SUCESSO!!!!';	
+				$_SESSION['error'] = 'COMPILADO COM SUCESSO!!!!';
+				$_SESSION['color'] = 'green';	
 				header("Location: index.php");
 				exit;	
 			}
-			$_SESSION['error'] = 'Não existe na Tabela de Parse 1';
+			$_SESSION['error'] = 'ERRO: (X) é diferente de (a)';
+			$_SESSION['color'] = 'red';
 			header("Location: index.php");
 			exit;	
 		}
 	}
 	else {
-		echo "NAOO é terminall<br>";
-		$_SESSION['error'] = "NAOO é terminall<br>";
+		// echo "NAOO é terminall<br>";
+		// $_SESSION['error'] = "NAOO é terminall<br>";
 
 		if(existeNaTabelaParse($_SESSION['x'][0]->codigo, $_SESSION['a'][0]->codigo)){
 			adicionaDerivacao($_SESSION['x'][0]->codigo, $_SESSION['a'][0]->codigo);
@@ -41,7 +43,8 @@
 			exit;	
 		}
 		else {
-			$_SESSION['error'] = 'Não existe na Tabela de Parse 2';
+			$_SESSION['error'] = 'ERRO: Não existe na Tabela de Parse';
+			$_SESSION['color'] = 'red';
 			header("Location: index.php");
 			exit;	
 		}

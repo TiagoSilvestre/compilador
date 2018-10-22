@@ -1656,7 +1656,7 @@ function adicionaDerivacao($X, $a){
         array_shift($_SESSION['x']);
         array_unshift(
             $_SESSION['x'], 
-            new Linha(getCodigo('!='), '!='),
+            new Linha(getCodigo('<>'), '<>'),
             new Linha(getCodigo('EXPSIMP'), 'EXPSIMP')
         );
     }

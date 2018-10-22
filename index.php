@@ -363,7 +363,9 @@
 
 				<?php 
 					if(isset($_SESSION['error'])){
+						echo "<div style='color:white;background:".$_SESSION['color']."'>";
 						echo $_SESSION['error'];
+						echo "</div>";
 					}
 				?>
 				
