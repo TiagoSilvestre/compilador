@@ -1006,7 +1006,8 @@ function existeNaTabelaParse($X, $a){
         ($X == 76 && $a == 37) ||
         ($X == 80 && $a == 28) ||
         ($X == 85 && $a == 7) ||
-        ($X == 86 && $a == 39)
+        ($X == 86 && $a == 39) ||
+        ($X == 56 && $a == 47)
     ) {
         return true;
     }
@@ -1302,7 +1303,8 @@ function adicionaDerivacao($X, $a){
         ($X == 76 && $a == 37) ||
         ($X == 80 && $a == 28) ||
         ($X == 85 && $a == 7) ||
-        ($X == 86 && $a == 39)
+        ($X == 86 && $a == 39) ||
+        ($X == 56 && $a == 47)
     ) {
         array_shift($_SESSION['x']);
     }
@@ -1376,7 +1378,8 @@ function adicionaDerivacao($X, $a){
             new Linha(getCodigo('('), '('),
             new Linha(getCodigo('LID'), 'LID'),
             new Linha(getCodigo(':'), ':'),
-            new Linha(getCodigo('INTEGER'), 'INTEGER')
+            new Linha(getCodigo('INTEGER'), 'INTEGER'),
+            new Linha(getCodigo(')'), ')')
         );
     }
     if($X == 64 && $a == 6) {
@@ -1542,7 +1545,7 @@ function adicionaDerivacao($X, $a){
             $_SESSION['x'], 
             new Linha(getCodigo('('), '('),
             new Linha(getCodigo('EXPRESSAO'), 'EXPRESSAO'),
-            new Linha(getCodigo('REPPAR'), 'EXREPPARPRESSAO'),
+            new Linha(getCodigo('REPPAR'), 'REPPAR'),
             new Linha(getCodigo(')'), ')')
         );
     }

@@ -11,7 +11,7 @@
 	}
 
 
-	if(!isNaoTerminal($_SESSION['x'][0]->sentenca) || $_SESSION['x'][0]->sentenca == '$') { // FALTOU VER SE É FINAL DE ARQUIVO
+	if(!isNaoTerminal($_SESSION['x'][0]->sentenca) || $_SESSION['x'][0]->sentenca == '$') {
 		echo "é terminall";
 		$_SESSION['error'] = "é terminall";
 
