@@ -13,6 +13,7 @@
 
 	if(!isNaoTerminal($_SESSION['x'][0]->sentenca )) { // FALTOU VER SE É FINAL DE ARQUIVO
 		echo "é terminall";
+		$_SESSION['error'] = "é terminall";
 
 		if($_SESSION['x'][0]->codigo == $_SESSION['a'][0]->codigo){
 			array_shift($_SESSION['x']);
@@ -27,6 +28,7 @@
 	}
 	else {
 		echo "NAOO é terminall<br>";
+		$_SESSION['error'] = "NAOO é terminall<br>";
 
 		if(existeNaTabelaParse($_SESSION['x'][0]->codigo, $_SESSION['a'][0]->codigo)){
 			adicionaDerivacao($_SESSION['x'][0]->codigo, $_SESSION['a'][0]->codigo);

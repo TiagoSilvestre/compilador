@@ -1068,108 +1068,129 @@ function adicionaDerivacao($X, $a){
     if($X == 52 && $a == 1) {
         array_shift($_SESSION['x']);
 
-        //$_SESSION['x'] = [];
-
-        array_push($_SESSION['x'], new Linha(getCodigo('PROGRAM'), 'PROGRAM'));
-        array_push($_SESSION['x'], new Linha(getCodigo('IDENTIFICADOR'), 'IDENTIFICADOR'));
-        array_push($_SESSION['x'], new Linha(getCodigo(';'), ';'));
-        array_push($_SESSION['x'], new Linha(getCodigo('BLOCO'), 'BLOCO'));
-        array_push($_SESSION['x'], new Linha(getCodigo('.'), '.'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('PROGRAM'), 'PROGRAM'),
+            new Linha(getCodigo('IDENTIFICADOR'), 'IDENTIFICADOR'),
+            new Linha(getCodigo(';'), ';'),
+            new Linha(getCodigo('BLOCO'), 'BLOCO'),
+            new Linha(getCodigo('.'), '.')
+        );
     }
 
     if( ($X == 53 && $a == 2) || ($X == 53 && $a == 3) || ($X == 53 && $a == 4) || ($X == 53 && $a == 5) || ($X == 53 && $a == 6) ) {
         array_shift($_SESSION['x']);
 
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('DCLROT'), 'DCLROT'));
-        array_push($_SESSION['x'], new Linha(getCodigo('DCLCONST'), 'DCLCONST'));
-        array_push($_SESSION['x'], new Linha(getCodigo('DCLVAR'), 'DCLVAR'));
-        array_push($_SESSION['x'], new Linha(getCodigo('DCLPROC'), 'DCLPROC'));
-        array_push($_SESSION['x'], new Linha(getCodigo('CORPO'), 'CORPO'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('DCLROT'), 'DCLROT'),
+            new Linha(getCodigo('DCLCONST'), 'DCLCONST'),
+            new Linha(getCodigo('DCLVAR'), 'DCLVAR'),
+            new Linha(getCodigo('DCLPROC'), 'DCLPROC'),
+            new Linha(getCodigo('CORPO'), 'CORPO')
+        );
     }
 
     if($X == 54 && $a == 2) {
         array_shift($_SESSION['x']);
 
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('LABEL'), 'LABEL'));
-        array_push($_SESSION['x'], new Linha(getCodigo('LID'), 'LID'));
-        array_push($_SESSION['x'], new Linha(getCodigo(';'), ';'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('LABEL'), 'LABEL'),
+            new Linha(getCodigo('LID'), 'LID'),
+            new Linha(getCodigo(';'), ';')
+        );
     }
 
     if($X == 55 && $a == 25) {
         array_shift($_SESSION['x']);
 
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('IDENTIFICADOR'), 'IDENTIFICADOR'));
-        array_push($_SESSION['x'], new Linha(getCodigo('REPIDENT'), 'REPIDENT'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('IDENTIFICADOR'), 'IDENTIFICADOR'),
+            new Linha(getCodigo('REPIDENT'), 'REPIDENT')
+        );
     }
 
     if($X == 56 && $a == 46) {
         array_shift($_SESSION['x']);
 
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo(','), ','));
-        array_push($_SESSION['x'], new Linha(getCodigo('IDENTIFICADOR'), 'IDENTIFICADOR'));
-        array_push($_SESSION['x'], new Linha(getCodigo('REPIDENT'), 'REPIDENT'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo(','), ','),
+            new Linha(getCodigo('IDENTIFICADOR'), 'IDENTIFICADOR'),
+            new Linha(getCodigo('REPIDENT'), 'REPIDENT')
+        );
     }
 
     if($X == 57 && $a == 3) {
         array_shift($_SESSION['x']);
 
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('CONST'), 'CONST'));
-        array_push($_SESSION['x'], new Linha(getCodigo('IDENTIFICADOR'), 'IDENTIFICADOR'));
-        array_push($_SESSION['x'], new Linha(getCodigo('='), '='));
-        array_push($_SESSION['x'], new Linha(getCodigo('INTEIRO'), 'INTEIRO'));
-        array_push($_SESSION['x'], new Linha(getCodigo(';'), ';'));
-        array_push($_SESSION['x'], new Linha(getCodigo('LDCONST'), 'LDCONST'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('CONST'), 'CONST'),
+            new Linha(getCodigo('IDENTIFICADOR'), 'IDENTIFICADOR'),
+            new Linha(getCodigo('='), '='),
+            new Linha(getCodigo('INTEIRO'), 'INTEIRO'),
+            new Linha(getCodigo(';'), ';'),
+            new Linha(getCodigo('LDCONST'), 'LDCONST')
+        );
     }
 
     if($X == 58 && $a == 25) {
         array_shift($_SESSION['x']);
 
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('IDENTIFICADOR'), 'IDENTIFICADOR'));
-        array_push($_SESSION['x'], new Linha(getCodigo('='), '='));
-        array_push($_SESSION['x'], new Linha(getCodigo('INTEIRO'), 'INTEIRO'));
-        array_push($_SESSION['x'], new Linha(getCodigo(';'), ';'));
-        array_push($_SESSION['x'], new Linha(getCodigo('LDCONST'), 'LDCONST'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('IDENTIFICADOR'), 'IDENTIFICADOR'),
+            new Linha(getCodigo('='), '='),
+            new Linha(getCodigo('INTEIRO'), 'INTEIRO'),
+            new Linha(getCodigo(';'), ';'),
+            new Linha(getCodigo('LDCONST'), 'LDCONST')
+        );
     }
 
     if($X == 59 && $a == 4) {
         array_shift($_SESSION['x']);
 
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('VAR'), 'VAR'));
-        array_push($_SESSION['x'], new Linha(getCodigo('LID'), 'LID'));
-        array_push($_SESSION['x'], new Linha(getCodigo(':'), ':'));
-        array_push($_SESSION['x'], new Linha(getCodigo('TIPO'), 'TIPO'));
-        array_push($_SESSION['x'], new Linha(getCodigo(';'), ';'));
-        array_push($_SESSION['x'], new Linha(getCodigo('LDVAR'), 'LDVAR'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('VAR'), 'VAR'),
+            new Linha(getCodigo('LID'), 'LID'),
+            new Linha(getCodigo(':'), ':'),
+            new Linha(getCodigo('TIPO'), 'TIPO'),
+            new Linha(getCodigo(';'), ';'),
+            new Linha(getCodigo('LDVAR'), 'LDVAR')
+        );
     }
 
     if( ($X == 75 && $a == 24) || ($X == 75 && $a == 25) || ($X == 75 && $a == 26) || ($X == 75 && $a == 30) || ($X == 75 && $a == 31) || ($X == 75 && $a == 36) ) {
         array_shift($_SESSION['x']);
 
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('EXPRESSAO'), 'EXPRESSAO'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('EXPRESSAO'), 'EXPRESSAO')
+        );
     }
 
     if( ($X == 77 && $a == 24) || ($X == 77 && $a == 25) || ($X == 77 && $a == 26) || ($X == 77 && $a == 30) || ($X == 77 && $a == 31) || ($X == 77 && $a == 36) ) {
         array_shift($_SESSION['x']);
 
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('EXPSIMP'), 'EXPSIMP'));
-        array_push($_SESSION['x'], new Linha(getCodigo('REPEXPSIMP'), 'REPEXPSIMP'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('EXPSIMP'), 'EXPSIMP'),
+            new Linha(getCodigo('REPEXPSIMP'), 'REPEXPSIMP')
+        );
     }
 
     if( ($X == 81 && $a == 24) || ($X == 81 && $a == 25) || ($X == 81 && $a == 26) || ($X == 81 && $a == 36) ) {
         array_shift($_SESSION['x']);
 
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('FATOR'), 'FATOR'));
-        array_push($_SESSION['x'], new Linha(getCodigo('REPTERMO'), 'REPTERMO'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('FATOR'), 'FATOR'),
+            new Linha(getCodigo('REPTERMO'), 'REPTERMO')
+        );
     }
 
     if( ($X == 54 && $a == 3) || 
@@ -1287,362 +1308,477 @@ function adicionaDerivacao($X, $a){
     if( ($X == 79 && $a == 24) || ($X == 79 && $a == 25) || ($X == 79 && $a == 26) ) {
         array_shift($_SESSION['x']);
 
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('TERMO'), 'TERMO'));
-        array_push($_SESSION['x'], new Linha(getCodigo('REPEXP'), 'REPEXP'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('TERMO'), 'TERMO'),
+            new Linha(getCodigo('REPEXP'), 'REPEXP')
+        );
     }
 
     if($X == 60 && $a == 25) {
         array_shift($_SESSION['x']);
 
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('LID'), 'LID'));
-        array_push($_SESSION['x'], new Linha(getCodigo(':'), ':'));
-        array_push($_SESSION['x'], new Linha(getCodigo('TIPO'), 'TIPO'));
-        array_push($_SESSION['x'], new Linha(getCodigo(';'), ';'));
-        array_push($_SESSION['x'], new Linha(getCodigo('LDVAR'), 'LDVAR'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('LID'), 'LID'),
+            new Linha(getCodigo(':'), ':'),
+            new Linha(getCodigo('TIPO'), 'TIPO'),
+            new Linha(getCodigo(';'), ';'),
+            new Linha(getCodigo('LDVAR'), 'LDVAR')
+        );
     }
     if($X == 61 && $a == 8) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('INTEGER'), 'INTEGER'));
+        
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('INTEGER'), 'INTEGER')
+        );
     }
 
     //Colocar lá em cima na outra função: Daqui para baixo
     if($X == 61 && $a == 9) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('ARRAY'), 'ARRAY'));
-        array_push($_SESSION['x'], new Linha(getCodigo('['), '['));
-        array_push($_SESSION['x'], new Linha(getCodigo('INTEIRO'), 'INTEIRO'));
-        array_push($_SESSION['x'], new Linha(getCodigo('..'), '..'));
-        array_push($_SESSION['x'], new Linha(getCodigo('INTEIRO'), 'INTEIRO'));
-        array_push($_SESSION['x'], new Linha(getCodigo(']'), ']'));
-        array_push($_SESSION['x'], new Linha(getCodigo('OF'), 'OF'));
-        array_push($_SESSION['x'], new Linha(getCodigo('INTEGER'), 'INTEGER'));
+        
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('ARRAY'), 'ARRAY'),
+            new Linha(getCodigo('['), '['),
+            new Linha(getCodigo('INTEIRO'), 'INTEIRO'),
+            new Linha(getCodigo('..'), '..'),
+            new Linha(getCodigo('INTEIRO'), 'INTEIRO'),
+            new Linha(getCodigo(']'), ']'),
+            new Linha(getCodigo('OF'), 'OF'),
+            new Linha(getCodigo('INTEGER'), 'INTEGER')
+        );
     }
     if($X == 62 && $a == 5) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('PROCEDURE'), 'PROCEDURE'));
-        array_push($_SESSION['x'], new Linha(getCodigo('IDENTIFICADOR'), 'IDENTIFICADOR'));
-        array_push($_SESSION['x'], new Linha(getCodigo('DEFPAR'), 'DEFPAR'));
-        array_push($_SESSION['x'], new Linha(getCodigo(';'), ';'));
-        array_push($_SESSION['x'], new Linha(getCodigo('BLOCO'), 'BLOCO'));
-        array_push($_SESSION['x'], new Linha(getCodigo(';'), ';'));
-        array_push($_SESSION['x'], new Linha(getCodigo('DCLPROC'), 'DCLPROC'));
+        
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('PROCEDURE'), 'PROCEDURE'),
+            new Linha(getCodigo('IDENTIFICADOR'), 'IDENTIFICADOR'),
+            new Linha(getCodigo('DEFPAR'), 'DEFPAR'),
+            new Linha(getCodigo(';'), ';'),
+            new Linha(getCodigo('BLOCO'), 'BLOCO'),
+            new Linha(getCodigo(';'), ';'),
+            new Linha(getCodigo('DCLPROC'), 'DCLPROC')
+        );
     }
     if($X == 63 && $a == 36) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('('), '('));
-        array_push($_SESSION['x'], new Linha(getCodigo('LID'), 'LID'));
-        array_push($_SESSION['x'], new Linha(getCodigo(':'), ':'));
-        array_push($_SESSION['x'], new Linha(getCodigo('INTEGER'), 'INTEGER'));
+        
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('('), '('),
+            new Linha(getCodigo('LID'), 'LID'),
+            new Linha(getCodigo(':'), ':'),
+            new Linha(getCodigo('INTEGER'), 'INTEGER')
+        );
     }
     if($X == 64 && $a == 6) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('BEGIN'), 'BEGIN'));
-        array_push($_SESSION['x'], new Linha(getCodigo('COMANDO'), 'COMANDO'));
-        array_push($_SESSION['x'], new Linha(getCodigo('REPCOMANDO'), 'REPCOMANDO'));
-        array_push($_SESSION['x'], new Linha(getCodigo('END'), 'END'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('BEGIN'), 'BEGIN'),
+            new Linha(getCodigo('COMANDO'), 'COMANDO'),
+            new Linha(getCodigo('REPCOMANDO'), 'REPCOMANDO'),
+            new Linha(getCodigo('END'), 'END')
+        );
     }
     if($X == 65 && $a == 47) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo(';'), ';'));
-        array_push($_SESSION['x'], new Linha(getCodigo('COMANDO'), 'COMANDO'));
-        array_push($_SESSION['x'], new Linha(getCodigo('REPCOMANDO'), 'REPCOMANDO'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo(';'), ';'),
+            new Linha(getCodigo('COMANDO'), 'COMANDO'),
+            new Linha(getCodigo('REPCOMANDO'), 'REPCOMANDO')
+        );
     }
     if($X == 66 && $a == 6) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('CORPO'), 'CORPO'));
+
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('CORPO'), 'CORPO')
+        );
     }
     if($X == 66 && $a == 11) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('CALL'), 'CALL'));
-        array_push($_SESSION['x'], new Linha(getCodigo('IDENTIFICADOR'), 'IDENTIFICADOR'));
-        array_push($_SESSION['x'], new Linha(getCodigo('PARAMETROS'), 'PARAMETROS'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('CALL'), 'CALL'),
+            new Linha(getCodigo('IDENTIFICADOR'), 'IDENTIFICADOR'),
+            new Linha(getCodigo('PARAMETROS'), 'PARAMETROS')
+        );
     }
     if($X == 66 && $a == 12) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('GOTO'), 'GOTO'));
-        array_push($_SESSION['x'], new Linha(getCodigo('IDENTIFICADOR'), 'IDENTIFICADOR'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('GOTO'), 'GOTO'),
+            new Linha(getCodigo('IDENTIFICADOR'), 'IDENTIFICADOR')
+        );
     }
     if($X == 66 && $a == 13) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('IF'), 'IF'));
-        array_push($_SESSION['x'], new Linha(getCodigo('EXPRESSAO'), 'EXPRESSAO'));
-        array_push($_SESSION['x'], new Linha(getCodigo('THEN'), 'THEN'));
-        array_push($_SESSION['x'], new Linha(getCodigo('COMANDO'), 'COMANDO'));
-        array_push($_SESSION['x'], new Linha(getCodigo('ELSEPARTE'), 'ELSEPARTE'));
+        
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('IF'), 'IF'),
+            new Linha(getCodigo('EXPRESSAO'), 'EXPRESSAO'),
+            new Linha(getCodigo('THEN'), 'THEN'),
+            new Linha(getCodigo('COMANDO'), 'COMANDO'),
+            new Linha(getCodigo('ELSEPARTE'), 'ELSEPARTE')
+        );   
     }
     if($X == 66 && $a == 16) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('WHILE'), 'WHILE'));
-        array_push($_SESSION['x'], new Linha(getCodigo('EXPRESSAO'), 'EXPRESSAO'));
-        array_push($_SESSION['x'], new Linha(getCodigo('DO'), 'DO'));
-        array_push($_SESSION['x'], new Linha(getCodigo('COMANDO'), 'COMANDO'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('WHILE'), 'WHILE'),
+            new Linha(getCodigo('EXPRESSAO'), 'EXPRESSAO'),
+            new Linha(getCodigo('DO'), 'DO'),
+            new Linha(getCodigo('COMANDO'), 'COMANDO')
+        );
     }
     if($X == 66 && $a == 18) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('REPEAT'), 'REPEAT'));
-        array_push($_SESSION['x'], new Linha(getCodigo('COMANDO'), 'COMANDO'));
-        array_push($_SESSION['x'], new Linha(getCodigo('UNTIL'), 'UNTIL'));
-        array_push($_SESSION['x'], new Linha(getCodigo('EXPRESSAO'), 'EXPRESSAO'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('REPEAT'), 'REPEAT'),
+            new Linha(getCodigo('COMANDO'), 'COMANDO'),
+            new Linha(getCodigo('UNTIL'), 'UNTIL'),
+            new Linha(getCodigo('EXPRESSAO'), 'EXPRESSAO')
+        );
     }
     if($X == 66 && $a == 20) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('READLN'), 'READLN'));
-        array_push($_SESSION['x'], new Linha(getCodigo('('), '('));
-        array_push($_SESSION['x'], new Linha(getCodigo('VARIAVEL'), 'VARIAVEL'));
-        array_push($_SESSION['x'], new Linha(getCodigo('REPVARIAVEL'), 'REPVARIAVEL'));
-        array_push($_SESSION['x'], new Linha(getCodigo(')'), ')'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('READLN'), 'READLN'),
+            new Linha(getCodigo('('), '('),
+            new Linha(getCodigo('VARIAVEL'), 'VARIAVEL'),
+            new Linha(getCodigo('REPVARIAVEL'), 'REPVARIAVEL'),
+            new Linha(getCodigo(')'), ')')
+        );
     }
     if($X == 66 && $a == 21) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('WRITELN'), 'WRITELN'));
-        array_push($_SESSION['x'], new Linha(getCodigo('('), '('));
-        array_push($_SESSION['x'], new Linha(getCodigo('ITEMSAIDA'), 'ITEMSAIDA'));
-        array_push($_SESSION['x'], new Linha(getCodigo('REPITEM'), 'REPITEM'));
-        array_push($_SESSION['x'], new Linha(getCodigo(')'), ')'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('WRITELN'), 'WRITELN'),
+            new Linha(getCodigo('('), '('),
+            new Linha(getCodigo('ITEMSAIDA'), 'ITEMSAIDA'),
+            new Linha(getCodigo('REPITEM'), 'REPITEM'),
+            new Linha(getCodigo(')'), ')')
+        );
     }
     if($X == 66 && $a == 25) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('IDENTIFICADOR'), 'IDENTIFICADOR'));
-        array_push($_SESSION['x'], new Linha(getCodigo('RCOMID'), 'RCOMID'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('IDENTIFICADOR'), 'IDENTIFICADOR'),
+            new Linha(getCodigo('RCOMID'), 'RCOMID')
+        );
     }
     if($X == 66 && $a == 27) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('FOR'), 'FOR'));
-        array_push($_SESSION['x'], new Linha(getCodigo('IDENTIFICADOR'), 'IDENTIFICADOR'));
-        array_push($_SESSION['x'], new Linha(getCodigo(':='), ':='));
-        array_push($_SESSION['x'], new Linha(getCodigo('EXPRESSAO'), 'EXPRESSAO'));
-        array_push($_SESSION['x'], new Linha(getCodigo('TO'), 'TO'));
-        array_push($_SESSION['x'], new Linha(getCodigo('EXPRESSAO'), 'EXPRESSAO'));
-        array_push($_SESSION['x'], new Linha(getCodigo('DO'), 'DO'));
-        array_push($_SESSION['x'], new Linha(getCodigo('COMANDO'), 'COMANDO'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('FOR'), 'FOR'),
+            new Linha(getCodigo('IDENTIFICADOR'), 'IDENTIFICADOR'),
+            new Linha(getCodigo(':='), ':='),
+            new Linha(getCodigo('EXPRESSAO'), 'EXPRESSAO'),
+            new Linha(getCodigo('TO'), 'TO'),
+            new Linha(getCodigo('EXPRESSAO'), 'EXPRESSAO'),
+            new Linha(getCodigo('DO'), 'DO'),
+            new Linha(getCodigo('COMANDO'), 'COMANDO')
+        );
     }
     if($X == 66 && $a == 29) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('CASE'), 'CASE'));
-        array_push($_SESSION['x'], new Linha(getCodigo('EXPRESSAO'), 'EXPRESSAO'));
-        array_push($_SESSION['x'], new Linha(getCodigo('OF'), 'OF'));
-        array_push($_SESSION['x'], new Linha(getCodigo('CONDCASE'), 'CONDCASE'));
-        array_push($_SESSION['x'], new Linha(getCodigo('END'), 'END'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('CASE'), 'CASE'),
+            new Linha(getCodigo('EXPRESSAO'), 'EXPRESSAO'),
+            new Linha(getCodigo('OF'), 'OF'),
+            new Linha(getCodigo('CONDCASE'), 'CONDCASE'),
+            new Linha(getCodigo('END'), 'END')
+        );
     }
     if( ($X == 67 && $a == 34) || ($X == 67 && $a == 38) ) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('RVAR'), 'RVAR'));
-        array_push($_SESSION['x'], new Linha(getCodigo(':='), ':='));
-        array_push($_SESSION['x'], new Linha(getCodigo('EXPRESSAO'), 'EXPRESSAO'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('RVAR'), 'RVAR'),
+            new Linha(getCodigo(':='), ':='),
+            new Linha(getCodigo('EXPRESSAO'), 'EXPRESSAO')
+        );
     }
     if($X == 67 && $a == 39) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo(':'), ':'));
-        array_push($_SESSION['x'], new Linha(getCodigo('COMANDO'), 'COMANDO'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo(':'), ':'),
+            new Linha(getCodigo('COMANDO'), 'COMANDO')
+        );
     }
     if($X == 68 && $a == 34) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('['), '['));
-        array_push($_SESSION['x'], new Linha(getCodigo('EXPRESSAO'), 'EXPRESSAO'));
-        array_push($_SESSION['x'], new Linha(getCodigo(']'), ']'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('['), '['),
+            new Linha(getCodigo('EXPRESSAO'), 'EXPRESSAO'),
+            new Linha(getCodigo(']'), ']')
+        );
     }
     if($X == 69 && $a == 36) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('('), '('));
-        array_push($_SESSION['x'], new Linha(getCodigo('EXPRESSAO'), 'EXPRESSAO'));
-        array_push($_SESSION['x'], new Linha(getCodigo('REPPAR'), 'REPPAR'));
-        array_push($_SESSION['x'], new Linha(getCodigo(')'), ')'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('('), '('),
+            new Linha(getCodigo('EXPRESSAO'), 'EXPRESSAO'),
+            new Linha(getCodigo('REPPAR'), 'EXREPPARPRESSAO'),
+            new Linha(getCodigo(')'), ')')
+        );
     }
     if($X == 70 && $a == 46) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo(','), ','));
-        array_push($_SESSION['x'], new Linha(getCodigo('EXPRESSAO'), 'EXPRESSAO'));
-        array_push($_SESSION['x'], new Linha(getCodigo('REPPAR'), 'REPPAR'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo(','), ','),
+            new Linha(getCodigo('EXPRESSAO'), 'EXPRESSAO'),
+            new Linha(getCodigo('REPPAR'), 'REPPAR')
+        );
     }
     if($X == 71 && $a == 15) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('ELSE'), 'ELSE'));
-        array_push($_SESSION['x'], new Linha(getCodigo('COMANDO'), 'COMANDO'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('ELSE'), 'ELSE'),
+            new Linha(getCodigo('COMANDO'), 'COMANDO')
+        );
     }
     if($X == 72 && $a == 25) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('IDENTIFICADOR'), 'IDENTIFICADOR'));
-        array_push($_SESSION['x'], new Linha(getCodigo('VARIAVEL1'), 'VARIAVEL1'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('IDENTIFICADOR'), 'IDENTIFICADOR'),
+            new Linha(getCodigo('VARIAVEL1'), 'VARIAVEL1')
+        );
     }
     if($X == 73 && $a == 34) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('['), '['));
-        array_push($_SESSION['x'], new Linha(getCodigo('EXPRESSAO'), 'EXPRESSAO'));
-        array_push($_SESSION['x'], new Linha(getCodigo(']'), ']'));
+        
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('['), '['),
+            new Linha(getCodigo('EXPRESSAO'), 'EXPRESSAO'),
+            new Linha(getCodigo(']'), ']')
+        );
     }
     if($X == 74 && $a == 46) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo(','), ','));
-        array_push($_SESSION['x'], new Linha(getCodigo('VARIAVEL'), 'VARIAVEL'));
-        array_push($_SESSION['x'], new Linha(getCodigo('REPVARIAVEL'), 'REPVARIAVEL'));
+        
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo(','), ','),
+            new Linha(getCodigo('VARIAVEL'), 'VARIAVEL'),
+            new Linha(getCodigo('REPVARIAVEL'), 'REPVARIAVEL')
+        );
     }
     if($X == 75 && $a == 48) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('LITERAL'), 'LITERAL'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('LITERAL'), 'LITERAL')
+        );
     }
     if($X == 76 && $a == 46) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo(','), ','));
-        array_push($_SESSION['x'], new Linha(getCodigo('ITEMSAIDA'), 'ITEMSAIDA'));
-        array_push($_SESSION['x'], new Linha(getCodigo('REPITEM'), 'REPITEM'));
+        
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo(','), ','),
+            new Linha(getCodigo('ITEMSAIDA'), 'ITEMSAIDA'),
+            new Linha(getCodigo('REPITEM'), 'REPITEM')
+        );
     }
     if($X == 78 && $a == 40) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('='), '='));
-        array_push($_SESSION['x'], new Linha(getCodigo('EXPSIMP'), 'EXPSIMP'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('='), '='),
+            new Linha(getCodigo('EXPSIMP'), 'EXPSIMP')
+        );
     }
     if($X == 78 && $a == 41) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('>'), '>'));
-        array_push($_SESSION['x'], new Linha(getCodigo('EXPSIMP'), 'EXPSIMP'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('>'), '>'),
+            new Linha(getCodigo('EXPSIMP'), 'EXPSIMP')
+        );
     }
     if($X == 78 && $a == 42) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('>='), '>='));
-        array_push($_SESSION['x'], new Linha(getCodigo('EXPSIMP'), 'EXPSIMP'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('>='), '>='),
+            new Linha(getCodigo('EXPSIMP'), 'EXPSIMP')
+        );
     }
     if($X == 78 && $a == 43) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('<'), '<'));
-        array_push($_SESSION['x'], new Linha(getCodigo('EXPSIMP'), 'EXPSIMP'));
+        
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('<'), '<'),
+            new Linha(getCodigo('EXPSIMP'), 'EXPSIMP')
+        );
     }
     if($X == 78 && $a == 44) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('<='), '<='));
-        array_push($_SESSION['x'], new Linha(getCodigo('EXPSIMP'), 'EXPSIMP'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('<='), '<='),
+            new Linha(getCodigo('EXPSIMP'), 'EXPSIMP')
+        );
     }
     if($X == 78 && $a == 45) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('!='), '!='));
-        array_push($_SESSION['x'], new Linha(getCodigo('EXPSIMP'), 'EXPSIMP'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('!='), '!='),
+            new Linha(getCodigo('EXPSIMP'), 'EXPSIMP')
+        );
     }
     if( ($X == 79 && $a == 30) || ($X == 80 && $a == 30) ) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('+'), '+'));
-        array_push($_SESSION['x'], new Linha(getCodigo('TERMO'), 'TERMO'));
-        array_push($_SESSION['x'], new Linha(getCodigo('REPEXP'), 'REPEXP'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('+'), '+'),
+            new Linha(getCodigo('TERMO'), 'TERMO'),
+            new Linha(getCodigo('REPEXP'), 'REPEXP')
+        );
     }
     if( ($X == 79 && $a == 31) || ($X == 80 && $a == 31) ) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('-'), '-'));
-        array_push($_SESSION['x'], new Linha(getCodigo('TERMO'), 'TERMO'));
-        array_push($_SESSION['x'], new Linha(getCodigo('REPEXP'), 'REPEXP'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('-'), '-'),
+            new Linha(getCodigo('TERMO'), 'TERMO'),
+            new Linha(getCodigo('REPEXP'), 'REPEXP')
+        );
     }
     if($X == 79 && $a == 36) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('TERMO'), 'TERMO'));
-        array_push($_SESSION['x'], new Linha(getCodigo('REPEXP'), 'REPEXP'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('TERMO'), 'TERMO'),
+            new Linha(getCodigo('REPEXP'), 'REPEXP')
+        );
     }
     if($X == 80 && $a == 22) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('OR'), 'OR'));
-        array_push($_SESSION['x'], new Linha(getCodigo('TERMO'), 'TERMO'));
-        array_push($_SESSION['x'], new Linha(getCodigo('REPEXP'), 'REPEXP'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('OR'), 'OR'),
+            new Linha(getCodigo('TERMO'), 'TERMO'),
+            new Linha(getCodigo('REPEXP'), 'REPEXP')
+        );
     }
     if($X == 82 && $a == 23) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('AND'), 'AND'));
-        array_push($_SESSION['x'], new Linha(getCodigo('FATOR'), 'FATOR'));
-        array_push($_SESSION['x'], new Linha(getCodigo('REPTERMO'), 'REPTERMO'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('AND'), 'AND'),
+            new Linha(getCodigo('FATOR'), 'FATOR'),
+            new Linha(getCodigo('REPTERMO'), 'REPTERMO')
+        );
     }
     if($X == 82 && $a == 32) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('*'), '*'));
-        array_push($_SESSION['x'], new Linha(getCodigo('FATOR'), 'FATOR'));
-        array_push($_SESSION['x'], new Linha(getCodigo('REPTERMO'), 'REPTERMO'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('*'), '*'),
+            new Linha(getCodigo('FATOR'), 'FATOR'),
+            new Linha(getCodigo('REPTERMO'), 'REPTERMO')
+        );
     }
     if($X == 82 && $a == 33) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('/'), '/'));
-        array_push($_SESSION['x'], new Linha(getCodigo('FATOR'), 'FATOR'));
-        array_push($_SESSION['x'], new Linha(getCodigo('REPTERMO'), 'REPTERMO'));
+        array_unshift(
+            $_SESSION['x'], 
+            new Linha(getCodigo('/'), '/'),
+            new Linha(getCodigo('FATOR'), 'FATOR'),
+            new Linha(getCodigo('REPTERMO'), 'REPTERMO')
+        );
     }
     if($X == 82 && $a == 34) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('NOT'), 'NOT'));
-        array_push($_SESSION['x'], new Linha(getCodigo('FATOR'), 'FATOR'));
+        array_unshift(
+            $_SESSION['x'],
+            new Linha(getCodigo('NOT'), 'NOT'),
+            new Linha(getCodigo('FATOR'), 'FATOR')
+        );
     }
     if($X == 83 && $a == 25) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('VARIAVEL'), 'VARIAVEL'));
+        array_unshift(
+            $_SESSION['x'],
+            new Linha(getCodigo('VARIAVEL'), 'VARIAVEL')
+        );
     }
     if($X == 83 && $a == 26) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('INTEIRO'), 'INTEIRO'));
+        
+        array_unshift(
+            $_SESSION['x'],
+            new Linha(getCodigo('INTEIRO'), 'INTEIRO')
+        );
     }
     if($X == 83 && $a == 36) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('('), '('));
-        array_push($_SESSION['x'], new Linha(getCodigo('EXPRESSAO'), 'EXPRESSAO'));
-        array_push($_SESSION['x'], new Linha(getCodigo(')'), ')'));
+        
+        array_unshift(
+            $_SESSION['x'],
+            new Linha(getCodigo('('), '('),
+            new Linha(getCodigo('EXPRESSAO'), 'EXPRESSAO'),
+            new Linha(getCodigo(')'), ')')
+        );
     }
     if($X == 84 && $a == 26) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo('INTEIRO'), 'INTEIRO'));
-        array_push($_SESSION['x'], new Linha(getCodigo('RPINTEIRO'), 'RPINTEIRO'));
-        array_push($_SESSION['x'], new Linha(getCodigo(':'), ':'));
-        array_push($_SESSION['x'], new Linha(getCodigo('COMANDO'), 'COMANDO'));
-        array_push($_SESSION['x'], new Linha(getCodigo('CONTCASE'), 'CONTCASE'));
+        
+        array_unshift(
+            $_SESSION['x'],
+            new Linha(getCodigo('INTEIRO'), 'INTEIRO'),
+            new Linha(getCodigo('RPINTEIRO'), 'RPINTEIRO'),
+            new Linha(getCodigo(':'), ':'),
+            new Linha(getCodigo('COMANDO'), 'COMANDO'),
+            new Linha(getCodigo('CONTCASE'), 'CONTCASE')
+        );
     }
     if($X == 85 && $a == 47) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo(';'), ';'));
-        array_push($_SESSION['x'], new Linha(getCodigo('CONDCASE'), 'CONDCASE'));
+        
+        array_unshift(
+            $_SESSION['x'],
+            new Linha(getCodigo(';'), ';'),
+            new Linha(getCodigo('CONDCASE'), 'CONDCASE')
+        );
     }
     if($X == 86 && $a == 46) {
         array_shift($_SESSION['x']);
-        //$_SESSION['x'] = [];
-        array_push($_SESSION['x'], new Linha(getCodigo(','), ','));
-        array_push($_SESSION['x'], new Linha(getCodigo('INTEIRO'), 'INTEIRO'));
-        array_push($_SESSION['x'], new Linha(getCodigo('RPINTEIRO'), 'RPINTEIRO'));
+        
+        array_unshift(
+            $_SESSION['x'],
+            new Linha(getCodigo(','), ','),
+            new Linha(getCodigo('INTEIRO'), 'INTEIRO'),
+            new Linha(getCodigo('RPINTEIRO'), 'RPINTEIRO')
+        );
     }
 }
