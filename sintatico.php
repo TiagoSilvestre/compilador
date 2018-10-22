@@ -11,7 +11,7 @@
 	}
 
 
-	if(!isNaoTerminal($_SESSION['x'][0]->sentenca )) { // FALTOU VER SE É FINAL DE ARQUIVO
+	if(!isNaoTerminal($_SESSION['x'][0]->sentenca) || $_SESSION['x'][0]->sentenca == '$') { // FALTOU VER SE É FINAL DE ARQUIVO
 		echo "é terminall";
 		$_SESSION['error'] = "é terminall";
 
@@ -21,7 +21,12 @@
 			header("Location: index.php");
 		}
 		else {
-			$_SESSION['error'] = 'Não existe na Tabela de Parse';
+			if($_SESSION['a'][0]->sentenca == '$'){
+				$_SESSION['error'] = 'COMPILADO COM SUCESSO!!!!';	
+				header("Location: index.php");
+				exit;	
+			}
+			$_SESSION['error'] = 'Não existe na Tabela de Parse 1';
 			header("Location: index.php");
 			exit;	
 		}
@@ -36,7 +41,7 @@
 			exit;	
 		}
 		else {
-			$_SESSION['error'] = 'Não existe na Tabela de Parse';
+			$_SESSION['error'] = 'Não existe na Tabela de Parse 2';
 			header("Location: index.php");
 			exit;	
 		}
