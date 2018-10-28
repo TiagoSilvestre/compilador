@@ -311,19 +311,24 @@
 		</div>
 
 		<div class="form-container">
-            <form class="formulario" action="index.php" method="post">
-                <textarea name="codigo" class="lined" id="editor" rows="10" cols="60"></textarea>
-                <input type="submit" value="Analisador Léxico">
-            </form>
+			<div class="form-buttons">
+				<form class="formulario" action="index.php" method="post">
+					<textarea name="codigo" class="lined" id="editor" rows="10" cols="60"></textarea>
+					<input type="submit" value="Analisador Léxico">
+				</form>
 
-			<form action="sintatico.php" method="post">
-			    <input type="submit" value="Analisador Sintatico">
-			</form>
+				<form action="sintatico.php" method="post">
+					<input type="submit" value="Sintatico passo a passo">
+				</form>
 
-			<form action="destruir.php" method="post">
-			    <input type="submit" value="Limpar tudo">
-			</form>
+				<form action="sintaticoInteiro.php" method="post">
+					<input type="submit" value="Analisador Sintatico">
+				</form>
 
+				<form action="destruir.php" method="post">
+					<input type="submit" value="Limpar tudo">
+				</form>
+			</div>
 
 			<div class="tabela-resultado">
 				<h2>Pilha de tokens(a)</h2>
