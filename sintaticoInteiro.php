@@ -6,9 +6,9 @@
 $_SESSION['x'] = array();
 array_push($_SESSION['x'], new Linha(52, getSentencaNaoTerminal(52)));
 
-echo '<pre>';
-print_r($_SESSION['a']);
-echo '</pre>';
+// echo '<pre>';
+// print_r($_SESSION['a']);
+// echo '</pre>';
 
 while($_SESSION['a'][0]->sentenca != '$') {
 
@@ -26,15 +26,13 @@ while($_SESSION['a'][0]->sentenca != '$') {
 			if($_SESSION['a'][0]->sentenca == '$'){
 				$_SESSION['error'] = 'COMPILADO COM SUCESSO!!!!';
 				$_SESSION['color'] = 'green';
-				// header("Location: index.php");
-				// exit;	
-                continue;
+				header("Location: index.php");
+				exit;	
 			}
 			$_SESSION['error'] = 'ERRO: (X) é diferente de (a)';
 			$_SESSION['color'] = 'red';
-			// header("Location: index.php");
-			// exit;
-            continue;
+			header("Location: index.php");
+			exit;
 		}
 	}
 	else {
@@ -50,9 +48,8 @@ while($_SESSION['a'][0]->sentenca != '$') {
 		else {
 			$_SESSION['error'] = 'ERRO: Não existe na Tabela de Parse 2';
 			$_SESSION['color'] = 'red';
-			// header("Location: index.php");
-			// exit;
-            continue;
+			header("Location: index.php");
+			exit;
 		}
 
 	}
@@ -63,6 +60,7 @@ if($_SESSION['a'][0]->sentenca == '$'){
 	$_SESSION['error'] = 'COMPILADO COM SUCESSO!!!!';
 	$_SESSION['color'] = 'green';
     header("Location: index.php");
+    exit;
 }
 
 ?>
