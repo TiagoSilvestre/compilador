@@ -3,19 +3,15 @@
 	include 'linha.php';
 	session_start();
 
-
-
 $_SESSION['x'] = array();
 array_push($_SESSION['x'], new Linha(52, getSentencaNaoTerminal(52)));
-
-
 
 echo '<pre>';
 print_r($_SESSION['a']);
 echo '</pre>';
 
+while($_SESSION['a'][0]->sentenca != '$') {
 
-do {
 	if(!isNaoTerminal($_SESSION['x'][0]->sentenca) || $_SESSION['x'][0]->sentenca == '$') {
 		// echo "é terminall";
 		// $_SESSION['error'] = "é terminall";
@@ -29,7 +25,7 @@ do {
 		else {
 			if($_SESSION['a'][0]->sentenca == '$'){
 				$_SESSION['error'] = 'COMPILADO COM SUCESSO!!!!';
-				$_SESSION['color'] = 'green';	
+				$_SESSION['color'] = 'green';
 				// header("Location: index.php");
 				// exit;	
                 continue;
@@ -61,8 +57,12 @@ do {
 
 	}
 
-} while($_SESSION['a'][0]->sentenca != '$');
+}
 
-// header("Location: index.php");
+if($_SESSION['a'][0]->sentenca == '$'){
+	$_SESSION['error'] = 'COMPILADO COM SUCESSO!!!!';
+	$_SESSION['color'] = 'green';
+    header("Location: index.php");
+}
 
 ?>
