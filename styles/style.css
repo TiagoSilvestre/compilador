@@ -33,3 +33,7 @@ tr:nth-child(even) {
 .tabela-resultado {
     margin-left: 20px;
 }
+
+.form-buttons form {
+    margin-bottom: 20px;
+}
