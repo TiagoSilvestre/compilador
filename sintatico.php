@@ -1,6 +1,7 @@
 <?php
 	include 'funcoes.php';
 	include 'linha.php';
+	include 'Simbolo.php';
 	session_start();
 
 	if(!isset($_SESSION['x'])) {
@@ -10,7 +11,18 @@
 		exit;
 	}
 
+	// PARTES SEMANTICO
+	if(!isset($_SESSION['s'])) {
+		$_SESSION['s'] = array();
+	}
 
+	if($_SESSION['a'][0]->codigo === 25) {
+		// verificar se o identificador já esta na tabela, sim = erro, nao = inserir na tabela
+		// array_push($_SESSION['s'], new Simbolo($_SESSION['a'][0]->sentenca, );
+		// como saber se o identificador esta sendo declarado ou utilizado?
+	}
+
+	// SINTATICO
 	if(!isNaoTerminal($_SESSION['x'][0]->sentenca) || $_SESSION['x'][0]->sentenca == '$') {
 		// echo "é terminall";
 		// $_SESSION['error'] = "é terminall";
