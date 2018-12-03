@@ -325,6 +325,10 @@
 					<input type="submit" value="Analisador Sintatico">
 				</form>
 
+				<form action="semantico.php" method="post">
+					<input type="submit" value="Analisador Semântico">
+				</form>
+
 				<form action="destruir.php" method="post">
 					<input type="submit" value="Limpar tudo">
 				</form>
