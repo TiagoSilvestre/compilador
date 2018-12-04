@@ -1,7 +1,6 @@
 <?php
-
+	// include 'simbolo.php';
 	include 'tabelaDeSimbolos.php';
-	include 'simbolo.php';
 	// session_start();
 
 	echo 'semanticoo<br><br><br>';
@@ -22,35 +21,10 @@
 		$tabelaDeSimbolos->verifica($value);
 
 
-
-
-		if($value->codigo == 25 && $program == true) {
-			array_push($_SESSION['s'], new Simbolo($value->sentenca, 'variavel', $tipo, 0));
-			$program = false;
-		}
-
-		if($value->sentenca == 'VAR') {
-			$var = true;
-			$tipo = $value->sentenca;
-		}
-
-		if($value->codigo == 25 && $var == true) {
-			array_push($variaveisTMP, $value->sentenca);
-		}
-
-		if($value->codigo == 39 && $var == true) {
-			if($_SESSION['a'][$key + 1]->sentenca == 'INTEGER') {
-				foreach ($variaveisTMP as $key => $val) {
-					array_push($_SESSION['s'], new Simbolo($val, 'variavel', 'INTEGER', 0));
-				}
-			}
-
-			$var = false;
-		}
 	}
 
 	echo "<pre>";
-	print_r($_SESSION['a']);
+	print_r($_SESSION['s']);
 
 // depois daqui chamar o sintaticooo
 
