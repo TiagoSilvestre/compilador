@@ -51,10 +51,19 @@ class TabelaDeSimbolos {
 			foreach ($this->variaveisTMP as $key => $val) {
 				array_push($_SESSION['s'], new Simbolo($val, 'variavel', 'INTEGER', $this->nivel));
 			}
+            $this->variaveisTMP = [];
             $this->var = false;
         }
-        if($value->codigo == 25 && !$this->verificaSeEstaNaTabela($value->sentenca) && !$this->var) {
-            $this->printError('Identificador (' . $value->sentenca . ') NÂO declarado');
+
+        if($value->codigo == 25 && !$this->var) {
+            if($this->verificaSeEstaNaTabela($value->sentenca)) {
+                // verifica o nivel
+                if(!$this->verificaNivel($value->sentenca)) {
+                    $this->printError('Identificador (' . $value->sentenca . ') fora de escopo');
+                }
+            } else { 
+                $this->printError('Identificador (' . $value->sentenca . ') NÂO declarado');
+            }
         }
 
 
@@ -65,7 +74,15 @@ class TabelaDeSimbolos {
         // END
         if($value->sentenca == 'END') {
             $this->nivel--;
-        }        
+        }
+        // REPEAT
+        if($value->sentenca == 'REPEAT') {
+            $this->nivel++;
+        }
+        // UNTIL
+        if($value->sentenca == 'UNTIL') {
+            $this->nivel--;
+        }          
     } 
 
 
@@ -91,6 +108,17 @@ class TabelaDeSimbolos {
         return false;
     }
 
+    public function verificaNivel($value) {
+        if(!empty($_SESSION['s'])) {
+            foreach ($_SESSION['s'] as $key => $val) {
+                if($val->nivel < $this->nivel){
+                    return true;
+                }
+            }            
+        }
+        return false;        
+    }
+    
 
 
 
