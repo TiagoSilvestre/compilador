@@ -1,6 +1,6 @@
 <?php
-	include 'funcoes.php';
-	include 'linha.php';
+	// include 'funcoes.php';
+	// include 'linha.php';
 	session_start();
 
 $_SESSION['x'] = array();
@@ -73,10 +73,15 @@ while($_SESSION['a'][0]->sentenca != '$') {
 }
 
 if($_SESSION['a'][0]->sentenca == '$'){
-	$_SESSION['error'] = 'COMPILADO COM SUCESSO!!!!';
-	$_SESSION['color'] = 'green';
-    header("Location: index.php");
-    exit;
+
+	include 'semantico.php';
 }
+// 	$_SESSION['error'] = 'COMPILADO COM SUCESSO!!!!';
+// 	$_SESSION['color'] = 'green';
+//     header("Location: index.php");
+//     exit;
+// }
+
+
 
 ?>

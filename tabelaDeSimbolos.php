@@ -30,6 +30,7 @@ class TabelaDeSimbolos {
             }else {
                 array_push($_SESSION['s'], new Simbolo($value->sentenca, 'variavel', 'PROGRAM', $this->nivel));
                 $this->program = false;
+                return;
             }
         }
        
@@ -53,6 +54,7 @@ class TabelaDeSimbolos {
 			}
             $this->variaveisTMP = [];
             $this->var = false;
+            return;
         }
 
         if($value->codigo == 25 && !$this->var) {
@@ -111,7 +113,7 @@ class TabelaDeSimbolos {
     public function verificaNivel($value) {
         if(!empty($_SESSION['s'])) {
             foreach ($_SESSION['s'] as $key => $val) {
-                if($val->nivel < $this->nivel){
+                if($val->nome === $value && $val->nivel < $this->nivel){
                     return true;
                 }
             }            
@@ -126,6 +128,7 @@ class TabelaDeSimbolos {
         $_SESSION['error'] = $text;
 		$_SESSION['color'] = 'red';
         header("Location: index.php");
+        exit;
     }
 
     public function busca() {

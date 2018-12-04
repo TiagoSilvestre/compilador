@@ -15,8 +15,8 @@
 	// $tabelaDeSimbolos->addNaTabela();
 
 
-	foreach ($_SESSION['a'] as $key => $value) {
-		$tabelaDeSimbolos->verifica($value);
+	foreach ($_SESSION['aCopia'] as $key => $value) {
+		// $tabelaDeSimbolos->verifica($value);
 
 
 	}
@@ -24,6 +24,13 @@
 	echo "<pre>";
 	print_r($_SESSION['s']);
 
+$_SESSION['error'] = 'COMPILADO COM SUCESSO!!!!';
+$_SESSION['color'] = 'green';
+header("Location: index.php");
+exit;
+
+
 // depois daqui chamar o sintaticooo
+// include 'sintaticoInteiro.php';
 
 ?>
