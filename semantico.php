@@ -1,8 +1,10 @@
 <?php
 
-	include 'linha.php';
+	include 'tabelaDeSimbolos.php';
 	include 'simbolo.php';
-	session_start();
+	// session_start();
+
+	echo 'semanticoo<br><br><br>';
 
 	if(!isset($_SESSION['s'])) {
 		$_SESSION['s'] = array();
@@ -11,12 +13,16 @@
 	$program = false;
 	$var = false;
 	$variaveisTMP = [];
+	
+	$tabelaDeSimbolos = new TabelaDeSimbolos();
+	// $tabelaDeSimbolos->addNaTabela();
+
 
 	foreach ($_SESSION['a'] as $key => $value) {
-		if($value->sentenca == 'PROGRAM') {
-			$program = true;
-			$tipo = $value->sentenca;
-		}
+		$tabelaDeSimbolos->verifica($value);
+
+
+
 
 		if($value->codigo == 25 && $program == true) {
 			array_push($_SESSION['s'], new Simbolo($value->sentenca, 'variavel', $tipo, 0));
@@ -44,6 +50,8 @@
 	}
 
 	echo "<pre>";
-	print_r($_SESSION['s']);
+	print_r($_SESSION['a']);
+
+// depois daqui chamar o sintaticooo
 
 ?>

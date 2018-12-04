@@ -306,12 +306,22 @@
 					}
 
 					$_SESSION['a'] = $pilhaDeTokens;
+					// fim do post
+					// chamar semantico
+					include 'semantico.php';
+
 			    }              
 			?>           
 		</div>
 
 		<div class="form-container">
 			<div class="form-buttons">
+
+				<form class="formulario" action="index.php" method="post">
+					<textarea name="codigo" class="lined" id="editor" rows="10" cols="60"></textarea>
+					<input type="submit" value="Executar">
+				</form>
+				<!--  ANTIGOO
 				<form class="formulario" action="index.php" method="post">
 					<textarea name="codigo" class="lined" id="editor" rows="10" cols="60"></textarea>
 					<input type="submit" value="Analisador Léxico">
@@ -327,7 +337,7 @@
 
 				<form action="semantico.php" method="post">
 					<input type="submit" value="Analisador Semântico">
-				</form>
+				</form> -->
 
 				<form action="destruir.php" method="post">
 					<input type="submit" value="Limpar tudo">

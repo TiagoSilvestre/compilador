@@ -6,11 +6,27 @@
 $_SESSION['x'] = array();
 array_push($_SESSION['x'], new Linha(52, getSentencaNaoTerminal(52)));
 
+
+if(!isset($_SESSION['s'])) {
+	$_SESSION['s'] = array();
+}
+
+$program = false;
+$var = false;
+$variaveisTMP = [];
+
 // echo '<pre>';
 // print_r($_SESSION['a']);
 // echo '</pre>';
 
 while($_SESSION['a'][0]->sentenca != '$') {
+
+
+	if($_SESSION['a'][0]->sentenca == 'PROGRAM') {
+		$program = true;
+		$tipo = $_SESSION['a'][0]->sentenca;
+	}
+
 
 	if(!isNaoTerminal($_SESSION['x'][0]->sentenca) || $_SESSION['x'][0]->sentenca == '$') {
 		// echo "é terminall";
