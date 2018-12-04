@@ -11,6 +11,7 @@ class TabelaDeSimbolos {
     public $program = false;
     public $var = false;
     public $label = false;
+    public $const = false;
 
     public $saveTipe = false;
     public $variaveisTMP = [];
@@ -45,7 +46,6 @@ class TabelaDeSimbolos {
 			    array_push($this->variaveisTMP, $value->sentenca);
             }
         }
-
 		if($value->sentenca == ';' && $this->label) {
 			foreach ($this->variaveisTMP as $key => $val) {
 				array_push($_SESSION['s'], new Simbolo($val, 'variavel', 'LABEL', $this->nivel));
@@ -53,7 +53,30 @@ class TabelaDeSimbolos {
             $this->variaveisTMP = [];
             $this->label = false;
             return;
-		}        
+		}
+
+
+        // CONST
+		if($value->sentenca == 'CONST') {
+			$this->const = true;
+		}
+        if($value->codigo == 25 && $this->const) {
+            if($this->verificaSeEstaNaTabela($value->sentenca) || $this->verificaTMP($value->sentenca)){
+                $this->printError('Identificador (' . $value->sentenca . ') já declarado');
+            } else {
+			    array_push($this->variaveisTMP, $value->sentenca);
+            }
+        }
+		if($value->sentenca == ';' && $this->const) {
+			foreach ($this->variaveisTMP as $key => $val) {
+				array_push($_SESSION['s'], new Simbolo($val, 'variavel', 'CONST', $this->nivel));
+			}
+            $this->variaveisTMP = [];
+            $this->const = false;
+            return;
+		}
+
+
        
         // VAR
 		if($value->sentenca == 'VAR') {
@@ -78,7 +101,7 @@ class TabelaDeSimbolos {
             return;
         }
 
-        if($value->codigo == 25 && !$this->var && !$this->label) {
+        if($value->codigo == 25 && !$this->var && !$this->label && !$this->const) {
             if($this->verificaSeEstaNaTabela($value->sentenca)) {
                 // verifica o nivel
                 if(!$this->verificaNivel($value->sentenca)) {

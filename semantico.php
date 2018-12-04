@@ -27,6 +27,6 @@
 
 
 // depois daqui chamar o sintaticooo
-// include 'sintaticoInteiro.php';
+include 'sintaticoInteiro.php';
 
 ?>
