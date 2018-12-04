@@ -26,7 +26,7 @@ class TabelaDeSimbolos {
 		}
         if($value->codigo == 25 && $this->program) {
             if($this->verificaSeEstaNaTabela($value->sentenca)){
-                $this->printError('Identificador já declarado');
+                $this->printError('Identificador (' . $value->sentenca . ') já declarado');
             }else {
                 array_push($_SESSION['s'], new Simbolo($value->sentenca, 'variavel', 'PROGRAM', $this->nivel));
                 $this->program = false;
@@ -62,16 +62,14 @@ class TabelaDeSimbolos {
 
 
     public function verificaSeEstaNaTabela($value) {
-        echo 'sentenca: '.$value.'<br>';
-        foreach ($_SESSION['s'] as $key => $val) {
-           // echo 'foreachhh: '.$val->sentenca.'<br>';
-            print_r($val);
-            // if($val->sentenca === $value){
-            //     echo "é truee<br>";
-            //     return true;
-            // }
+        if(!empty($_SESSION['s'])) {
+            foreach ($_SESSION['s'] as $key => $val) {
+                if($val->nome === $value){
+                    return true;
+                }
+            }            
         }
-        echo "é falseooo<br>";
+
         return false;
     }
 

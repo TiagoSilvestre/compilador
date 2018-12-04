@@ -3,8 +3,6 @@
 	include 'tabelaDeSimbolos.php';
 	// session_start();
 
-	echo 'semanticoo<br><br><br>';
-
 	if(!isset($_SESSION['s'])) {
 		$_SESSION['s'] = array();
 	}
