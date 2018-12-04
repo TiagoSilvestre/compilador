@@ -306,10 +306,10 @@
 					}
 
 					$_SESSION['a'] = $pilhaDeTokens;
-					$_SESSION['aCopia'] = $pilhaDeTokens;
+					
 					// fim do post
 					// chamar sintaticoInteiro
-					include 'sintaticoInteiro.php';
+					include 'semantico.php';
 
 			    }              
 			?>           
