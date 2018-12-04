@@ -38,7 +38,11 @@ class TabelaDeSimbolos {
 			$this->var = true;
 		}
 		if($value->codigo == 25 && $this->var) {
-			array_push($this->variaveisTMP, $value->sentenca);
+            if($this->verificaSeEstaNaTabela($value->sentenca) || $this->verificaTMP($value->sentenca)){
+                $this->printError('Identificador (' . $value->sentenca . ') já declarado');
+            } else {
+			    array_push($this->variaveisTMP, $value->sentenca);
+            }
 		}
 		if($value->sentenca == ':' && $this->var) {
             $this->saveTipe = true;
@@ -49,6 +53,10 @@ class TabelaDeSimbolos {
 			}
             $this->var = false;
         }
+        if($value->codigo == 25 && !$this->verificaSeEstaNaTabela($value->sentenca) && !$this->var) {
+            $this->printError('Identificador (' . $value->sentenca . ') NÂO declarado');
+        }
+
 
         // BEGIN
         if($value->sentenca == 'BEGIN') {
@@ -69,9 +77,21 @@ class TabelaDeSimbolos {
                 }
             }            
         }
-
         return false;
     }
+
+    public function verificaTMP($value) {
+        if(!empty($this->variaveisTMP)) {
+            foreach ($this->variaveisTMP as $key => $val) {
+                if($val === $value){
+                    return true;
+                }
+            }            
+        }
+        return false;
+    }
+
+
 
 
     public function printError($text) {
