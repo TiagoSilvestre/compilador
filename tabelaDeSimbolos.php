@@ -15,6 +15,7 @@ class TabelaDeSimbolos {
 
     public $saveTipe = false;
     public $variaveisTMP = [];
+    public $nivelZero = true;
 
     public function __construct() {
         $this->nivel = 0;
@@ -67,17 +68,17 @@ class TabelaDeSimbolos {
 			    array_push($this->variaveisTMP, $value->sentenca);
             }
         }
-		if($value->sentenca == ';' && $this->const) {
+		if($value->sentenca == 'VAR' && $this->const) {
 			foreach ($this->variaveisTMP as $key => $val) {
 				array_push($_SESSION['s'], new Simbolo($val, 'variavel', 'CONST', $this->nivel));
 			}
             $this->variaveisTMP = [];
             $this->const = false;
+            $this->var = true;
             return;
 		}
 
 
-       
         // VAR
 		if($value->sentenca == 'VAR') {
 			$this->var = true;
@@ -112,9 +113,9 @@ class TabelaDeSimbolos {
             }
         }
 
-
+        // ***** ALTERACOES DE NÍVEL *****
         // BEGIN
-        if($value->sentenca == 'BEGIN') {
+        if($value->sentenca == 'BEGIN' && $this->nivel === 0) {
             $this->nivel++;
         }
         // END
@@ -128,7 +129,11 @@ class TabelaDeSimbolos {
         // UNTIL
         if($value->sentenca == 'UNTIL') {
             $this->nivel--;
-        }          
+        }       
+        // PROCEDURE
+        if($value->sentenca == 'PROCEDURE') {
+            $this->nivel--;
+        }              
     } 
 
 
