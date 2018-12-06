@@ -12,6 +12,7 @@ class TabelaDeSimbolos {
     public $var = false;
     public $label = false;
     public $const = false;
+    public $procedure = false;
 
     public $saveTipe = false;
     public $variaveisTMP = [];
@@ -36,6 +37,8 @@ class TabelaDeSimbolos {
                 return;
             }
         }
+
+
         // LABEL
 		if($value->sentenca == 'LABEL') {
 			$this->label = true;
@@ -102,6 +105,25 @@ class TabelaDeSimbolos {
             return;
         }
 
+
+        // PROCEDURE
+		if($value->sentenca == 'PROCEDURE') {
+			$this->procedure = true;
+		}
+
+        if($value->codigo == 25 && $this->procedure) {
+            if($this->verificaSeEstaNaTabela($value->sentenca)){
+                $this->printError('Identificador (' . $value->sentenca . ') já declarado');
+            }else {
+                array_push($_SESSION['s'], new Simbolo($value->sentenca, 'procedure', 'PROCEDURE', $this->nivel));
+                $this->program = false;
+                return;
+            }
+        }
+
+ 
+
+        // VERIFICAÇAO
         if($value->codigo == 25 && !$this->var && !$this->label && !$this->const) {
             if($this->verificaSeEstaNaTabela($value->sentenca)) {
                 // verifica o nivel
@@ -122,14 +144,6 @@ class TabelaDeSimbolos {
         if($value->sentenca == 'END') {
             $this->nivel--;
         }
-        // REPEAT
-        // if($value->sentenca == 'REPEAT') {
-        //     $this->nivel++;
-        // }
-        // // UNTIL
-        // if($value->sentenca == 'UNTIL') {
-        //     $this->nivel--;
-        // }       
         //PROCEDURE
         if($value->sentenca == 'PROCEDURE') {
             $this->nivel++;
