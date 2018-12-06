@@ -105,7 +105,7 @@ class TabelaDeSimbolos {
         if($value->codigo == 25 && !$this->var && !$this->label && !$this->const) {
             if($this->verificaSeEstaNaTabela($value->sentenca)) {
                 // verifica o nivel
-                if(!$this->verificaNivel($value->sentenca)) {
+                if($this->verificaNivel($value->sentenca)) {
                     $this->printError('Identificador (' . $value->sentenca . ') fora de escopo');
                 }
             } else { 
@@ -115,7 +115,7 @@ class TabelaDeSimbolos {
 
         // ***** ALTERACOES DE NÍVEL *****
         // BEGIN
-        if($value->sentenca == 'BEGIN' && $this->nivel === 0) {
+        if($value->sentenca == 'BEGIN' && $this->nivel == 0) {
             $this->nivel++;
         }
         // END
@@ -123,16 +123,16 @@ class TabelaDeSimbolos {
             $this->nivel--;
         }
         // REPEAT
-        if($value->sentenca == 'REPEAT') {
-            $this->nivel++;
-        }
-        // UNTIL
-        if($value->sentenca == 'UNTIL') {
-            $this->nivel--;
-        }       
-        // PROCEDURE
+        // if($value->sentenca == 'REPEAT') {
+        //     $this->nivel++;
+        // }
+        // // UNTIL
+        // if($value->sentenca == 'UNTIL') {
+        //     $this->nivel--;
+        // }       
+        //PROCEDURE
         if($value->sentenca == 'PROCEDURE') {
-            $this->nivel--;
+            $this->nivel++;
         }              
     } 
 
@@ -162,12 +162,12 @@ class TabelaDeSimbolos {
     public function verificaNivel($value) {
         if(!empty($_SESSION['s'])) {
             foreach ($_SESSION['s'] as $key => $val) {
-                if($val->nome === $value && $val->nivel < $this->nivel){
-                    return true;
+                if($val->nome === $value && $val->nivel <= $this->nivel){
+                    return false;
                 }
             }            
         }
-        return false;        
+        return true;
     }
     
 
