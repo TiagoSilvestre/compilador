@@ -158,6 +158,7 @@ class TabelaDeSimbolos {
                     $this->printError('Identificador (' . $value->sentenca . ') fora de escopo');
                 }
             } else { 
+                $_SESSION['printaTabela'] = true;
                 $this->printError('Identificador (' . $value->sentenca . ') NÂO declarado');
             }
         }
@@ -167,10 +168,14 @@ class TabelaDeSimbolos {
 
 
     public function verificaSeEstaNaTabela($value) {
+        $_SESSION['teste'] = $value;
         if(!empty($_SESSION['s'])) {
-            foreach ($_SESSION['s'] as $key => $val) {
-                if($val->nome === $value->sentenca && $val->nivel === $value->nivel){
+            foreach ($_SESSION['s'] as $key => $tabelaVal) {
+                $_SESSION['teste'] = $tabelaVal->nome.' ';
+                if($tabelaVal->nome === $value->sentenca && $tabelaVal->nivel === $this->nivel){
+                    
                     return true;
+
                 }
             }
         }

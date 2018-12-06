@@ -387,6 +387,16 @@
 						echo $_SESSION['error'];
 						echo "</div>";
 					}
+					if(isset($_SESSION['printaTabela'])){
+						echo "<pre>";
+						print_r($_SESSION['s']);
+						echo "</pre>";
+					}			
+					if(isset($_SESSION['teste'])){
+						echo "<pre>";
+						print_r($_SESSION['teste']);
+						echo "</pre>";
+					}										
 				?>
 				
 			</div>
