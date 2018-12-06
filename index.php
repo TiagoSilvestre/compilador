@@ -16,6 +16,7 @@
 			session_start();
 			if(!isset($_SESSION['codigo'])) {
 				$_SESSION['codigo'] = [];
+				$_SESSION['teste'] = [];
 			}
 	
 			$pilhaDeTokens = array();
@@ -393,6 +394,7 @@
 						echo "</pre>";
 					}			
 					if(isset($_SESSION['teste'])){
+						echo 'tetetetesssty: ';
 						echo "<pre>";
 						print_r($_SESSION['teste']);
 						echo "</pre>";

@@ -168,14 +168,13 @@ class TabelaDeSimbolos {
 
 
     public function verificaSeEstaNaTabela($value) {
-        $_SESSION['teste'] = $value;
         if(!empty($_SESSION['s'])) {
             foreach ($_SESSION['s'] as $key => $tabelaVal) {
-                $_SESSION['teste'] = $tabelaVal->nome.' ';
-                if($tabelaVal->nome === $value->sentenca && $tabelaVal->nivel === $this->nivel){
-                    
-                    return true;
+                $tttt = $tabelaVal->nome.' '. $value->sentenca .' '.$tabelaVal->nivel.' '.$this->nivel;
+                array_push($_SESSION['teste'], $tttt);
 
+                if($tabelaVal->nome === $value->sentenca && ($tabelaVal->nivel === $this->nivel || $tabelaVal->nivel === 0)){
+                    return true;
                 }
             }
         }
