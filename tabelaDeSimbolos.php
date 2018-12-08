@@ -130,7 +130,7 @@ class TabelaDeSimbolos {
 		}
 
         if($value->codigo == 25 && $this->procedure) {
-            if($this->verificaSeEstaNaTabela($value)){
+            if($this->verificaSeEstaNaTabela($value) && !$this->saveParam){
                 $this->printError('Identificador (' . $value->sentenca . ') já declarado - procedure');
             }else {
                 if($this->saveParam){
