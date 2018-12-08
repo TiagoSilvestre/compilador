@@ -26,6 +26,7 @@ class TabelaDeSimbolos {
     public $verificaTipoParametro = false;
 
     public $currentProcedureName;
+    public $firstTimeProcedureName = true;
 
     public function __construct() {
         $this->nivel = 0;
@@ -185,8 +186,9 @@ class TabelaDeSimbolos {
 		}
 
 
-		if($this->call && $value->codigo == 25) {
+		if($this->call && $value->codigo == 25 && $this->firstTimeProcedureName) {
 			 $this->currentProcedureName = $value->sentenca;
+             $this->firstTimeProcedureName = false;
 		}
 
 
@@ -196,6 +198,7 @@ class TabelaDeSimbolos {
 
         if($this->verificaTipoParametro && $value->sentenca != '('){
             $this->verificaTipoDoParametro($value->sentenca);
+            $this->verificaTipoParametro = false;
 
         }
 
@@ -227,20 +230,19 @@ class TabelaDeSimbolos {
         if(!empty($_SESSION['s'])) {
             foreach ($_SESSION['s'] as $key => $tabelaVal) {
                 if($tabelaVal->nome === $value){
-                   // $aux = $_SESSION['s'][$key]['tipo'];
-                   $parametroType = 't222e';
                    $parametroType = $tabelaVal->tipo;
                 }
-                if($tabelaVal->nome === $this->currentProcedureName){
-                    $procedureType = $tabelaVal->tipo;
+                if($tabelaVal->nome === $this->currentProcedureName) {
+                    $procedureType = $_SESSION['s'][$key + 1]->tipo;
+                    //$procedureType = $tabelaVal->tipo;
                 }
             }
         }
+        $tttt = $parametroType. " === ". $procedureType . " ---> " . $this->currentProcedureName;
+        array_push($_SESSION['teste'], $tttt);
         if($parametroType === $procedureType) {
             return true;
         }
-        $tttt = $parametroType. " === ". $procedureType;
-        array_push($_SESSION['teste'], $tttt);
         return false;
     }
 
