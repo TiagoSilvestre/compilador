@@ -25,6 +25,8 @@ class TabelaDeSimbolos {
     public $saveTypeParam = false;
     public $verificaTipoParametro = false;
 
+    public $currentProcedureName;
+
     public function __construct() {
         $this->nivel = 0;
     }
@@ -182,12 +184,24 @@ class TabelaDeSimbolos {
 			$this->call = true;
 		}
 
+
+		if($this->call && $value->codigo == 25) {
+			 $this->currentProcedureName = $value->sentenca;
+		}
+
+
         if($value->sentenca == '(' && $this->call) {
             $this->verificaTipoParametro = true;
 		}
 
         if($this->verificaTipoParametro && $value->sentenca != '('){
             $this->verificaTipoDoParametro($value->sentenca);
+
+        }
+
+		if($this->call && $value->sentenca === ')') {        
+            $this->call = false;
+            $this->verificaTipoParametro = false;
         }
  
 
@@ -207,16 +221,26 @@ class TabelaDeSimbolos {
 
 
     public function verificaTipoDoParametro($value) {
-        $aux;
+        $parametroType = $value;
+        $procedureType;
 
         if(!empty($_SESSION['s'])) {
             foreach ($_SESSION['s'] as $key => $tabelaVal) {
                 if($tabelaVal->nome === $value){
-                    $aux = $_SESSION['s'][$key];
+                   // $aux = $_SESSION['s'][$key]['tipo'];
+                   $parametroType = 't222e';
+                   $parametroType = $tabelaVal->tipo;
+                }
+                if($tabelaVal->nome === $this->currentProcedureName){
+                    $procedureType = $tabelaVal->tipo;
                 }
             }
-
         }
+        if($parametroType === $procedureType) {
+            return true;
+        }
+        $tttt = $parametroType. " === ". $procedureType;
+        array_push($_SESSION['teste'], $tttt);
         return false;
     }
 
@@ -236,15 +260,13 @@ class TabelaDeSimbolos {
     public function verificaSeEstaNaTabela($value) {
         if(!empty($_SESSION['s'])) {
             foreach ($_SESSION['s'] as $key => $tabelaVal) {
-                $tttt = "Nome: " . $tabelaVal->nome . ' ' .
-                        "Sentença:" . $value->sentenca . ' ' . 
-                        "Nivel tabela: " . $tabelaVal->nivel . ' ' . 
-                        "Nivel atual: " . $this->nivel;
-                array_push($_SESSION['teste'], $tttt);
+                // $tttt = "Nome: " . $tabelaVal->nome . ' ' .
+                //         "Sentença:" . $value->sentenca . ' ' . 
+                //         "Nivel tabela: " . $tabelaVal->nivel . ' ' . 
+                //         "Nivel atual: " . $this->nivel;
+                // array_push($_SESSION['teste'], $tttt);
 
                 if($tabelaVal->nome === $value->sentenca && $tabelaVal->nivel === $this->nivel){
-                    $tttt = "Entrou.";
-                    array_push($_SESSION['teste'], $tttt);
                     return true;
                 }
             }
