@@ -197,7 +197,9 @@ class TabelaDeSimbolos {
 		}
 
         if($this->verificaTipoParametro && $value->sentenca != '('){
-            $this->verificaTipoDoParametro($value->sentenca);
+            if(!$this->verificaTipoDoParametro($value->sentenca)) {
+                $this->printError('Parametro com o tipo errado');
+            }
             $this->verificaTipoParametro = false;
 
         }
@@ -245,6 +247,8 @@ class TabelaDeSimbolos {
         }
         return false;
     }
+
+
 
     public function verificaTabelaEnivel($value) {
         $_SESSION['printaTabela'] = true;
