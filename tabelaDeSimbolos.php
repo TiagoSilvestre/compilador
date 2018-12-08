@@ -29,7 +29,10 @@ class TabelaDeSimbolos {
 
         // ***** ALTERACOES DE NÍVEL *****
         // BEGIN
-        if($value->sentenca == 'BEGIN' && $this->nivel == 0) {
+        // if($value->sentenca == 'BEGIN' && $this->nivel == 0) {
+        //     $this->nivel++;
+        // }
+        if(($value->sentenca == 'BEGIN' && $this->nivel != 1) || $value->sentenca == 'THEN' || $value->sentenca == 'ELSE') {
             $this->nivel++;
         }
         // END
@@ -37,9 +40,9 @@ class TabelaDeSimbolos {
             $this->nivel--;
         }
         //PROCEDURE
-        if($value->sentenca == 'PROCEDURE') {
-            $this->nivel++;
-        }  
+        // if($value->sentenca == 'PROCEDURE') {
+        //     $this->nivel++;
+        // }  
 
 
         // PROGRAM
