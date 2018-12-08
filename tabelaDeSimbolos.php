@@ -29,20 +29,20 @@ class TabelaDeSimbolos {
 
         // ***** ALTERACOES DE NÍVEL *****
         // BEGIN
-        // if($value->sentenca == 'BEGIN' && $this->nivel == 0) {
-        //     $this->nivel++;
-        // }
-        if(($value->sentenca == 'BEGIN' && $this->nivel != 1) || $value->sentenca == 'THEN' || $value->sentenca == 'ELSE') {
+        if($value->sentenca == 'BEGIN' && $this->nivel == 0) {
             $this->nivel++;
         }
+        // if(($value->sentenca == 'BEGIN' && $this->nivel != 1) || $value->sentenca == 'THEN' || $value->sentenca == 'ELSE') {
+        //     $this->nivel++;
+        // }
         // END
         if($value->sentenca == 'END') {
             $this->nivel--;
         }
         //PROCEDURE
-        // if($value->sentenca == 'PROCEDURE') {
-        //     $this->nivel++;
-        // }  
+        if($value->sentenca == 'PROCEDURE') {
+            $this->nivel++;
+        }  
 
 
         // PROGRAM
@@ -173,10 +173,15 @@ class TabelaDeSimbolos {
     public function verificaSeEstaNaTabela($value) {
         if(!empty($_SESSION['s'])) {
             foreach ($_SESSION['s'] as $key => $tabelaVal) {
-                $tttt = $tabelaVal->nome.' '. $value->sentenca .' '.$tabelaVal->nivel.' '.$this->nivel;
+                $tttt = "Nome: " . $tabelaVal->nome . ' ' .
+                        "Sentença:" . $value->sentenca . ' ' . 
+                        "Nivel tabela: " . $tabelaVal->nivel . ' ' . 
+                        "Nivel atual: " . $this->nivel;
                 array_push($_SESSION['teste'], $tttt);
 
-                if($tabelaVal->nome === $value->sentenca && ($tabelaVal->nivel === $this->nivel || $tabelaVal->nivel === 0)){
+                if($tabelaVal->nome === $value->sentenca && $tabelaVal->nivel === $this->nivel){
+                    $tttt = "Entrou.";
+                    array_push($_SESSION['teste'], $tttt);
                     return true;
                 }
             }
