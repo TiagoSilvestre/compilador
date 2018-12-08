@@ -1,0 +1,58 @@
+Exemplo 2: -----------------------------------------------------------------------------------------------
+(*TESTE - EXEMPLO VÁLIDO*)
+PROGRAM TESTE123;
+VAR x, A, B : INTEGER;
+
+BEGIN
+     (*Testa as possibilidades do REPEAT*)
+     REPEAT 
+     	BEGIN 
+			READLN(A,B);
+    	 END
+     UNTIL X > 10;
+
+END.
+$
+
+Exemplo 3: -----------------------------------------------------------------------------------------------
+(*TESTE - Exemplo iválido. O labela não é válido para a procedure*)
+PROGRAM TESTEPROC2;
+	LABEL labela;
+	const a  = 100;
+	VAR X,Y, z : INTEGER;
+	
+	PROCEDURE P(y : INTEGER);
+		CONST A = 2;
+		VAR X,T:INTEGER;
+	begin
+	end;
+	BEGIN
+		CALL p(labela)
+	END.
+$
+
+Exemplo 6: -----------------------------------------------------------------------------------------------
+(*TESTE - Exemplo inválido: A varivel 'A' foi declarada em duplicidade*)
+PROGRAM TESTE123;
+	CONST
+		a = 100;
+		b = 200;
+	VAR 
+		 a, Y, Z : INTEGER;
+BEGIN
+	Z := 0;
+END.
+$
+
+Exemplo 7: -----------------------------------------------------------------------------------------------
+(*TESTE - Exemplo válido: multiplicação*)
+PROGRAM TESTE123;
+	CONST
+		a = 100;
+		b = 200;
+	VAR 
+		 Y, Z : INTEGER;
+BEGIN
+	Z := a * Y + 2;
+END.
+$
