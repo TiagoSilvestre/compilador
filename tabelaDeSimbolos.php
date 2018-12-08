@@ -128,6 +128,7 @@ class TabelaDeSimbolos {
 			}
             $this->variaveisTMP = [];
             $this->var = false;
+            $this->saveTipe = false;
             return;
         }
 
@@ -142,7 +143,7 @@ class TabelaDeSimbolos {
         }
 
 
-        if($this->saveTypeParam){
+        if($this->saveTypeParam && $value->sentenca != ':'){
             array_push($_SESSION['s'], new Simbolo($this->variaveisTMP2[0], 'parâmetro', $value->sentenca, $this->nivel));
             $this->saveProcedureTypeParam = false;
             $this->saveTypeParam = false;
