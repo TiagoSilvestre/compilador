@@ -13,12 +13,17 @@ class TabelaDeSimbolos {
     public $label = false;
     public $const = false;
     public $procedure = false;
+    public $call = false;    
 
     public $saveTipe = false;
     public $saveParam = false;
     
     public $variaveisTMP = [];
+    public $variaveisTMP2 = [];
     public $nivelZero = true;
+    public $saveProcedureTypeParam = false;
+    public $saveTypeParam = false;
+    public $verificaTipoParametro = false;
 
     public function __construct() {
         $this->nivel = 0;
@@ -132,12 +137,29 @@ class TabelaDeSimbolos {
 			$this->procedure = true;
 		}
 
+        if($value->sentenca == ':' && $this->saveProcedureTypeParam){
+            $this->saveTypeParam = true;
+        }
+
+
+        if($this->saveTypeParam){
+            array_push($_SESSION['s'], new Simbolo($this->variaveisTMP2[0], 'parâmetro', $value->sentenca, $this->nivel));
+            $this->saveProcedureTypeParam = false;
+            $this->saveTypeParam = false;
+            $this->variaveisTMP2 = [];
+            return;
+        }        
+
         if($value->codigo == 25 && $this->procedure) {
             if($this->verificaSeEstaNaTabela($value) && !$this->saveParam){
                 $this->printError('Identificador (' . $value->sentenca . ') já declarado - procedure');
             }else {
                 if($this->saveParam){
-                    array_push($_SESSION['s'], new Simbolo($value->sentenca, 'parâmetro', 'PARAMETRO', $this->nivel));
+                    if(!$this->saveProcedureTypeParam) {
+                        array_push($this->variaveisTMP2, $value->sentenca);
+                        $this->saveProcedureTypeParam = true;
+                        return;
+                    } 
                 } else {
                     array_push($_SESSION['s'], new Simbolo($value->sentenca, 'procedure', 'PROCEDURE', $this->nivel));
                     $this->saveParam = true;
@@ -151,11 +173,26 @@ class TabelaDeSimbolos {
             $this->saveParam = false;
 		}
 
+
+
+
+        // CALL
+		if($value->sentenca == 'CALL') {
+			$this->call = true;
+		}
+
+        if($value->sentenca == '(' && $this->call) {
+            $this->verificaTipoParametro = true;
+		}
+
+        if($this->verificaTipoParametro && $value->sentenca != '('){
+            $this->verificaTipoDoParametro($value->sentenca);
+        }
  
 
         // VERIFICAÇAO
         if($value->codigo == 25 && !$this->var && !$this->label && !$this->const && !$this->procedure) {
-            if($this->verificaSeEstaNaTabela($value)) {
+            if($this->verificaTabelaEnivel($value)) {
                 // verifica o nivel
                 if($this->verificaNivel($value->sentenca)) {
                     $this->printError('Identificador (' . $value->sentenca . ') fora de escopo');
@@ -164,10 +201,35 @@ class TabelaDeSimbolos {
                 $_SESSION['printaTabela'] = true;
                 $this->printError('Identificador (' . $value->sentenca . ') NÂO declarado');
             }
-        }
-
-            
+        }           
     } 
+
+
+    public function verificaTipoDoParametro($value) {
+        $aux;
+
+        if(!empty($_SESSION['s'])) {
+            foreach ($_SESSION['s'] as $key => $tabelaVal) {
+                if($tabelaVal->nome === $value){
+                    $aux = $_SESSION['s'][$key];
+                }
+            }
+
+        }
+        return false;
+    }
+
+    public function verificaTabelaEnivel($value) {
+        $_SESSION['printaTabela'] = true;
+        if(!empty($_SESSION['s'])) {
+            foreach ($_SESSION['s'] as $key => $tabelaVal) {
+                if($tabelaVal->nome === $value->sentenca && $tabelaVal->nivel <= $this->nivel){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
 
     public function verificaSeEstaNaTabela($value) {
