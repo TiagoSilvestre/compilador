@@ -16,12 +16,12 @@
 
 	}
 
-	echo "<pre>";
-	print_r($_SESSION['s']);
+	// echo "<pre>";
+	// print_r($_SESSION['s']);
 
 
 
 // depois daqui chamar o sintaticooo
-include 'sintaticoInteiro.php';
+// include 'sintaticoInteiro.php';
 
 ?>

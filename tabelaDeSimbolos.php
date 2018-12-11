@@ -240,10 +240,11 @@ class TabelaDeSimbolos {
             $this->call = false;
             $this->verificaTipoParametro = false;
         }
- 
+        
 
         // VERIFICAÇAO
         if($value->codigo == 25 && !$this->var && !$this->label && !$this->const && !$this->procedure) {
+            $_SESSION['printaTabela'] = true;
             if($this->verificaTabelaEnivel($value)) {
                 // verifica o nivel
                 if($this->verificaNivel($value->sentenca)) {

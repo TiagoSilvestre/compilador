@@ -389,14 +389,15 @@
 						echo "</div>";
 					}
 					if(isset($_SESSION['printaTabela'])){
+						echo "testee";
 						echo "<pre>";
 						print_r($_SESSION['s']);
 						echo "</pre>";
 					}			
-					if(isset($_SESSION['teste'])){
-						echo 'tetetetesssty: ';
+					if(isset($_SESSION['s'])){
+						echo 'Aqui printa S (da tabela de simbolos):<br> ';
 						echo "<pre>";
-						print_r($_SESSION['teste']);
+						print_r($_SESSION['s']);
 						echo "</pre>";
 					}										
 				?>
