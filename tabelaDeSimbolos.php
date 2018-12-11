@@ -17,9 +17,13 @@ class TabelaDeSimbolos {
 
     public $saveTipe = false;
     public $saveParam = false;
+
+    public $finishInteger = false;
     
     public $variaveisTMP = [];
     public $variaveisTMP2 = [];
+    public $variaveisTMParray = [];
+
     public $nivelZero = true;
     public $saveProcedureTypeParam = false;
     public $saveTypeParam = false;
@@ -115,6 +119,7 @@ class TabelaDeSimbolos {
 		if($value->sentenca == 'VAR') {
 			$this->var = true;
 		}
+        // verifica se já esta na tabela, senao ele adiciona
 		if($value->codigo == 25 && $this->var) {
             if($this->verificaSeEstaNaTabela($value) || $this->verificaTMP($value->sentenca)){
                 $this->printError('Identificador (' . $value->sentenca . ') já declarado - var');
@@ -122,18 +127,45 @@ class TabelaDeSimbolos {
 			    array_push($this->variaveisTMP, $value->sentenca);
             }
 		}
+        // prepara pra salvar o tipo
 		if($value->sentenca == ':' && $this->var) {
             $this->saveTipe = true;
 		}
+        // salva quando é integer
         if($this->saveTipe && $value->sentenca == 'INTEGER') {
 			foreach ($this->variaveisTMP as $key => $val) {
 				array_push($_SESSION['s'], new Simbolo($val, 'variavel', 'INTEGER', $this->nivel));
 			}
             $this->variaveisTMP = [];
+            return;
+        }
+
+        if($this->var && $value->sentenca == ';'){
+            $this->finishInteger =true;
+            return;
+        }
+
+
+        // salva quando é array
+        if($this->saveTipe && $value->sentenca == 'ARRAY' && $this->finishInteger) {
+            if($value->sentenca != ';') {
+                // salva
+                array_push($this->variaveisTMParray, $value->sentenca);
+            } else {
+                // 
+                foreach ($this->variaveisTMParray as $key => $val) {
+                    $tipoCompleto .= $val;
+                }    
+                array_push($_SESSION['s'], new Simbolo($tipoCompleto, 'variavel', 'ARRAY', $this->nivel));            
+            }
+            
+        } else {
             $this->var = false;
             $this->saveTipe = false;
             return;
-        }
+        } 
+
+
 
 
         // PROCEDURE
