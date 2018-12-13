@@ -19,7 +19,10 @@ class TabelaDeSimbolos {
     public $saveParam = false;
 
     public $finishInteger = false;
-    
+    public $verifyArray = false;
+    public $isArray = false;
+    public $saveArrayTipe = false;
+
     public $variaveisTMP = [];
     public $variaveisTMP2 = [];
     public $variaveisTMParray = [];
@@ -57,6 +60,11 @@ class TabelaDeSimbolos {
         }  
 
 
+        if($value->sentenca == 'BEGIN'){
+            $this->deactiveSave();
+        }
+
+
         // PROGRAM
     	if($value->sentenca == 'PROGRAM') {
 			$this->program = true;
@@ -74,7 +82,7 @@ class TabelaDeSimbolos {
 
         // LABEL
 		if($value->sentenca == 'LABEL') {
-			$this->label = true;
+            $this->activeLABEL();
 		}
         if($value->codigo == 25 && $this->label) {
             if($this->verificaSeEstaNaTabela($value) || $this->verificaTMP($value->sentenca)){
@@ -88,14 +96,14 @@ class TabelaDeSimbolos {
 				array_push($_SESSION['s'], new Simbolo($val, 'variavel', 'LABEL', $this->nivel));
 			}
             $this->variaveisTMP = [];
-            $this->label = false;
             return;
 		}
 
 
         // CONST
 		if($value->sentenca == 'CONST') {
-			$this->const = true;
+			// $this->const = true;
+            $this->activeConst();
 		}
         if($value->codigo == 25 && $this->const) {
             if($this->verificaSeEstaNaTabela($value) || $this->verificaTMP($value->sentenca)){
@@ -104,20 +112,20 @@ class TabelaDeSimbolos {
 			    array_push($this->variaveisTMP, $value->sentenca);
             }
         }
+        // se vier uma VAR ele salva a const
 		if($value->sentenca == 'VAR' && $this->const) {
 			foreach ($this->variaveisTMP as $key => $val) {
-				array_push($_SESSION['s'], new Simbolo($val, 'variavel', 'CONST', $this->nivel));
+				//array_push($_SESSION['s'], new Simbolo($val, 'variavel', 'CONST', $this->nivel)); // antigo
+                array_push($_SESSION['s'], new Simbolo($val, 'constante', 'INTEGER', $this->nivel));
 			}
             $this->variaveisTMP = [];
-            $this->const = false;
-            $this->var = true;
-            return;
 		}
 
 
         // VAR
 		if($value->sentenca == 'VAR') {
-			$this->var = true;
+            $this->activeVAR();
+            return;
 		}
         // verifica se já esta na tabela, senao ele adiciona
 		if($value->codigo == 25 && $this->var) {
@@ -132,45 +140,43 @@ class TabelaDeSimbolos {
             $this->saveTipe = true;
 		}
         // salva quando é integer
-        if($this->saveTipe && $value->sentenca == 'INTEGER') {
+        if($this->saveTipe && $value->sentenca == 'INTEGER' && $this->var && !$this->saveArrayTipe) {
 			foreach ($this->variaveisTMP as $key => $val) {
 				array_push($_SESSION['s'], new Simbolo($val, 'variavel', 'INTEGER', $this->nivel));
 			}
             $this->variaveisTMP = [];
-            return;
-        }
-
-        if($this->var && $value->sentenca == ';'){
-            $this->finishInteger =true;
-            return;
-        }
-
-
-        // salva quando é array
-        if($this->saveTipe && $value->sentenca == 'ARRAY' && $this->finishInteger) {
-            if($value->sentenca != ';') {
-                // salva
-                array_push($this->variaveisTMParray, $value->sentenca);
-            } else {
-                // 
-                foreach ($this->variaveisTMParray as $key => $val) {
-                    $tipoCompleto .= $val;
-                }    
-                array_push($_SESSION['s'], new Simbolo($tipoCompleto, 'variavel', 'ARRAY', $this->nivel));            
-            }
-            
-        } else {
-            $this->var = false;
+            // $this->finishInteger = true; appagar la de cima
             $this->saveTipe = false;
             return;
+        }
+        
+        if($this->saveTipe && $value->sentenca == 'ARRAY') {
+            $this->saveArrayTipe = true;
         } 
 
+        if($this->saveArrayTipe && $value->sentenca != ';' && $value->codigo == 25) {  
+            if($this->verificaSeEstaNaTabela($value) || $this->verificaTMP($value->sentenca)){
+                $this->printError('Identificador (' . $value->sentenca . ') já declarado - var');
+            } else {
+                array_push($this->variaveisTMP, $value->sentenca);
+            }        
+        }
+        
+        if($this->saveArrayTipe && $value->sentenca === ';') {
+            foreach ($this->variaveisTMP as $key => $val) {
+                array_push($_SESSION['s'], new Simbolo($val, 'variavel', 'ARRAY', $this->nivel));
+            }
+            $this->variaveisTMP = [];        
+            $this->saveArrayTipe = false;
+            // array_push($_SESSION['s'], new Simbolo($tipoCompleto, 'variavel', 'ARRAY', $this->nivel)); // remover esse cara: variaveisTMParray
+        }
 
 
 
         // PROCEDURE
 		if($value->sentenca == 'PROCEDURE') {
-			$this->procedure = true;
+			// $this->procedure = true;
+            $this->activePROCEDURE();
 		}
 
         if($value->sentenca == ':' && $this->saveProcedureTypeParam){
@@ -215,6 +221,7 @@ class TabelaDeSimbolos {
         // CALL
 		if($value->sentenca == 'CALL') {
 			$this->call = true;
+            $this->deactiveSave();
 		}
 
 
@@ -256,6 +263,43 @@ class TabelaDeSimbolos {
             }
         }           
     } 
+
+
+    public function deactiveSave(){
+        $this->const = false;
+        $this->label = false;
+        $this->procedure = false;
+        $this->var = false;
+    }
+
+    public function activeConst(){
+        $this->const = true;
+        $this->label = false;
+        $this->procedure = false;
+        $this->var = false;
+    }
+            
+    public function activeLABEL(){
+        $this->label = true;
+        $this->procedure = false;
+        $this->var = false;
+        $this->const = false;        
+    }
+
+    public function activePROCEDURE(){
+        $this->procedure = true;
+        $this->var = false;
+        $this->const = false;
+        $this->label = false;
+    }
+
+    public function activeVAR(){
+        $this->var = true;
+        $this->const = false;
+        $this->label = false;
+        $this->procedure = false;
+    }
+    
 
 
     public function verificaTipoDoParametro($value) {

@@ -11,6 +11,7 @@
 
 
 	foreach ($_SESSION['a'] as $key => $value) {
+		// echo 'auuue'. $value->sentenca.' <br>';
 		$tabelaDeSimbolos->verifica($value);
 
 
@@ -22,6 +23,6 @@
 
 
 // depois daqui chamar o sintaticooo
-// include 'sintaticoInteiro.php';
+include 'sintaticoInteiro.php';
 
 ?>
