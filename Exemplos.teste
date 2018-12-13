@@ -56,3 +56,39 @@ BEGIN
 	Z := a * Y + 2;
 END.
 $
+
+Exemplo 6: -----------------------------------------------------------------------------------------------
+(*TESTE - Exemplo Válido com procedures*)
+PROGRAM TESTE123;
+	CONST
+		a = 100;
+		b = 200;
+	VAR 
+		 X, Y, Z : INTEGER;
+		arraya : ARRAY[0..20] OF INTEGER;
+		arrayb, arrayc, arrayd : ARRAY[0..1000] OF INTEGER;
+	
+	(*Declaração de procedure, inicia novo bloco*)
+	PROCEDURE pteste(idd : INTEGER);
+		LABEL
+			labela, labelb;
+			
+		CONST
+			a = 100;
+			b = 200;
+
+		VAR 
+			X, Y, Z : INTEGER;
+			arraya : ARRAY[0..20] OF INTEGER;
+			arrayb : ARRAY[0..1000] OF INTEGER;
+	BEGIN
+		X := a * b;
+
+	END;
+
+BEGIN
+	call pteste(a);
+	call pteste(b);
+	call pteste(X);
+END.
+$
