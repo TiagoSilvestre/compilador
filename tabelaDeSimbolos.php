@@ -1,4 +1,4 @@
-<?php
+    <?php
 include 'simbolo.php';
 
 class TabelaDeSimbolos {
@@ -27,6 +27,8 @@ class TabelaDeSimbolos {
     public $variaveisTMP2 = [];
     public $variaveisTMParray = [];
 
+    public $count = 1;
+
     public $nivelZero = true;
     public $saveProcedureTypeParam = false;
     public $saveTypeParam = false;
@@ -44,20 +46,37 @@ class TabelaDeSimbolos {
 
         // ***** ALTERACOES DE NÍVEL *****
         // BEGIN
-        if($value->sentenca == 'BEGIN' && $this->nivel == 0) {
-            $this->nivel++;
+        if($value->sentenca == 'BEGIN') {
+            // $this->nivel++;
         }
         // if(($value->sentenca == 'BEGIN' && $this->nivel != 1) || $value->sentenca == 'THEN' || $value->sentenca == 'ELSE') {
         //     $this->nivel++;
         // }
         // END
-        if($value->sentenca == 'END') {
-            $this->nivel--;
+        if($value->sentenca == 'END' && $this->nivel != 0) {
+            // $this->nivel--;
+
+            // $this->nivel = $this->nivelAnterior;
+
+            $this->nivel =  $this->nivel - $this->count;
+            $this->count++;
         }
-        //PROCEDURE
+        // PROCEDURE
         if($value->sentenca == 'PROCEDURE') {
-            $this->nivel++;
-        }  
+            //
+
+            $this->nivel = $this->count;
+
+            // $this->nivelAnterior = $this->nivel;
+            // $this->procedureCount++;
+
+            // $this->nivelAtual ;
+
+            
+
+        }
+
+
 
 
         if($value->sentenca == 'BEGIN'){
@@ -331,7 +350,7 @@ class TabelaDeSimbolos {
         $_SESSION['printaTabela'] = true;
         if(!empty($_SESSION['s'])) {
             foreach ($_SESSION['s'] as $key => $tabelaVal) {
-                if($tabelaVal->nome === $value->sentenca && $tabelaVal->nivel <= $this->nivel){
+                if($tabelaVal->nome === $value->sentenca && $tabelaVal->nivel >= $this->nivel){
                     return true;
                 }
             }
@@ -371,7 +390,7 @@ class TabelaDeSimbolos {
     public function verificaNivel($value) {
         if(!empty($_SESSION['s'])) {
             foreach ($_SESSION['s'] as $key => $val) {
-                if($val->nome === $value && $val->nivel <= $this->nivel){
+                if($val->nome === $value && $val->nivel >= $this->nivel){
                     return false;
                 }
             }            
