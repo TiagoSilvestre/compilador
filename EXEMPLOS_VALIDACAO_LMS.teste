@@ -41,7 +41,7 @@ BEGIN
 	end;
 	
 	(*Chama a procedure*)
-	CALL pteste( 100 );
+	CALL pteste(X);
 	
 	(*Testa as possibilidades do IF*)
 	IF (10 > 15) THEN
