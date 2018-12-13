@@ -211,6 +211,9 @@ $
 Exemplo 8: -----------------------------------------------------------------------------------------------
 (*TESTE - valido com duas procedures*)
 PROGRAM TESTEPROC;
+	CONST
+		a = 100;
+		b = 200;
 	(*Proc A*)
 	PROCEDURE pa(idd : INTEGER);
 		VAR 
@@ -229,14 +232,17 @@ PROGRAM TESTEPROC;
 
 
 BEGIN
-	call pa(10 + 2);
-	call pb(5);
+	call pa(a);
+	call pb(b);
 END.
 $
 
 Exemplo 8: -----------------------------------------------------------------------------------------------
 (*TESTE - inválido: procedure duplicada*)
 PROGRAM TESTEPROC;
+	CONST
+		a = 100;
+		b = 200;
 	(*Proc A*)
 	PROCEDURE pa(idd : INTEGER);
 		VAR 
@@ -255,8 +261,8 @@ PROGRAM TESTEPROC;
 
 
 BEGIN
-	call pa(10 + 2);
-	call pb(5);
+	call pa(a);
+	call pb(b);
 END.
-
+$
 

@@ -212,7 +212,7 @@ class TabelaDeSimbolos {
         }        
 
         if($value->codigo == 25 && $this->procedure) {
-            if($this->verificaSeEstaNaTabela($value) && !$this->saveParam){
+            if($this->verificaSeProcedureEstaNaTabela($value) && !$this->saveParam){
                 $this->printError('Identificador (' . $value->sentenca . ') já declarado - procedure');
             }else {
                 if($this->saveParam){
@@ -375,6 +375,19 @@ class TabelaDeSimbolos {
         }
         return false;
     }
+
+
+    public function verificaSeProcedureEstaNaTabela($value) {
+        if(!empty($_SESSION['s'])) {
+            foreach ($_SESSION['s'] as $key => $tabelaVal) {
+                if($tabelaVal->nome === $value->sentenca){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 
     public function verificaTMP($value) {
         if(!empty($this->variaveisTMP)) {
